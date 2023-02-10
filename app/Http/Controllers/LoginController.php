@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -26,15 +27,15 @@ class LoginController extends Controller
            return redirect()->to('login')
                 ->withErrors(trans('auth.failed'));
         endif;
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+        $Usuarios = Auth::getProvider()->retrieveByCredentials($credentials);
         
 
-        Auth::login($user);
+        Auth::login($Usuarios);
 
-        return $this->authenticated($request, $user);
+        return $this->authenticated($request, $Usuarios);
     }
 
-    protected function authenticated(Request $request, $user) 
+    protected function authenticated(Request $request, $Usuarios) 
     {
         return redirect()->route('home.index');
     }

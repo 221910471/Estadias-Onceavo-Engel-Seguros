@@ -24,16 +24,22 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
-            'email' => 'required|min:3',
-            'username' => 'required|min:3',
-            'password' => 'required|min:3',
-            'password_confirmation' => 'required|same:password'
-            /* 'name' => 'required|min:3',
-            'email' => 'required|email:rfc,dns|unique:users,email',
-            'username' => 'required|unique:users,username',
-            'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password' */
+            'nombre' => 'required|min:3',
+            'apellidoPaterno' => 'required|min:3',
+            'apellidoMaterno' => 'required|min:3',
+            'telefono' => 'required|min:3',
+            'contrasena' => 'required|min:3',
+            'correoElectronico' => 'required|min:3',
+            'rol' => 'required',
+            'fechaDeNacimiento' => 'required',
+            'identificacion' => 'required',
+            'tarjetaDeCirculacion' => 'required',
+            'comprobanteDomiciliario' => 'required',
+            'estadoDeSesion' => 'required',
+            'estado' => 'required',
+            'familiaId' => 'required',
+            // 'password_confirmation' => 'required|same:password'
+            
         ];
     }
 }
