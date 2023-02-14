@@ -10,7 +10,17 @@ use Session;
 class LoginController extends Controller
 {   
     public function home(){
-        return view('home');
+        // return view('home');
+
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        if($sessionId<>""){
+            return view('home');
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
     }
 
     public function login(){
@@ -50,6 +60,11 @@ class LoginController extends Controller
         $cuantos = count($consulta);
         if($cuantos==1 and hash::check($request->contrasena,$consulta[0]->contrasena)){
             // echo "acceso permitido";
+            // crear variables de sesión
+            Session::put('sessionUsuario',$consulta[0]->nombre . ' ' . $consulta[0]->apellidoPaterno . ' ' . $consulta[0]->apellidoMaterno);
+            Session::put('sessionTipo',$consulta[0]->rol);
+            Session::put('sessionId',$consulta[0]->id);
+
             return redirect()->route('home');
         }
         else{
@@ -57,5 +72,17 @@ class LoginController extends Controller
             Session::flash('mensaje','El correo o contraseña no son válidos');
             return redirect()->route('login');
         }
+    }
+
+    public function cerrarSesion(){
+        //eliminamos las variables de session actuales
+        Session::forget('sessionUsuario');
+        Session::forget('sessionTipo');
+        Session::forget('sessionId');
+
+        // redireccionamos al login
+    
+        Session::flash('mensaje','Sesión cerrada correctamente');
+            return redirect()->route('login');
     }
 }

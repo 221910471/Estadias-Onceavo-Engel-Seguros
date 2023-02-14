@@ -38,3 +38,8 @@
     border: none;
 }
 
+/* styles for screen home */
+
+h2 {
+    text-align: center;
+}

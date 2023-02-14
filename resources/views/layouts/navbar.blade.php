@@ -1,3 +1,8 @@
+<?php
+    $sessionUsuario = session('sessionUsuario');
+    $sessionTipo = session('sessionTipo');
+    $sessionId = session('sessionId');
+?>
 <!doctype html>
 <html lang="es-MX">
   <head>
@@ -8,34 +13,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a href="{{ route('home.index') }}"><img class="imageNavBar" src="img/logo.png" alt="logo empresarial"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-            </div>
-        </div>
+    <nav>
+      <a href="{{ route('home.index') }}"><img class="imageNavBar" src="img/logo.png" alt="logo empresarial"></a>
+      <!-- validación de lo que ve cada uno de los usuarios en la barra de navegacion superior -->
+      @if($sessionTipo == '')
+      <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a>
+      <a href="{{ route('login') }}"><button class="navButton">Iniciar sesión</button></a>
+      @else
+        @if($sessionTipo == 'Administrador' || $sessionTipo == 'Interno')
+        <a href="#"><p>usted es un ADMIN</p></a>
+        <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
+        @else
+          @if($sessionTipo == 'Cliente')
+          <a href="#"><p>usted es un cliente</p></a>
+          <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
+          @else
+            <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a>
+            <a href="{{ route('login') }}"><button class="navButton">Iniciar sesión</button></a>
+          @endif
+        @endif
+      @endif
+
     </nav>
-    
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>

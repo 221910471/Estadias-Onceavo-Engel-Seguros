@@ -30,9 +30,10 @@ return [
     | to immediately expire on the browser closing, set that option.
     |
     */
-
+    
+    //indicamos que las variables de sesión solo esten activas 2 horas(120 minutos)
     'lifetime' => env('SESSION_LIFETIME', 120),
-
+    //indica que en caso de true, se eliminen las variables de sesión si se cierra el navegador
     'expire_on_close' => false,
 
     /*

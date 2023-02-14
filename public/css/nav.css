@@ -4,11 +4,14 @@
     --primaryColor: #0f0c67;
     --basicColor: #fffffe;
     --secondaryColor: #266593;
+    --secondaryColorOrange: #e09636;
+    --secondaryColorGreen: #9dc147;
+    
 }
 
 nav {
     background-color: var(--primaryColor);
-    max-height: 90px;
+    height: 90px;
     display: flex;
     justify-content: flex-start;
     color: var(--basicColor);
@@ -24,14 +27,15 @@ nav {
     background-color: var(--secondaryColor);
     color: var(--basicColor);
     font-size: 24px;
-    border-radius: 24px;
+    border-radius: 12px;
     margin: 5px;
 }
 
 .imageNavBar {
     /* margin: 2%; */
-    width: 20%;
+    width: 15%;
     margin: 5px;
+    max-height: 80%;
 }
 
 /* styles for index screen */
@@ -54,8 +58,19 @@ nav {
     width: 100%;
     height: 300px;
 }
-
+/* 
 .cardTextSize{
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    color: var(--basicColor);
+    background-color: var(--primaryColor);
+    align-items:center;
+    display: flex;
+    column-gap: 20px;
+} */
+
+.cardTextSize1{
     height: 300px;
     width: 100%;
     text-align: center;
@@ -66,12 +81,23 @@ nav {
     column-gap: 20px;
 }
 
-.cardTextSize{
+.cardTextSize2{
     height: 300px;
     width: 100%;
     text-align: center;
     color: var(--basicColor);
-    background-color: var(--primaryColor);
+    background-color: var(--secondaryColorOrange);
+    align-items:center;
+    display: flex;
+    column-gap: 20px;
+}
+
+.cardTextSize3{
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    color: var(--basicColor);
+    background-color: var(--secondaryColorGreen);
     align-items:center;
     display: flex;
     column-gap: 20px;

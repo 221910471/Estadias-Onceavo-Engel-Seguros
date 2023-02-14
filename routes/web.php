@@ -11,4 +11,4 @@ Route::get('/',[HomeController::class,'index'])->name('home.index');
 Route::get('/login',[LoginController::class,'login'])->name('login');
 Route::post('/validar',[LoginController::class,'validar'])->name('validar');
 Route::get('/home',[LoginController::class,'home'])->name('home');
-// Route::get('/cerrarsesion',[LoginController::class,'cerrarsesion'])->name('cerrarsesion');
+Route::get('/cerrarSesion',[LoginController::class,'cerrarSesion'])->name('cerrarSesion');

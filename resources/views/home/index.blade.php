@@ -32,7 +32,7 @@
     <!-- conjunto de cartas en el inicio --> 
     <div class="grid-container">
       <div class="grid-item1">
-        <div class="cardTextSize">
+        <div class="cardTextSize1">
           <div>
             <h2 class="cardTitle">Seguro de Vida y Gastos Médicos</h2>
             <span class="cardMessage">El seguro es un contrato que permite cubrir una contingencia pagando por ello una prima (el asegurado) a la compañía aseguradora o reaseguradora.</span>  
@@ -48,7 +48,7 @@
         <img class="cardImageSize" src="https://imgs.search.brave.com/0rVhnCAgFN2-5ZEO4Y3F0jJl-H6USkIVx-qLfKSRsGQ/rs:fit:854:225:1/g:ce/aHR0cHM6Ly90c2Ux/LmV4cGxpY2l0LmJp/bmcubmV0L3RoP2lk/PU9JUC5zdUhKMllJ/QzdqT0RTV0s4NkdK/MnZBSGFFSCZwaWQ9/QXBp" alt="Imagen seguro médico">
       </div>
       <div class="grid-item1">
-        <div class="cardTextSize">
+        <div class="cardTextSize2">
           <div>
             <h2 class="cardTitle">Seguro de Contra daños</h2>
             <span class="cardMessage">El seguro es un contrato que permite cubrir una contingencia pagando por ello una prima (el asegurado) a la compañía aseguradora o reaseguradora.</span>  
@@ -58,7 +58,7 @@
     </div>
     <div class="grid-container">
       <div class="grid-item1">
-        <div class="cardTextSize">
+        <div class="cardTextSize3">
           <div>
             <h2 class="cardTitle">Seguro de Auto</h2>
             <span class="cardMessage">El seguro es un contrato que permite cubrir una contingencia pagando por ello una prima (el asegurado) a la compañía aseguradora o reaseguradora.</span>  
