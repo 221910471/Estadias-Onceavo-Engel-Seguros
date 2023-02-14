@@ -3,17 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
-class Usuarios extends Authenticatable
+class Usuarios extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
+    protected $primaryKey ='id';
     protected $fillable = [
+        'id',
         'nombre',
         'apellidoPaterno',
         'apellidoMaterno',
@@ -26,7 +24,7 @@ class Usuarios extends Authenticatable
         'tarjetaDeCirculacion',
         'comprobanteDomiciliario',
         'estadoDeSesion',
-        'estado',
+        'activo',
         'familiaId',
     ];
 
@@ -35,21 +33,21 @@ class Usuarios extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'contrasena',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'contrasena',
+    //     'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 
-    public function setPasswordAttribute($value){
-        $this->attributes['contrasena'] = bcrypt($value);
-    }
+    // public function setPasswordAttribute($value){
+    //     $this->attributes['contrasena'] = bcrypt($value);
+    // }
 }

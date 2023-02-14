@@ -1,0 +1,40 @@
+/* styles for screen login */
+
+:root {
+    --primaryColor: #0f0c67;
+    --basicColor: #fffffe;
+    --secondaryColor: #266593;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.backgroundImage {
+    display: flex;
+    justify-content: center;
+}
+
+.centerModal{
+    background-color: var(--basicColor);
+    width: 28%;
+    max-height: 900px;
+    margin: 7%;
+    border-radius: 24px;
+    padding: 4%;
+    text-align: center;
+    align-items: center;
+}
+
+.cardButton{
+    background-color: var(--secondaryColor);
+    color: var(--basicColor);
+    font-size: 24px;
+    border-radius: 12px;
+    margin: 5px;
+    padding-left: 8%;
+    padding-right: 8%; 
+    border: none;
+}
+

@@ -99,10 +99,10 @@
             @endif
         </div>
         <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control" name="estado" value="1" placeholder="estado" required="required" autofocus>
-            <label for="floatingName">estado</label>
-            @if ($errors->has('estado'))
-                <span class="text-danger text-left">{{ $errors->first('estado') }}</span>
+            <input type="text" class="form-control" name="activo" value="1" placeholder="activo" required="required" autofocus>
+            <label for="floatingName">activo</label>
+            @if ($errors->has('activo'))
+                <span class="text-danger text-left">{{ $errors->first('activo') }}</span>
             @endif
         </div>
         <div class="form-group form-floating mb-3">

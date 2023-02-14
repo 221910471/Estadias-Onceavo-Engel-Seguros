@@ -1,33 +1,54 @@
-@extends('layouts.auth-master')
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    @include('layouts.navbar')
+        <div class="backgroundImage" style="background-image: url('img/logo.png');">
+            <div class="centerModal">
+                <h1>Inicio de sesión</h1>
+                <hr>
+                <form action="{{ route('validar') }}" method = "POST">
+                    {{csrf_field()}}
+                    <div class="">
+                        <div class="">
+                            <label for="dni">Correo:
+                                @if($errors->first('correoElectronico'))
+                                    <p class="text-danger">{{ $errors->first('correoElectronico')}}</p>
+                                @endif
+                            </label>
 
-@section('content')
-    <form method="post" action="{{ route('login.perform') }}" class="container w-25">
-        
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        
-        
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
+                            <input type="text" name="correoElectronico" id="correoElectronico" value="" class="form-control" placeholder="Correo Electrónico">
+                        </div>
+                        <div class="">
+                            <label for="dni">Contraseña:
+                                @if($errors->first('contrasena'))
+                                    <p class="text-danger">{{ $errors->first('contrasena')}}</p>
+                                @endif
+                            </label>
 
-        @include('layouts.partials.messages')
+                            <input type="text" name="contrasena" id="contrasena" value="" class="form-control" placeholder="Contraseña">
+                        </div>
+                        <div class="row">
+                            <div class="">
+                                <input class ="cardButton" type="submit" value="Entrar" >
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="nombre" autofocus>
-            <label for="floatingName">Email or Username</label>
-            @if ($errors->has('nombre'))
-                <span class="text-danger text-left">{{ $errors->first('nombre') }}</span>
-            @endif
+                </form>
+                <br>
+                <br>
+                @if(Session::has('mensaje'))
+                <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
+                @endif
+            </div>
         </div>
-        
-        <div class="form-group form-floating mb-3">
-            <input type="password" class="form-control" name="contrasena" value="{{ old('contrasena') }}" placeholder="contrasena">
-            <label for="floatingPassword">contrasena</label>
-            @if ($errors->has('contrasena'))
-                <span class="text-danger text-left">{{ $errors->first('contrasena') }}</span>
-            @endif
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-        
-        @include('auth.partials.copy')
-    </form>
-@endsection
+@include('layouts.footer')
+</body>
+</html>

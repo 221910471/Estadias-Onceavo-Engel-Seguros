@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('tarjetaDeCirculacion')->nullable()->comment('Imagen de la tarjeta de circulacion de un  vehiculo');
             $table->string('comprobanteDomiciliario')->nullable()->comment('Imagen o fotografia de un comprobante domiciliario');
             $table->string('estadoDeSesion')->comment('Campo para verificar el primer acceso al sistema');
-            $table->string('estado')->comment('Campo para registrar una baja logica en el sistema');
+            $table->string('activo')->comment('Campo para registrar una baja logica en el sistema');
 
             $table->unsignedBigInteger('familiaId'); 
             $table->foreign('familiaId')->references('id')->on('familias');

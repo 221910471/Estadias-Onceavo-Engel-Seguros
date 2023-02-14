@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('notificaciones', function (Blueprint $table) {
             $table->id();        
             $table->date('fechaEnvio')->comment('Fecha en la que se realizo la notificación');
-            $table->string('estado')->comment('Campo para registrar una baja logica en el sistema');
+            $table->string('activo')->comment('Campo para registrar una baja logica en el sistema');
 
             $table->unsignedBigInteger('usuarioId');
             $table->foreign('usuarioId')->references('id')->on('usuarios');

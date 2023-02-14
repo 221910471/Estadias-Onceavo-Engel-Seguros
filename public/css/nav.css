@@ -66,6 +66,28 @@ nav {
     column-gap: 20px;
 }
 
+.cardTextSize{
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    color: var(--basicColor);
+    background-color: var(--primaryColor);
+    align-items:center;
+    display: flex;
+    column-gap: 20px;
+}
+
+.cardTextSize{
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    color: var(--basicColor);
+    background-color: var(--primaryColor);
+    align-items:center;
+    display: flex;
+    column-gap: 20px;
+}
+
 .cardTitle{
     margin-bottom: 20px;
     margin-left: 30px;
