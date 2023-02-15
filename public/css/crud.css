@@ -1,0 +1,99 @@
+/* styles for screens cruds */
+
+:root {
+    --primaryColor: #0f0c67;
+    --basicColor: #fffffe;
+    --secondaryColor: #266593;
+    --secondaryColorOrange: #e09636;
+    --secondaryColorGreen: #9dc147;
+    --secondaryColorRed: #d41010; 
+}
+
+.crudH2{
+    margin-top: 3%;
+    text-align: center;
+}
+
+.crudButton{
+    background-color: var(--secondaryColor);
+    color: var(--basicColor);
+    font-size: 24px;
+    border-radius: 12px;
+    border: none;
+    margin: 5px;
+    padding: 5px;
+    margin-left: 20px;
+}
+
+.crudTable {
+    font-size: 12px;
+    /* color:#333333; */
+    color:#000000;
+    width: 80%;
+    border-width: 1px;
+    /* border-color: #729ea5; */
+    border-color: var(--primaryColor);
+    border-collapse: collapse;
+    margin: 3%;
+    border-radius: 24px;
+    
+}
+
+.crudTable tbody{
+    border-radius: 12px;
+}
+
+
+.crudTable th {
+    font-size:12px;
+    background-color: var(--secondaryColor);
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: var(--primaryColor);
+    text-align:center;
+}
+
+.crudTable tr {
+    background-color:#d4e3e5;
+}
+
+.crudTable td {
+    font-size:12px;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: var(--primaryColor);
+}
+
+.crudTable tr:hover {
+    background-color: var(--basicColor);
+}
+
+.crudButtonFormAccept{
+    background-color: var(--secondaryColorGreen);
+    color: var(--basicColor);
+    font-size: 17px;
+    border-radius: 4px;
+    border: none;
+    margin: 5px;
+    padding: 10px;
+    
+}
+
+.crudButtonFormCancel{
+    background-color: var(--secondaryColorRed);
+    color: var(--basicColor);
+    font-size: 17px;
+    border-radius: 4px;
+    border: none;
+    margin: 5px;
+    padding: 10px;
+}
+
+.crudFormItems{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

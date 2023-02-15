@@ -10,7 +10,6 @@ use Session;
 class LoginController extends Controller
 {   
     public function home(){
-        // return view('home');
 
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');

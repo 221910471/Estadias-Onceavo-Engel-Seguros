@@ -32,7 +32,7 @@
                                 @endif
                             </label>
 
-                            <input type="text" name="contrasena" id="contrasena" value="" class="form-control" placeholder="Contraseña">
+                            <input type="password" name="contrasena" id="contrasena" value="" class="form-control" placeholder="Contraseña">
                         </div>
                         <div class="row">
                             <div class="">
