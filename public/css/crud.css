@@ -17,12 +17,34 @@
 .crudButton{
     background-color: var(--secondaryColor);
     color: var(--basicColor);
-    font-size: 24px;
+    font-size: 20px;
+    border-radius: 12px;
+    border: none;
+    margin: 5px;
+    padding: 10px;
+    margin-left: 20px;
+    box-shadow:    3px 3px #444444;
+}
+
+.crudButton:hover{
+    background-color: var(--secondaryColorGreen);
+    box-shadow:    3px 3px #444444;
+}
+
+.crudButtonTable{
+    background-color: var(--secondaryColor);
+    color: var(--basicColor);
+    font-size: 16px;
     border-radius: 12px;
     border: none;
     margin: 5px;
     padding: 5px;
-    margin-left: 20px;
+    box-shadow:    3px 3px #444444;   
+}
+
+.crudButtonTable:hover{
+    background-color: var(--secondaryColorGreen);
+    box-shadow:    3px 3px #444444;
 }
 
 .crudTable {
@@ -97,3 +119,27 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.crudDetailImage{
+    max-height: 325px;
+    min-height: 50px;
+}
+
+.crudDetailTextImage{
+    text-align: center;
+}
+
+.dataDetails{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.gridContainerDetail1 {
+    display: grid;
+    grid-template-columns: 33fr 33fr 34fr;
+    width: 100%;
+    margin-top: 20px;
+}
+

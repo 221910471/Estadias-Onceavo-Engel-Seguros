@@ -1,22 +1,24 @@
-<!-- Modal del registro de usuario -->
+<!-- Modal del edicion de datos del usuario -->
 <div>
         <!-- Button trigger modal -->
-        <button type="button" class="crudButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Registrar Usuario
+        <button type="button" class="crudButtonTable" data-bs-toggle="modal" data-bs-target="#editUser{{ $usuario->id }}">
+            Editar
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editUser{{ $usuario->id }}" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-7" id="exampleModalLabel">Registrar Usuario</h1>
+                        <h1 class="modal-title fs-7" id="editUserLabel">Editar</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                     <!-- Formulario para crear nuevo usuario -->
-                    <form action="{{route('createUser')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('editUser',$usuario->id)}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
+                        @csrf @method('PUT')
+
                         <div>
                         <div class="crudFormItems">
                                 <label for="dni">Nombre:
@@ -25,7 +27,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="nombre" id="nombre" value="" class="form-control" placeholder="Nombre">
+                                <input type="text" name="nombre" id="nombre" value="{{ $usuario->nombre }}" class="form-control" placeholder="Nombre">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Primer Apellido:
@@ -34,7 +36,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="apellidoPaterno" id="apellidoPaterno" value="" class="form-control" placeholder="Primer Apellido">
+                                <input type="text" name="apellidoPaterno" id="apellidoPaterno" value="{{ $usuario->apellidoPaterno }}" class="form-control" placeholder="Primer Apellido">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Segundo Apellido:
@@ -43,7 +45,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="apellidoMaterno" id="apellidoMaterno" value="" class="form-control" placeholder="Segundo Apellido">
+                                <input type="text" name="apellidoMaterno" id="apellidoMaterno" value="{{ $usuario->apellidoMaterno }}" class="form-control" placeholder="Segundo Apellido">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Teléfono:
@@ -52,7 +54,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="telefono" id="telefono" value="" class="form-control" placeholder="Teléfono">
+                                <input type="text" name="telefono" id="telefono" value="{{ $usuario->telefono }}" class="form-control" placeholder="Teléfono">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Correo:
@@ -61,7 +63,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="correoElectronico" id="correoElectronico" value="" class="form-control" placeholder="Correo Electrónico">
+                                <input type="text" name="correoElectronico" id="correoElectronico" value="{{ $usuario->correoElectronico}}" class="form-control" placeholder="Correo Electrónico">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Contraseña:
@@ -70,7 +72,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="contrasena" id="contrasena" value="" class="form-control" placeholder="Contraseña">
+                                <input type="text" name="contrasena" id="contrasena" value="{{ $usuario->contrasena }}" class="form-control" placeholder="Contraseña">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Fecha de nacimiento:
@@ -79,7 +81,7 @@
                                     @endif
                                 </label>
 
-                                <input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento" value="" class="form-control" placeholder="Fecha de nacimiento">
+                                <input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento" value="{{ $usuario->fechaDeNacimiento }}" class="form-control" placeholder="Fecha de nacimiento">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Rol:
@@ -87,7 +89,7 @@
                                         <p class="text-danger">{{ $errors->first('rol')}}</p>
                                     @endif
                                 </label>
-                                <select class="form-select" name="rol" id="rol" value="">
+                                <select class="form-select" name="rol" id="rol" value="{{ $usuario->rol}}">
                                 <option selected>Seleccione un rol</option>
                                     <option value="Administrador">Administrador</option>
                                     <option value="Interno">Interno</option>
@@ -102,7 +104,7 @@
                                     @endif
                                 </label>
 
-                                <input type="file" name="identificacion" id="identificacion" value="" class="form-control" placeholder="Identificación">
+                                <input type="file" name="identificacion" id="identificacion" value="{{ $usuario->identificacion}}" class="form-control" placeholder="Identificación">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Tarjeta de Circulación:
@@ -111,7 +113,7 @@
                                     @endif
                                 </label>
 
-                                <input type="file" name="tarjetaDeCirculacion" id="tarjetaDeCirculacion" value="" class="form-control" placeholder="Tarjeta de Circulación">
+                                <input type="file" name="tarjetaDeCirculacion" id="tarjetaDeCirculacion" value="{{ $usuario->tarjetaDeCirculacion }}" class="form-control" placeholder="Tarjeta de Circulación">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Comprobante de Domicilio:
@@ -120,9 +122,9 @@
                                     @endif
                                 </label>
 
-                                <input type="file" name="comprobanteDomiciliario" id="comprobanteDomiciliario" value="" class="form-control" placeholder="Comprobante de Domicilio">
+                                <input type="file" name="comprobanteDomiciliario" id="comprobanteDomiciliario" value="{{ $usuario->comprobanteDomiciliario }}" class="form-control" placeholder="Comprobante de Domicilio">
                             </div>
-                            <div class="" style="display:none;">
+                            <div class="">
                                 <label for="dni">
                                     <!-- Estado Acceso: -->
                                     @if($errors->first('estadoDeSesion'))
@@ -130,7 +132,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="estadoDeSesion" id="estadoDeSesion" value="1" class="form-control" placeholder="Estado Acceso">
+                                <input type="text" name="estadoDeSesion" id="estadoDeSesion" value="{{ $usuario->estadoDeSesion }}" class="form-control" placeholder="Estado Acceso">
                             </div>
                             <div class="crudFormItems" style="display:none;">
                                 <label for="dni">
@@ -152,13 +154,11 @@
 
                                 <input type="text" name="familiaId" id="familiaId" value="1" class="form-control" placeholder="Familia">
                             </div>
-                            
-
 
             
                             <div class="modal-footer">
                                 <button type="button" class="crudButtonFormCancel" data-bs-dismiss="modal">Cancelar</button>
-                                <input class ="crudButtonFormAccept" type="submit" value="Guardar" >
+                                <input class ="crudButtonFormAccept" type="submit" value="Guardar Cambios" >
                             </div>
 
                         </div>

@@ -17,18 +17,24 @@
       <a href="{{ route('home.index') }}"><img class="imageNavBar" src="img/logo.png" alt="logo empresarial"></a>
       <!-- validación de lo que ve cada uno de los usuarios en la barra de navegacion superior -->
       @if($sessionTipo == '')
-      <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a>
+      <!-- <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a> -->
+      <a href="" class="linkNav"><p class="navItem">Conocer más</p></a>
+      <a href="" class="linkNav"><p class="navItem">Póliticas y Términos</p></a>
       <a href="{{ route('login') }}"><button class="navButton">Iniciar sesión</button></a>
       @else
         @if($sessionTipo == 'Administrador' || $sessionTipo == 'Interno')
-        <a href="#"><p>usted es un ADMIN</p></a>
+        <!-- <a href="#"><p>usted es un ADMIN</p></a> -->
+        <a href="{{ route('home') }}" class="linkNav"><p class="navItem">Inicio</p></a>
+        <a href="{{ route('users') }}" class="linkNav"><p class="navItem">Personas</p></a>
+        <a href="" class="linkNav"><p class="navItem">Pólizas</p></a>
+        <a href="" class="linkNav"><p class="navItem">Ventas</p></a>
         <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
         @else
           @if($sessionTipo == 'Cliente')
-          <a href="#"><p>usted es un cliente</p></a>
+          <!-- <a href="#"><p>usted es un cliente</p></a> -->
           <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
           @else
-            <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a>
+            <!-- <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a> -->
             <a href="{{ route('login') }}"><button class="navButton">Iniciar sesión</button></a>
           @endif
         @endif

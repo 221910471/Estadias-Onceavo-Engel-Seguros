@@ -18,5 +18,6 @@ Route::get('/cerrarSesion',[LoginController::class,'cerrarSesion'])->name('cerra
 
 Route::get('/users',[UserController::class,'users'])->name('users');
 Route::post('/createUser',[UserController::class,'createUser'])->name('createUser');
-// Route::put('/editUser',[UserController::class,'login'])->name('editUser');
-// Route::delete('/deleteUser',[UserController::class,'deleteUser'])->name('deleteUser');
+Route::put('/editUser/{id}',[UserController::class,'editUser'])->name('editUser');
+Route::get('/deleteUser/{id}',[UserController::class,'delete'])->name('deleteUser');
+Route::get('/activateUser/{id}',[UserController::class,'activateUser'])->name('activateUser');

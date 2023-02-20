@@ -10,7 +10,12 @@ use Session;
 class UserController extends Controller
 {
     public function users(){
-        $usuarios = Usuarios::all();
+        // $usuarios = Usuarios::all();
+        
+        //Consultar todos los datos junto con el softdelete
+        $usuarios = Usuarios::withTrashed()
+            ->get();
+
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
         if($sessionId<>""){
@@ -143,5 +148,115 @@ class UserController extends Controller
             Session::flash('mensaje', 'Por favor inicie sesión para continuar');
             return redirect()->route('login');
         }
+    }
+
+    public function delete($id){
+        $usuarios = Usuarios::find($id);
+        $usuarios->delete();
+        Session::flash('mensaje', 'El usuario ha sido eliminado');
+        return redirect()->route('users');
+        
+    }
+
+    public function activateUser($id){
+        $usuarios2 = Usuarios::withTrashed()->where('id',$id)->restore();
+        Session::flash('mensaje', 'El usuario ha sido restaurado con éxito');
+        return redirect()->route('users');
+    }
+
+    public function editUser(Request $request, $id){
+        
+        $this->validate($request,[
+            
+            'nombre' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
+            'apellidoPaterno' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
+            'telefono' => 'required|regex:/[0-9]{10}$/',
+            'correoElectronico' => 'required|email',
+            'contrasena' => 'required',
+            'fechaDeNacimiento' => 'required',
+            'rol' => 'required',
+            'identificacion' => 'image|mimes:jpeg,png,jpg|max:3000',
+            'tarjetaDeCirculacion' => 'image|mimes:jpeg,png,jpg|max:3000',
+            'comprobanteDomiciliario' => 'image|mimes:jpeg,png,jpg|max:3000',
+            'estadoDeSesion' => 'required',
+            'activo' => 'required'
+
+        ]);
+
+        // $passwordEncriptado = Hash::make($request->contrasena);
+        // echo $passwordEncriptado;
+
+        if ($request->file('identificacion') != '') {
+            $file = $request->file('identificacion');
+            $foto = $file->getClientOriginalName();
+            $date = date('Ymd_His_');
+            $foto2 = $date . $foto;
+            $ruta = strval($foto2);
+            $file->move(public_path("images/identificaciones/"), $foto2);
+
+        } else {
+            $foto2 = "default.png";
+            $ruta = "img/default.png";
+        }
+
+        if ($request->file('tarjetaDeCirculacion') != '') {
+            $archivoTarjeta = $request->file('tarjetaDeCirculacion');
+            $extensionTarjeta = $archivoTarjeta->getClientOriginalName();
+            $date = date('Ymd_His_');
+            $nombreArchivoTarjeta = $date . $extensionTarjeta;
+            $rutaTarjeta = strval($nombreArchivoTarjeta);
+            $archivoTarjeta->move(public_path("images/tarjetaCirculacion/"), $nombreArchivoTarjeta);
+
+        } else {
+            $nombreArchivoTarjeta = "default.png";
+            $rutaTarjeta = "img/default.png";
+        }
+        
+
+            if ($request->file('comprobanteDomiciliario') != '') {
+                $archivoComprobanteDomiciliario = $request->file('comprobanteDomiciliario');
+                $extensionComprobanteDomiciliario = $archivoComprobanteDomiciliario->getClientOriginalName();
+                $date = date('Ymd_His_');
+                $nombreArchivoComprobante = $date . $extensionComprobanteDomiciliario;
+                $rutaComprobante = strval($nombreArchivoComprobante);
+                $archivoComprobanteDomiciliario->move(public_path("images/comprobanteDomiciliario/"), $nombreArchivoComprobante);
+
+            } else {
+                $nombreArchivoComprobante = "default.png";
+                $rutaComprobante = "img/default.png";
+            }
+
+            
+
+
+            Usuarios::query()->update(array(
+                'nombre' => $request->input('nombre'),
+                'apellidoPaterno' => $request->input('apellidoPaterno'),
+                'apellidoMaterno' => $request->input('apellidoMaterno'),
+                'telefono' => $request->input('telefono'),
+                'contrasena' => $request->input('contrasena'),
+                'correoElectronico' => $request->input('correoElectronico'),
+                'rol' => $request->input('rol'),
+                'fechaDeNacimiento' => $request->input('fechaDeNacimiento'),
+                'identificacion' => $ruta,
+                'tarjetaDeCirculacion' => $rutaTarjeta,
+                'comprobanteDomiciliario' => $rutaComprobante,
+                'estadoDeSesion' => $request->input('estadoDeSesion'),
+                'activo' => $request->input('activo'),
+                'familiaId' => $request->input('familiaId')
+            ));
+        
+        $usuarios = Usuarios::all();
+
+        $sessionId = session('sessionId');
+        if($sessionId<>""){
+            Session::flash('mensaje', 'Registro Actualizado Correctamente');
+            return redirect('users');
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('apellidoMaterno', 25)->nullable()->comment('Segundo apellido');
             $table->string('telefono')->comment('Número telefonico');
             $table->string('contrasena')->comment('contrasena');
-            $table->string('correoElectronico')->unique()->comment('Dirección de correo electronico');
+            $table->string('correoElectronico')->comment('Dirección de correo electronico');
             $table->enum('rol', ['Administrador', 'Cliente', 'Interno'])->comment('Tipo usuario o nivel de cuenta');          
             $table->date('fechaDeNacimiento')->comment('Fecha de nacimiento');
             $table->string('identificacion')->nullable()->comment('Foto o imagen de la identificacion');
@@ -33,7 +33,9 @@ return new class extends Migration
             $table->foreign('familiaId')->references('id')->on('familias');
 
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
+
         });
     }
 

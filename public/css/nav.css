@@ -12,29 +12,61 @@ nav {
     background-color: var(--primaryColor);
     height: 90px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     color: var(--basicColor);
     font-size: 24px;
-    align-items: flex-start;
+    align-items: center;
+    text-decoration: none;
 }
 
 .navItem {
     margin-top: 24px;
+    color: var(--basicColor);
+    text-decoration: none;
+}
+
+.navItem:link{
+    margin-top: 24px;
+    text-decoration: none;
+    color: var(--secondaryColorGreen);
+}
+
+.navItem:visited{
+    margin-top: 24px;
+    text-decoration: none;
+    color: var(--secondaryColorGreen);
+}
+
+.navItem:hover{
+    margin-top: 24px;
+    color: var(--secondaryColorGreen);
+}
+
+.linkNav{
+    text-decoration: none;
 }
 
 .navButton{
     background-color: var(--secondaryColor);
     color: var(--basicColor);
-    font-size: 24px;
+    font-size: 20px;
     border-radius: 12px;
+    border: none;
     margin: 5px;
+    padding: 10px;
+    margin-left: 20px;
+    box-shadow:    3px 3px #444444;
+}
+
+.navButton:hover{
+    background-color: var(--secondaryColorGreen);
+    box-shadow:    3px 3px #444444;
 }
 
 .imageNavBar {
     /* margin: 2%; */
-    width: 15%;
-    margin: 5px;
-    max-height: 80%;
+    width: 160px;
+    height: 80px;
 }
 
 /* styles for index screen */
@@ -127,4 +159,10 @@ nav {
     width: 90%;
     display: flex;
     text-align: center;
+}
+
+.areaGraphics {
+    max-width: 80%;
+    display: flex;
+    justify-self: center;
 }

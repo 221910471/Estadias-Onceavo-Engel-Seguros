@@ -15,12 +15,11 @@
     </div>
 
     @include('crud.createUser')
-    
-    @if(Session::has('mensaje'))
-            <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
-        @endif
 
     <center>
+        @if(Session::has('mensaje'))
+            <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
+        @endif
         <div class="">
             <table class="crudTable">
                 <tbody>
@@ -31,18 +30,44 @@
                         <th>Correo</th>
                         <th>Rol</th>
                         <th>Activo</th>
-                        <th>Acciones</th>
-                        <!-- AQUI METER DETALLES(CON CADA UNO DE LOS ARCHIVOS EN IMAGEN) --> 
+                        <th>Detalles</th>
+                        <th>Editar</td>
+                        <th>Eliminar</td>
                     </tr>
+                    <?php
+                        $contador = 0;
+                    ?>
                     @foreach($usuarios as $usuario)
+                        <?php
+                            $contador = $contador+1;
+                        ?>
                         <tr>
-                            <td>{{ $usuario->id }}</td>
+                            <!-- <td>{{ $usuario->id }}</td> -->
+                            <td>{{ $contador }}</td>
                             <td>{{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</td>
                             <td>{{ $usuario->telefono }}</td>
                             <td>{{ $usuario->correoElectronico }}</td>
                             <td>{{ $usuario->rol }}</td>
                             <td>{{ $usuario->activo }}</td>
-                            <td></td>
+                            <td>
+                                <center>
+                                    @include('crud.editUser')
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    @include('crud.showUser')
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    @if($usuario->deleted_at)
+                                        @include('crud.activateUser')
+                                    @else
+                                        @include('crud.deleteUser')
+                                    @endif
+                                </center>  
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
