@@ -8,14 +8,40 @@
     <link rel="stylesheet" href="css/crud.css">
 </head>
 <body>
+
     @include('layouts.navbar')
     <div>
         <h2 class="crudH2">Personas</h2>
         <hr>
     </div>
 
+    <center>
+        <form action="{{route('filterUsers')}}" method="GET" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="divFilters">
+                <div class="divSelect">
+                        <p class="selectText">Buscar:</p>
+                        <input type="text" name="nombre" id="nombre" value="" class="form-control" placeholder="Nombre">                
+                </div>
+                
+                <div class="divSelect">
+                        <p class="selectText">Buscar:</p>
+                        <select class="form-select" name="activo" id="activo" value="1">
+                            <option selected>Selecciona una opción</option>
+                            <option value="1">Activos</option>
+                            <option value="2">Inactivos</option>
+                            <option value="3">Todos</option>
+                        </select>
+                </div>
+                    <input type="submit" value="Filtrar" class="crudButton">
+            </div>
+        </form>
+    </center>
+    <br>
+    
     @include('crud.createUser')
 
+    <br>
     <center>
         @if(Session::has('mensaje'))
             <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
@@ -48,7 +74,13 @@
                             <td>{{ $usuario->telefono }}</td>
                             <td>{{ $usuario->correoElectronico }}</td>
                             <td>{{ $usuario->rol }}</td>
-                            <td>{{ $usuario->activo }}</td>
+                            <td>
+                                    @if($usuario->deleted_at)
+                                        NO
+                                    @else
+                                        SI
+                                    @endif
+                            </td>
                             <td>
                                 <center>
                                     @include('crud.editUser')

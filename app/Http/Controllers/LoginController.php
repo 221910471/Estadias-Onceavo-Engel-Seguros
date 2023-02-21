@@ -31,23 +31,6 @@ class LoginController extends Controller
         $this->validate($request,[
             'correoElectronico' => 'required|email',
             'contrasena' => 'required'
-        //     'nombre' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
-        //     'apellidoPaterno' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
-        //     'apellidoMaterno' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
-        //     'telefono' => 'required|regex:/[0-9]{10}$/',
-        //     'correoElectronico' => 'required|email',
-        //     'img' => 'image|mimes:gif,jpeg,png'
-
-            
-        // 'contrasena',
-        // 'rol',
-        // 'fechaDeNacimiento',
-        // 'identificacion',
-        // 'tarjetaDeCirculacion',
-        // 'comprobanteDomiciliario',
-        // 'estadoDeSesion',
-        // 'activo',
-        // 'familiaId',
         ]);
 
         // $passwordEncriptado = Hash::make($request->contrasena);

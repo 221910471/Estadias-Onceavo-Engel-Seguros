@@ -10,11 +10,11 @@ use Session;
 class UserController extends Controller
 {
     public function users(){
-        // $usuarios = Usuarios::all();
+        $usuarios = Usuarios::all();
         
         //Consultar todos los datos junto con el softdelete
-        $usuarios = Usuarios::withTrashed()
-            ->get();
+        // $usuarios = Usuarios::withTrashed()
+        //     ->get();
 
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
@@ -259,4 +259,57 @@ class UserController extends Controller
         }
 
     }
+
+    public function filterUsers(Request $request){
+
+        $nombres = Usuarios::where("nombre","like",$request->texto."%")
+            ->get();
+
+        // echo ($nombres);
+
+        switch ($request->activo) {
+            case 1:
+                // $usuarios = Usuarios::all();
+                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                    ->get();
+                break;
+            case 2:
+                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                    ->onlyTrashed()
+                    ->get();
+                // $usuarios = Usuarios::onlyTrashed()
+                // ->get();
+                break;
+            default:
+                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                    ->withTrashed()
+                    ->get();
+                // $usuarios = Usuarios::withTrashed()
+                // ->get();
+                break;
+        }
+        
+
+
+        // if(isset($usuarios)){
+        //     Session::flash('mensaje', 'No se encontró ningun resultado');
+        // }
+
+        $sessionId = session('sessionId');
+        if($sessionId<>""){
+            return view('crud.users')
+            ->with('usuarios', $usuarios);
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+    }
+
 }

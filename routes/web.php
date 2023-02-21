@@ -21,3 +21,7 @@ Route::post('/createUser',[UserController::class,'createUser'])->name('createUse
 Route::put('/editUser/{id}',[UserController::class,'editUser'])->name('editUser');
 Route::get('/deleteUser/{id}',[UserController::class,'delete'])->name('deleteUser');
 Route::get('/activateUser/{id}',[UserController::class,'activateUser'])->name('activateUser');
+Route::get('/filterUsers',[UserController::class,'filterUsers'])->name('filterUsers');
+
+//Ruta para el buscador en tiempo real
+Route::get('/buscador',[UserController::class,'buscador'])->name('buscador');
