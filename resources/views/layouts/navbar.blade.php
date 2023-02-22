@@ -26,7 +26,7 @@
         <!-- <a href="#"><p>usted es un ADMIN</p></a> -->
         <a href="{{ route('home') }}" class="linkNav"><p class="navItem">Inicio</p></a>
         <a href="{{ route('users') }}" class="linkNav"><p class="navItem">Personas</p></a>
-        <a href="" class="linkNav"><p class="navItem">Pólizas</p></a>
+        <a href="{{ route('polizas') }}" class="linkNav"><p class="navItem">Pólizas</p></a>
         <a href="" class="linkNav"><p class="navItem">Ventas</p></a>
         <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
         @else

@@ -11,24 +11,29 @@
     @include('layouts/navbar')
     
     <!-- Bloque de código del carrusel principal con bootstrap -->
-    <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/_designed_with_EDIT.org (1).jpg" class="d-block w-100 sizeCarousel" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="img/_designed_with_EDIT.org.jpg" class="d-block w-100 sizeCarousel" alt="...">
+    <center>
+      <div class="carouselArea">
+        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="img/_designed_with_EDIT.org (1).jpg" class="d-block w-100 sizeCarousel" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="img/_designed_with_EDIT.org.jpg" class="d-block w-100 sizeCarousel" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+    </center>
+
     <!-- conjunto de cartas en el inicio --> 
     <div class="grid-container">
       <div class="grid-item1">

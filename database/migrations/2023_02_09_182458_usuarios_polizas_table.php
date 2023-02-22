@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('polizaId');
             $table->foreign('polizaId')->references('id')->on('polizas');
-            $table->unsignedBigInteger('ventaId');
-            $table->foreign('ventaId')->references('id')->on('ventas');
+            $table->unsignedBigInteger('usuarioId');
+            $table->foreign('usuarioId')->references('id')->on('usuarios');
 
             $table->timestamps();
         });

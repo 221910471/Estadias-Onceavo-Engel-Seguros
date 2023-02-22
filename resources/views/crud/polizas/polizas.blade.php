@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personas</title>
+    <title>Pólizas</title>
     <link rel="stylesheet" href="css/crud.css">
 </head>
 
@@ -12,11 +12,11 @@
 
     @include('layouts.navbar')
     <div>
-        <h2 class="crudH2">Personas</h2>
-        <hr>
+        <h2 class="crudH2">Pólizas</h2>
+        <br>
     </div>
 
-    <center>
+    <!-- <center>
         <form action="{{route('filterUsers')}}" method="GET" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="divFilters">
@@ -38,9 +38,9 @@
             </div>
         </form>
     </center>
-    <br>
+    <br> -->
     
-    @include('crud.createUser')
+    @include('crud.createPoliza')
 
     <br>
     <center>
@@ -52,10 +52,9 @@
                 <tbody>
                     <tr>
                         <th>#</th>
-                        <th>Nombre Completo</th>
-                        <th>Teléfono</th>
-                        <th>Correo</th>
-                        <th>Rol</th>
+                        <th>Fecha de Registro</th>
+                        <th>Archivo de la Póliza</th>
+                        <th>Tipo de Poliza</th>
                         <th>Activo</th>
                         <th>Detalles</th>
                         <th>Editar</td>
@@ -64,42 +63,41 @@
                     <?php
                         $contador = 0;
                     ?>
-                    @foreach($usuarios as $usuario)
+                    @foreach($polizas as $poliza)
                         <?php
                             $contador = $contador+1;
                         ?>
                         <tr>
-                            <!-- <td>{{ $usuario->id }}</td> -->
+                            <!-- <td>{{ $poliza->id }}</td> -->
                             <td>{{ $contador }}</td>
-                            <td>{{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</td>
-                            <td>{{ $usuario->telefono }}</td>
-                            <td>{{ $usuario->correoElectronico }}</td>
-                            <td>{{ $usuario->rol }}</td>
+                            <td>{{ $poliza->fechaDeRegistro }}</td>
+                            <td><p>!Dale un vistazo¡ <a href="pdf/polizas/{{ $poliza->rutaArchivo }}" target="_blank" rel="noopener noreferrer">{{ $poliza->rutaArchivo }}</a></p></td>
+                            <td>{{ $poliza->tipoPoliza }}</td>
                             <td>
-                                    @if($usuario->deleted_at)
+                                    @if($poliza->deleted_at)
                                         NO
                                     @else
                                         SI
                                     @endif
                             </td>
                             <td>
-                                <center>
+                                <!-- <center>
                                     @include('crud.editUser')
-                                </center>
+                                </center> -->
                             </td>
                             <td>
-                                <center>
+                                <!-- <center>
                                     @include('crud.showUser')
-                                </center>
+                                </center> -->
                             </td>
                             <td>
-                                <center>
-                                    @if($usuario->deleted_at)
+                                <!-- <center>
+                                    @if($poliza->deleted_at)
                                         @include('crud.activateUser')
                                     @else
                                         @include('crud.deleteUser')
                                     @endif
-                                </center>  
+                                </center>   -->
                             </td>
                         </tr>
                     @endforeach
@@ -112,16 +110,7 @@
     @include('layouts.footer')
 
     <script type="text/javascript">
-        function validarNombre() {
-            const inputNombre = document.getElementById("nombre");
-            const nombreRegex = /^[a-zA-Z]+$/; // Expresión regular para validar solo letras
-
-            if (!nombreRegex.test(inputNombre.value)) {
-                inputNombre.setCustomValidity("Solo se permiten letras");
-            } else {
-                inputNombre.setCustomValidity("");
-            }
-        }
+        
     </script>
 </body>
 </html>

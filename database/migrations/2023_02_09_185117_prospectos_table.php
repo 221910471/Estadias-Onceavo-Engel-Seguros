@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nombre', 200)->comment('Nombrey apellido del usuario');
             $table->string('telefono')->comment('Número telefonico');
             $table->string('correoElectronico')->unique()->comment('Dirección de correo electronico');
-            $table->string('activo')->comment('Campo para registrar una baja logica en el sistema');
+            // $table->string('activo')->comment('Campo para registrar una baja logica en el sistema');
 
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->date('fechaDePago')->comment('Fecha de pago');
+            $table->string('estado')->comment('Campo para registrar una baja logica en el sistema');
 
             $table->unsignedBigInteger('polizaId'); 
             $table->foreign('polizaId')->references('id')->on('polizas');

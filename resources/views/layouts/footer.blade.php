@@ -10,23 +10,25 @@
   <body>
   <div class="gridContainerFooter">
       <div class="grid-item1">
-        <div class="gridContainerFooterItem1">
+        <div class="">
             <h4 class="gridContainerFooterItem1Text">Contactanos:</h4>
             <p class="gridContainerFooterItem1Text">Teléfono: 729 233 2811</p>
             <p class="gridContainerFooterItem1Text">Más información: <a href="{{ route('home.index') }}">@engelseguros.com</a></p>
         </div>
       </div>
       <div class="grid-item2">
-        <div>
-          <div class="gridContainerFooterItem1">
-              <h5 class="gridContainerFooterItem2">Buscanos en nuestras redes sociales:</h5>
-              <a href="https://www.facebook.com/engelseguros/"><img class="gridContainerFooterItem2" src="img/facebook.png" alt="Icono facebook"></a>
-              <img class="gridContainerFooterItem2" src="img/whatsapp.png" alt="Icono facebook">
-              <a href="https://www.instagram.com/engelseguros/"><img class="gridContainerFooterItem2" src="img/instagram.png" alt="Icono instagram"></a>
+          <center>
+              <div>
+                <h5 class="gridContainerFooterItem2">Buscanos en nuestras redes sociales:</h5>
+              </div>
+              <div class="gridContainerFooterItem1">
+                <a href="https://www.facebook.com/engelseguros/"><img class="gridContainerFooterItem2" src="img/facebook.png" alt="Icono facebook"></a>
+                <a href=""><img class="gridContainerFooterItem2" src="img/whatsapp.png" alt="Icono facebook"></a>
+                <a href="https://www.instagram.com/engelseguros/"><img class="gridContainerFooterItem2" src="img/instagram.png" alt="Icono instagram"></a>
+              </div>
               <!-- <p>729 233 2811</p> -->
 
-          </div>
-        </div>
+          </center>
       </div>
       <div class="grid-item3">
         <div>

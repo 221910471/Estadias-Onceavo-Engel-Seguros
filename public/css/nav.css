@@ -166,3 +166,13 @@ nav {
     display: flex;
     justify-self: center;
 }
+
+.carouselArea{
+    width: 90%;
+    margin: 1%;
+    border-radius: 12px;
+}
+
+.bodyColor{
+    background-color: var(--primaryColor);
+}

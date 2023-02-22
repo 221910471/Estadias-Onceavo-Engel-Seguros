@@ -15,14 +15,17 @@
 }
 
 .gridContainerFooterItem1{
-    align-items: center;
-    text-align: left;
+    display: flex;
+    justify-content: center;
+    text-align: center;
     margin: 20px;
     margin-top: 40px;
 }
 
 .gridContainerFooterItem1Text{
-    margin: 20px;
+    margin-left: 8%;
+    margin-top: 8%;
+    align-items: center;
 }
 
 .gridContainerFooterItem2{
