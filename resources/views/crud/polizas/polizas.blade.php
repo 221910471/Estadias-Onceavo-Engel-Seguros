@@ -10,7 +10,7 @@
 
 <body>
 
-    @include('layouts.navbar')
+    <!-- @include('layouts.navbar') -->
     <div>
         <h2 class="crudH2">Pólizas</h2>
         <br>

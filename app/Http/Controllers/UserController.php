@@ -94,7 +94,7 @@ class UserController extends Controller
             $nombreArchivoTarjeta = "default.png";
             $rutaTarjeta = "default.png";
         }
-        echo $rutaTarjeta;
+        
 //Guardar en la base de datos el archivo de imagen Comprobante de domicilio
 
             if ($request->file('comprobanteDomiciliario') != '') {
@@ -116,7 +116,7 @@ class UserController extends Controller
                 $rutaComprobante = "default.png";
             }
 
-            echo $rutaComprobante;
+            
 
 
             Usuarios::create(array(
@@ -277,10 +277,10 @@ class UserController extends Controller
                     ->get();
                 break;
             case 2:
-                // $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                // $usuarios = Usuarios::where("deleted_at", "!=", "")
+                //     ->where("nombre","like",$request->nombre."%")    
                 //     ->orWhere("apellidoPaterno","like",$request->nombre."%")
                 //     ->orWhere("apellidoMaterno","like",$request->nombre."%")
-                //     ->onlyTrashed()
                 //     ->get();
                 $usuarios = Usuarios::onlyTrashed()
                 ->get();

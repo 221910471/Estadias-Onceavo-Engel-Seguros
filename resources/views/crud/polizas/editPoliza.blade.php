@@ -36,7 +36,7 @@
                                     @endif
                                 </label>
                                 <select class="form-select" name="tipoPoliza" id="tipoPoliza" value="{{ $poliza->tipoPoliza }}">
-                                <option selected>Seleccione un tipo de póliza</option>
+                                <option value="{{ $poliza->tipoPoliza }}" selected>Valor previo: {{ $poliza->tipoPoliza }}</option>
                                     <option value="Daños">Seguro contra Daños</option>
                                     <option value="Vida">Seguro de Vida</option>
                                     <option value="Medico">Seguro Médico</option>
@@ -59,10 +59,12 @@
                                         <p class="text-danger">{{ $errors->first('polizaId')}}</p>
                                     @endif
                                 </label>
-                                <select class="form-select" name="polizaId" id="polizaId" value="">
+                                <select class="form-select" name="usuarioId" id="usuarioId" value="">
                                     <option selected>Seleccione un cliente</option>
                                     @foreach($usuarios as $usuario)
-                                        <option value="{{ $usuario->id }}">{{ $poliza->id }} - {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</option>
+                                        @if($usuario->rol == "Cliente")
+                                            <option value="{{ $usuario->id }}">{{ $usuario->id }} - {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

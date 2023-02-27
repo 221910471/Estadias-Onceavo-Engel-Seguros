@@ -25,7 +25,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="clave" id="clave" value="" class="form-control" placeholder="Clave">
+                                <input type="text" name="clave" id="clave" value="{{ old('clave') }}" class="form-control" placeholder="Clave">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Tipo de Poliza:
@@ -33,7 +33,7 @@
                                         <p class="text-danger">{{ $errors->first('tipoPoliza')}}</p>
                                     @endif
                                 </label>
-                                <select class="form-select" name="tipoPoliza" id="tipoPoliza" value="">
+                                <select class="form-select" name="tipoPoliza" id="tipoPoliza" value="{{ old('tipoPoliza') }}">
                                 <option selected>Seleccione un tipo de póliza</option>
                                     <option value="Daños">Seguro contra Daños</option>
                                     <option value="Vida">Seguro de Vida</option>
@@ -47,7 +47,7 @@
                                     @endif
                                 </label>
 
-                                <input type="file" accept=".pdf, .xlsx, .docx" name="rutaArchivo" id="rutaArchivo" value="" class="form-control">
+                                <input type="file" accept=".pdf, .xlsx, .docx" name="rutaArchivo" id="rutaArchivo" value="{{ old('rutaArchivo') }}" class="form-control">
                             </div>
                             
                             <div class="crudFormItems">
@@ -60,7 +60,9 @@
                                 <select class="form-select" name="usuarioId" id="usuarioId" value="">
                                     <option selected>Seleccione un cliente</option>
                                     @foreach($usuarios as $usuario)
-                                        <option value="{{ $usuario->id }}">{{ $usuario->id }} - {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</option>
+                                        @if($usuario->rol == "Cliente")
+                                            <option value="{{ $usuario->id }}">{{ $usuario->id }} - {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

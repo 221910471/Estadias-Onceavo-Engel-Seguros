@@ -143,23 +143,29 @@ class PolizaController extends Controller
         //Obtener la fecha actual
         $date = date('Ymd');
 
-            Polizas::query()->update(array(
-                'clave' => $request->input('clave'),
-                'rutaArchivo' => $nombreArchivo,
-                'nombreArchivo' => $nombreArchivo,
-                'fechaDeRegistro' => $date,
-                'tipoPoliza' => $request->input('tipoPoliza'),
-                'ventaId' => $request->input('ventaId'),
-            ));
+            $polizasSave = Polizas::find($id);
+                $polizasSave->clave = $request->clave;
+                $polizasSave->rutaArchivo = $nombreArchivo;
+                $polizasSave->nombreArchivo = $nombreArchivo;
+                $polizasSave->fechaDeRegistro = $date;
+                $polizasSave->tipoPoliza = $request->tipoPoliza;
+                $polizasSave->ventaId = $request->ventaId;
+            $polizasSave->save();
 
-            $consulta = Polizas::latest('created_at')->first();
+            $consulta = Polizas::latest('updated_at')->first();
             $ultimoUpdate = $consulta->id;
 
-            UsuariosPolizas::query()->update(array(
-                'polizaId' => $ultimoUpdate,
-                'usuarioId' => $request->input('usuarioId'),
-            ));
-        
+            //Consultamos el id de la tabla pivote "UsuariosPolizas" donde sea igual al id de la ultima poliza actualizada
+            $idPolizaUsuario = UsuariosPolizas::where('polizaId', $ultimoUpdate)
+                ->get();
+                
+            $idPivote=$idPolizaUsuario[0]->id;
+            
+            $polizasUsuariosSave = UsuariosPolizas::find($idPivote);
+                $polizasUsuariosSave->polizaId = $ultimoUpdate;
+                $polizasUsuariosSave->usuarioId = $request->usuarioId;
+            $polizasUsuariosSave->save();
+            
 
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
@@ -167,6 +173,7 @@ class PolizaController extends Controller
 
         if($sessionId<>""){
             if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                Session::flash('mensaje', 'La poliza ha sido actualizada correctamente');
                 return redirect()->route('polizas');
             }
             else{
