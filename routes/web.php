@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PolizaController;
+use App\Http\Controllers\ClienteController;
 
 //Rutas de principales
 Route::get('/',[HomeController::class,'index'])->name('home.index');
@@ -23,6 +24,7 @@ Route::put('/editUser/{id}',[UserController::class,'editUser'])->name('editUser'
 Route::get('/deleteUser/{id}',[UserController::class,'delete'])->name('deleteUser');
 Route::get('/activateUser/{id}',[UserController::class,'activateUser'])->name('activateUser');
 Route::get('/filterUsers',[UserController::class,'filterUsers'])->name('filterUsers');
+Route::get('/pdfUsuarios',[UserController::class,'pdfUsuarios'])->name('pdfUsuarios');
 
 //Rutas para Polizas------------
 
@@ -32,3 +34,7 @@ Route::put('/editPoliza/{id}',[PolizaController::class,'editPoliza'])->name('edi
 Route::get('/deletePoliza/{id}',[PolizaController::class,'deletePoliza'])->name('deletePoliza');
 Route::get('/activatePoliza/{id}',[PolizaController::class,'activatePoliza'])->name('activatePoliza');
 Route::get('/filterPolizas',[PolizaController::class,'filterPolizas'])->name('filterPolizas');
+
+//Rutas para Clientes------------
+
+Route::get('/clientes',[ClienteController::class,'clientes'])->name('clientes');

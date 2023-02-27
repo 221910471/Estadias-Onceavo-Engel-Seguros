@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Usuarios;
 use Session;
+// use Barryvdh\DomPDF\Facade\Pdf;
+use PDF;
 
 class UserController extends Controller
 {
@@ -40,9 +42,9 @@ class UserController extends Controller
             'contrasena' => 'required',
             'fechaDeNacimiento' => 'required',
             'rol' => 'required',
-            'identificacion' => 'required|image|mimes:jpeg,png,jpg|max:3000',
-            'tarjetaDeCirculacion' => 'required|image|mimes:jpeg,png,jpg|max:3000',
-            'comprobanteDomiciliario' => 'required|image|mimes:jpeg,png,jpg|max:3000',
+            'identificacion' => 'image|mimes:jpeg,png,jpg|max:3000',
+            'tarjetaDeCirculacion' => 'image|mimes:jpeg,png,jpg|max:3000',
+            'comprobanteDomiciliario' => 'image|mimes:jpeg,png,jpg|max:3000',
             'estadoDeSesion' => 'required',
             'activo' => 'required'
 
@@ -69,7 +71,7 @@ class UserController extends Controller
 
         } else {
             $foto2 = "default.png";
-            $ruta = "img/default.png";
+            $ruta = "default.png";
         }
 
 //Guardar en la base de datos el archivo de imagen Tarjeta de circulacion
@@ -90,7 +92,7 @@ class UserController extends Controller
 
         } else {
             $nombreArchivoTarjeta = "default.png";
-            $rutaTarjeta = "img/default.png";
+            $rutaTarjeta = "default.png";
         }
         echo $rutaTarjeta;
 //Guardar en la base de datos el archivo de imagen Comprobante de domicilio
@@ -111,7 +113,7 @@ class UserController extends Controller
 
             } else {
                 $nombreArchivoComprobante = "default.png";
-                $rutaComprobante = "img/default.png";
+                $rutaComprobante = "default.png";
             }
 
             echo $rutaComprobante;
@@ -276,13 +278,13 @@ class UserController extends Controller
                     ->get();
                 break;
             case 2:
-                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
-                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
-                    ->onlyTrashed()
-                    ->get();
-                // $usuarios = Usuarios::onlyTrashed()
-                // ->get();
+                // $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                //     ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                //     ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                //     ->onlyTrashed()
+                //     ->get();
+                $usuarios = Usuarios::onlyTrashed()
+                ->get();
                 break;
             default:
                 $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
@@ -310,6 +312,19 @@ class UserController extends Controller
             Session::flash('mensaje', 'Por favor inicie sesión para continuar');
             return redirect()->route('login');
         }
+    }
+
+    public function pdfVista(){
+        $usuarios = Usuarios::all();
+        return view('crud.pdfUsuarios')
+            ->with('usuarios', $usuarios);
+    }
+
+    public function pdfUsuarios(){
+        $usuarios = Usuarios::all();
+        $pdf = PDF::loadView('crud.pdfUsuarios',['usuarios'=>$usuarios]);
+        //$pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
     }
 
 }

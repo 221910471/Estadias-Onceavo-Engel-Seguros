@@ -12,6 +12,7 @@ class Ventas extends Model
     protected $primaryKey ='id';
     protected $fillable = [
         'id',
+        'clave',
         'usuarioId',
         'fecha',
     ];

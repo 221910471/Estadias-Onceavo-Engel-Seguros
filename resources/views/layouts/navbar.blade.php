@@ -32,9 +32,13 @@
         @else
           @if($sessionTipo == 'Cliente')
           <!-- <a href="#"><p>usted es un cliente</p></a> -->
+          <a href="{{ route('clientes') }}" class="linkNav"><p class="navItem">Mi Póliza</p></a>
+          <a href="" class="linkNav"><p class="navItem">Notificaciones</p></a>
           <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
           @else
             <!-- <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a> -->
+            <a href="" class="linkNav"><p class="navItem">Conocer más</p></a>
+            <a href="" class="linkNav"><p class="navItem">Póliticas y Términos</p></a>
             <a href="{{ route('login') }}"><button class="navButton">Iniciar sesión</button></a>
           @endif
         @endif

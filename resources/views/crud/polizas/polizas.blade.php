@@ -40,7 +40,8 @@
     </center>
     <br> -->
     
-    @include('crud.createPoliza')
+    @include('crud.polizas.createPoliza')
+    
 
     <br>
     <center>
@@ -52,9 +53,11 @@
                 <tbody>
                     <tr>
                         <th>#</th>
+                        <th>Clave</th>
                         <th>Fecha de Registro</th>
                         <th>Archivo de la Póliza</th>
                         <th>Tipo de Poliza</th>
+                        <th>Cliente al que pertenece</th>
                         <th>Activo</th>
                         <th>Detalles</th>
                         <th>Editar</td>
@@ -70,9 +73,24 @@
                         <tr>
                             <!-- <td>{{ $poliza->id }}</td> -->
                             <td>{{ $contador }}</td>
-                            <td>{{ $poliza->fechaDeRegistro }}</td>
+                            <td>{{ $poliza->clave }}</td>
+                            <td>{{ $poliza->updated_at }}</td>
                             <td><p>!Dale un vistazo¡ <a href="pdf/polizas/{{ $poliza->rutaArchivo }}" target="_blank" rel="noopener noreferrer">{{ $poliza->rutaArchivo }}</a></p></td>
                             <td>{{ $poliza->tipoPoliza }}</td>
+                            
+                                @foreach($usuarios_polizas as $data)
+                                    @if($poliza->id == $data->polizaId)
+                                        <!-- <td>{{ $data->usuarioId }}</td> -->
+                                        @foreach($usuarios as $usuario)
+                                            @if($usuario->id == $data->usuarioId)
+                                                <td>{{$usuario->id}}-{{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</td>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            
+                            
+
                             <td>
                                     @if($poliza->deleted_at)
                                         NO
@@ -81,23 +99,21 @@
                                     @endif
                             </td>
                             <td>
-                                <!-- <center>
-                                    @include('crud.editUser')
-                                </center> -->
+                                
                             </td>
                             <td>
-                                <!-- <center>
-                                    @include('crud.showUser')
-                                </center> -->
+                                <center>
+                                    @include('crud.polizas.editPoliza')
+                                </center>
                             </td>
                             <td>
-                                <!-- <center>
+                                <center>
                                     @if($poliza->deleted_at)
-                                        @include('crud.activateUser')
+                                        @include('crud.polizas.activatePoliza')
                                     @else
-                                        @include('crud.deleteUser')
+                                        @include('crud.polizas.deletePoliza')
                                     @endif
-                                </center>   -->
+                                </center>  
                             </td>
                         </tr>
                     @endforeach
@@ -105,7 +121,8 @@
             </table>
         </div>
     </center>
-    
+    <br>
+    <br>
 
     @include('layouts.footer')
 

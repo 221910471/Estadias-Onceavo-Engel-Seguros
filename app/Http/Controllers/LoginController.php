@@ -46,8 +46,26 @@ class LoginController extends Controller
             Session::put('sessionUsuario',$consulta[0]->nombre . ' ' . $consulta[0]->apellidoPaterno . ' ' . $consulta[0]->apellidoMaterno);
             Session::put('sessionTipo',$consulta[0]->rol);
             Session::put('sessionId',$consulta[0]->id);
+            
+            
 
-            return redirect()->route('home');
+            $sessionId = session('sessionId');
+            $sessionTipo = session('sessionTipo');
+    
+            if($sessionId<>""){
+                if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                    return redirect()->route('home');
+                }
+                else{
+                    return redirect()->route('clientes');
+                }
+                
+            }
+            else{
+                Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+                return redirect()->route('login');
+            }
+    
         }
         else{
             // echo "acceso NO permitido";

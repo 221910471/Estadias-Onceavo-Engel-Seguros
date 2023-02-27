@@ -14,9 +14,11 @@ class Polizas extends Model
     protected $primaryKey ='id';
     protected $fillable = [
         'id',
+        'clave',
         'rutaArchivo',
-        'nombreArchivo',
-        'fechaDeRegistro',
+        'nombreArchivo',//falta en el controlador
+        'fechaDeRegistro',//falta en el controlador
         'tipoPoliza',
+        'ventaId',
     ];
 }

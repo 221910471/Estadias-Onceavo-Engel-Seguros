@@ -1,0 +1,27 @@
+/* styles for screen home */
+
+:root {
+    --primaryColor: #0f0c67;
+    --basicColor: #fffffe;
+    --secondaryColor: #266593;
+    --secondaryColorOrange: #e09636;
+    --secondaryColorGreen: #9dc147;
+    --secondaryColorRed: #d41010; 
+}
+
+.divCard{
+    width: 90%;
+    border: double var(--secondaryColor);
+    padding: 3%;
+    border-radius: 12px;
+}
+
+.divContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.divContainerText{
+    margin: 5%;
+    
+}

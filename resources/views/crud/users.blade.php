@@ -107,8 +107,12 @@
             </table>
         </div>
     </center>
-    
-
+    <div class="buttonsFiles">
+    <a href="{{ route('pdfUsuarios') }}"><button class="crudButtonPDF">Generar PDF</button></a>
+    </div>
+    <br>
+    <br>
+    <br>
     @include('layouts.footer')
 
     <script type="text/javascript">
