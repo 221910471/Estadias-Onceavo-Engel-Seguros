@@ -90,7 +90,7 @@
                                     @endif
                                 </label>
                                 <select class="form-select" name="rol" id="rol" value="{{ $usuario->rol}}">
-                                <option selected>Seleccione un rol</option>
+                                    <option value="{{ $usuario->rol}}" selected>Valor previo: {{ $usuario->rol}}</option>
                                     <option value="Administrador">Administrador</option>
                                     <option value="Interno">Interno</option>
                                     <option value="Cliente">Cliente</option>

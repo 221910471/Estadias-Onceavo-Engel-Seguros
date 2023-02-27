@@ -168,6 +168,7 @@ class UserController extends Controller
 
     public function editUser(Request $request, $id){
         
+        
         $this->validate($request,[
             
             'nombre' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
@@ -228,25 +229,23 @@ class UserController extends Controller
                 $rutaComprobante = "img/default.png";
             }
 
-            
+            $usuariosSave = Usuarios::find($id);
+                $usuariosSave->nombre = $request->nombre;
+                $usuariosSave->apellidoPaterno = $request->apellidoPaterno;
+                $usuariosSave->apellidoMaterno = $request->apellidoMaterno;
+                $usuariosSave->telefono = $request->telefono;
+                $usuariosSave->contrasena = $request->contrasena;
+                $usuariosSave->correoElectronico = $request->correoElectronico;
+                $usuariosSave->rol = $request->rol;
+                $usuariosSave->fechaDeNacimiento = $request->fechaDeNacimiento;
+                $usuariosSave->identificacion = $ruta;
+                $usuariosSave->tarjetaDeCirculacion = $rutaTarjeta;
+                $usuariosSave->comprobanteDomiciliario = $rutaComprobante;
+                $usuariosSave->estadoDeSesion = $request->estadoDeSesion;
+                $usuariosSave->activo = $request->activo;
+                $usuariosSave->familiaId = $request->familiaId;
+            $usuariosSave->save();
 
-
-            Usuarios::query()->update(array(
-                'nombre' => $request->input('nombre'),
-                'apellidoPaterno' => $request->input('apellidoPaterno'),
-                'apellidoMaterno' => $request->input('apellidoMaterno'),
-                'telefono' => $request->input('telefono'),
-                'contrasena' => $request->input('contrasena'),
-                'correoElectronico' => $request->input('correoElectronico'),
-                'rol' => $request->input('rol'),
-                'fechaDeNacimiento' => $request->input('fechaDeNacimiento'),
-                'identificacion' => $ruta,
-                'tarjetaDeCirculacion' => $rutaTarjeta,
-                'comprobanteDomiciliario' => $rutaComprobante,
-                'estadoDeSesion' => $request->input('estadoDeSesion'),
-                'activo' => $request->input('activo'),
-                'familiaId' => $request->input('familiaId')
-            ));
         
         $usuarios = Usuarios::all();
 

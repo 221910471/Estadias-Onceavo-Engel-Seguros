@@ -25,7 +25,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="nombre" id="nombre" value="" class="form-control" placeholder="Nombre">
+                                <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" class="form-control" placeholder="Nombre">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Primer Apellido:
@@ -34,7 +34,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="apellidoPaterno" id="apellidoPaterno" value="" class="form-control" placeholder="Primer Apellido">
+                                <input type="text" name="apellidoPaterno" id="apellidoPaterno" value="{{ old('apellidoPaterno') }}" class="form-control" placeholder="Primer Apellido">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Segundo Apellido:
@@ -43,7 +43,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="apellidoMaterno" id="apellidoMaterno" value="" class="form-control" placeholder="Segundo Apellido">
+                                <input type="text" name="apellidoMaterno" id="apellidoMaterno" value="{{ old('apellidoMaterno') }}" class="form-control" placeholder="Segundo Apellido">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Teléfono:
@@ -52,7 +52,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="telefono" id="telefono" value="" class="form-control" placeholder="Teléfono">
+                                <input type="text" name="telefono" id="telefono" value="{{ old('telefono') }}" class="form-control" placeholder="Teléfono">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Correo:
@@ -61,7 +61,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="correoElectronico" id="correoElectronico" value="" class="form-control" placeholder="Correo Electrónico">
+                                <input type="text" name="correoElectronico" id="correoElectronico" value="{{ old('correoElectronico') }}" class="form-control" placeholder="Correo Electrónico">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Contraseña:
@@ -70,7 +70,7 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="contrasena" id="contrasena" value="" class="form-control" placeholder="Contraseña">
+                                <input type="password" name="contrasena" id="contrasena" value="{{ old('contrasena') }}" class="form-control" placeholder="Contraseña">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Fecha de nacimiento:
@@ -79,7 +79,7 @@
                                     @endif
                                 </label>
 
-                                <input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento" value="" class="form-control" placeholder="Fecha de nacimiento">
+                                <input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento" value="{{ old('fechaDeNacimiento') }}" class="form-control" placeholder="Fecha de nacimiento">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Rol:
@@ -87,13 +87,12 @@
                                         <p class="text-danger">{{ $errors->first('rol')}}</p>
                                     @endif
                                 </label>
-                                <select class="form-select" name="rol" id="rol" value="">
+                                <select class="form-select" name="rol" id="rol" value="{{ old('rol') }}">
                                 <option selected>Seleccione un rol</option>
                                     <option value="Administrador">Administrador</option>
                                     <option value="Interno">Interno</option>
                                     <option value="Cliente">Cliente</option>
                                 </select>
-                                <!-- <input type="text" name="rol" id="rol" value="" class="form-control" placeholder="Rol"> -->
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Identificación:
@@ -102,7 +101,7 @@
                                     @endif
                                 </label>
 
-                                <input type="file" name="identificacion" id="identificacion" value="" class="form-control" placeholder="Identificación">
+                                <input type="file" name="identificacion" id="identificacion" value="{{ old('identificacion') }}" class="form-control" placeholder="Identificación">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Tarjeta de Circulación:
@@ -111,7 +110,7 @@
                                     @endif
                                 </label>
 
-                                <input type="file" name="tarjetaDeCirculacion" id="tarjetaDeCirculacion" value="" class="form-control" placeholder="Tarjeta de Circulación">
+                                <input type="file" name="tarjetaDeCirculacion" id="tarjetaDeCirculacion" value="{{ old('tarjetaDeCirculacion') }}" class="form-control" placeholder="Tarjeta de Circulación">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Comprobante de Domicilio:
@@ -120,7 +119,7 @@
                                     @endif
                                 </label>
 
-                                <input type="file" name="comprobanteDomiciliario" id="comprobanteDomiciliario" value="" class="form-control" placeholder="Comprobante de Domicilio">
+                                <input type="file" name="comprobanteDomiciliario" id="comprobanteDomiciliario" value="{{ old('comprobanteDomiciliario') }}" class="form-control" placeholder="Comprobante de Domicilio">
                             </div>
                             <div class="" style="display:none;">
                                 <label for="dni">
