@@ -16,30 +16,59 @@
             <h2> Bienvenido {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</h2>
             <br>
             <br>
-            <div class="divCard">
-
-                @foreach($usuarios_polizas as $usuario_poliza)
-                    @if($usuario->id == $usuario_poliza->usuarioId)
+            @foreach($usuarios_polizas as $usuario_poliza)
+                @if($usuario->id == $usuario_poliza->usuarioId)
+                    <div class="divCard">
                         @foreach($polizas as $poliza)
                             @if($poliza->id == $usuario_poliza->polizaId)
-                                <div class="divContainer">
-                                    <div>
-                                        <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
-                                    </div>
-                                    <div>
-                                        <h1 class="divContainerText">Póliza: {{ $poliza->clave }}</h1>
-                                        <h2 class="divContainerText">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</h2>
-                                        <h2 class="divContainerText">Tipo de Poliza registrada:</h2>
-                                        <h1 class="divContainerText"> {{ $poliza->tipoPoliza }} </h1>
-                                    </div>  
-                                </div>
+                                
+                                        @if( $poliza->tipoPoliza == "Daños")
+                                            <div class="divContainer">
+                                                <div>
+                                                    <h1 class="divContainerText"> Seguro de daños </h1>
+                                                    <h2 class="divContainerText">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</h2>
+                                                </div> 
+                                                <div>
+                                                    <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
+                                                </div> 
+                                            </div>
+                                        @else
+                                            @if( $poliza->tipoPoliza  == "Medico")
+                                                <div class="divContainer">
+                                                    <div>
+                                                        <h1 class="divContainerText"> Seguro Médico </h1>
+                                                        <h2 class="divContainerText">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</h2>
+                                                    </div>      
+                                                    <div>
+                                                        <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                @if( $poliza->tipoPoliza  == "Vida")
+                                                    <div class="divContainer">
+                                                        <div>
+                                                            <h1 class="divContainerText"> Seguro de Vida </h1>
+                                                            <h2 class="divContainerText">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</h2>
+                                                        </div>     
+                                                        <div>
+                                                            <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        @endif
+                                        
+                                    
                                 
                             @endif
                         @endforeach
-                    @endif
-                @endforeach
+                    </div>
+                @endif
+                <br>
+                <br>
+            @endforeach
                 
-            </div>
+            
         @endforeach
     </center>
     <br>

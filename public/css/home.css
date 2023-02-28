@@ -14,11 +14,15 @@
     border: double var(--secondaryColor);
     padding: 3%;
     border-radius: 12px;
+    /* background: linear-gradient(var(--secondaryColor), white); */
+    /* background-image:url(http://i.imgur.com/scrNdzO.png), linear-gradient(red, blue); */
+   
 }
 
 .divContainer{
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .divContainerText{

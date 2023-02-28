@@ -71,8 +71,8 @@
                                         <p class="text-danger">{{ $errors->first('contrasena')}}</p>
                                     @endif
                                 </label>
-
-                                <input type="text" name="contrasena" id="contrasena" value="{{ $usuario->contrasena }}" class="form-control" placeholder="Contraseña">
+                                
+                                <input type="password" name="contrasena" id="contrasena" value="{{ $usuario->contrasena }}" class="form-control" placeholder="Contraseña">
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Fecha de nacimiento:
@@ -145,7 +145,7 @@
                                 <input type="text" name="activo" id="activo" value="SI" class="form-control" placeholder="Activo">
                             </div>
                             <div class="crudFormItems" style="display:none;">
-                                <label for="dni">
+                                <label for="dni">0000
                                     <!-- Familia: -->
                                     @if($errors->first('familiaId'))
                                         <p class="text-danger">{{ $errors->first('familiaId')}}</p>

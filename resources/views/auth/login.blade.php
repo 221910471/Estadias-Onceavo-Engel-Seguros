@@ -9,14 +9,17 @@
 </head>
 <body>
     @include('layouts.navbar')
-        <div class="backgroundImage" style="background-image: url('img/logo.png');">
-            <div class="centerModal">
+    <div class="containerLogin">
+        <div class="">
+            <img src="img/logo.png" class="mainImage" alt="Imagen principal">
+        </div>
+        <div class="centerModal">
                 <h1>Inicio de sesión</h1>
                 <hr>
                 <form action="{{ route('validar') }}" method = "POST">
                     {{csrf_field()}}
                     <div class="">
-                        <div class="">
+                        <div class="itemform">
                             <label for="dni">Correo:
                                 @if($errors->first('correoElectronico'))
                                     <p class="text-danger">{{ $errors->first('correoElectronico')}}</p>
@@ -25,7 +28,7 @@
 
                             <input type="text" name="correoElectronico" id="correoElectronico" value="" class="form-control" placeholder="Correo Electrónico">
                         </div>
-                        <div class="">
+                        <div class="itemform">
                             <label for="dni">Contraseña:
                                 @if($errors->first('contrasena'))
                                     <p class="text-danger">{{ $errors->first('contrasena')}}</p>
@@ -34,8 +37,9 @@
 
                             <input type="password" name="contrasena" id="contrasena" value="" class="form-control" placeholder="Contraseña">
                         </div>
+                        <br>
                         <div class="row">
-                            <div class="">
+                            <div class="itemform">
                                 <input class ="cardButton" type="submit" value="Entrar" >
                             </div>
                         </div>
@@ -45,10 +49,10 @@
                 <br>
                 <br>
                 @if(Session::has('mensaje'))
-                <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
+                    <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
                 @endif
-            </div>
         </div>
-@include('layouts.footer')
+    </div>
+    @include('layouts.footer')
 </body>
 </html>
