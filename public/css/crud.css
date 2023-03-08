@@ -189,3 +189,46 @@
 .selectText{
     margin-right: 8px;
 }
+
+.areaDetail1{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 415px;
+    border: 8px solid;
+    background-color: var(--secondaryColorOrange);
+}
+
+.areaDetail2{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 415px;
+    background-color: var(--secondaryColorGreen);
+    border: 8px solid;
+}
+
+.areaDetail3{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 415px;
+    border: 8px solid;
+    background-color: var(--secondaryColor);
+}
+
+.overlayImage{
+    width: 300px;
+    height: 100%;
+}
+
+.textDetail{
+    margin-top: 10px;
+
+    margin-left: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+

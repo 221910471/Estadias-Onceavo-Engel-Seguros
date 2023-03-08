@@ -30,7 +30,7 @@
                                                     <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
                                                 </div> 
                                             </div> -->
-                                            <div class="wrap animate pop">
+                                            <div class="wrap animate pop"  style="background: #e09636;">
                                                     <div class="overlay">
                                                         <div class="overlay-content animate slide-left delay-2">
                                                             <h1 class="animate slide-left pop delay-4">Seguro de Daños</h1>
@@ -44,7 +44,7 @@
                                             </div>
                                         @else
                                             @if( $poliza->tipoPoliza  == "Medico")
-                                                <div class="wrap animate pop">
+                                                <div class="wrap animate pop" style="background: #9dc147;">
                                                     <div class="overlay">
                                                         <div class="overlay-content animate slide-left delay-2">
                                                             <h1 class="animate slide-left pop delay-4">Seguro Médico</h1>
@@ -59,11 +59,11 @@
                                                 </div>
                                             @else
                                                 @if( $poliza->tipoPoliza  == "Vida")
-                                                    <div class="wrap animate pop">
+                                                    <div class="wrap animate pop" style="background: #266593;">
                                                         <div class="overlay">
                                                             <div class="overlay-content animate slide-left delay-2">
-                                                                <h1 class="">Seguro de Vida</h1>
-                                                                <p class="" style="color: white; margin-bottom: 2.5rem;">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</p>
+                                                                <h1 class="animate slide-left pop delay-4" >Seguro de Vida</h1>
+                                                                <p class="animate slide-left pop delay-5" style="color: white; margin-bottom: 2.5rem;">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</p>
                                                             </div>
                                                             <div class="image-content animate slide delay-5"></div>
                                                             </div>

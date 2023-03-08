@@ -47,7 +47,7 @@
                                     @endif
                                 </label>
 
-                                <input type="file" accept=".pdf, .xlsx, .docx" name="rutaArchivo" id="rutaArchivo" value="{{ old('rutaArchivo') }}" class="form-control">
+                                <input type="file" accept=".pdf" name="rutaArchivo" id="rutaArchivo" value="{{ old('rutaArchivo') }}" class="form-control">
                             </div>
                             
                             <div class="crudFormItems">

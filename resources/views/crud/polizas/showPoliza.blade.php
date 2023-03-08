@@ -1,68 +1,71 @@
-<!-- Modal del registro de usuario -->
+<!-- Modal de poliza -->
 <div>
         <!-- Button trigger modal -->
-        <button type="button" class="crudButtonTable" data-bs-toggle="modal" data-bs-target="#showUser{{ $usuario->id }}">
+        <button type="button" class="crudButtonTable" data-bs-toggle="modal" data-bs-target="#showPoliza{{ $poliza->id }}">
             Detalles
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="showUser{{ $usuario->id }}" tabindex="-1" aria-labelledby="showUserLabel" aria-hidden="true">
+        <div class="modal fade" id="showPoliza{{ $poliza->id }}" tabindex="-1" aria-labelledby="showPolizaLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-7" id="showUserLabel">Detalles</h1>
+                        <h1 class="modal-title fs-7" id="showPolizaLabel">Detalles</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <!-- Mostrar datos del usuario -->
-                        <div class="dataDetails">
-                            <div class="gridContainerDetail1">
-                                <p>Nombre: {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</p>
-                                <p>Número Telefoníco: {{ $usuario->telefono }}</p>
-                                <p>Correo Electrónico: {{ $usuario->correoElectronico }}</p>
-                            </div>
-                            <div class="gridContainerDetail1">
-                                <p>Tipo de Cuenta: {{ $usuario->rol }}</p>
-                                <p>Fecha de Nacimiento: {{ $usuario->fechaDeNacimiento }}</p>
-                                <p>Ingreso al Sistema: {{ $usuario->estadoDeSesion }}</p>
-                            </div>
-                            <div class="" style="margin-top: 20px;">
-                                <p>En caso de ser Eliminado Aparecera la fecha en la que fue retirado del sistema</p>
-                                <p>Elimininado el Día: {{ $usuario->deleted_at }}</p>
-                            </div>
+                    <!-- Mostrar datos del poliza -->
+                        <div class="areaDetail">
                             
-                                
                         </div>
-                        <br>
-                        <br>
-                        <!-- Apartado de imagenes -->
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h5 class="crudDetailTextImage">Identificación</h5>
-                                    </div>
-                                    <img src="images/identificaciones/{{ $usuario->identificacion }}" class="card-img-bottom crudDetailImage" alt="Identificación">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h5 class="crudDetailTextImage">Tarjeta de Circulación</h5>
-                                    </div>
-                                    <img src="images/tarjetaCirculacion/{{ $usuario->tarjetaDeCirculacion }}" class="card-img-bottom crudDetailImage" alt="Tarjeta de Circulación">
-                                    
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h5 class="crudDetailTextImage">Comprobante Domiciliario</h5>
-                                    </div>
-                                    <img src="images/comprobanteDomiciliario/{{ $usuario->comprobanteDomiciliario }}" class="card-img-bottom crudDetailImage" alt="Comprobante Domiciliario">
-                                </div>
-                            </div>
-                        </div>
+
+                        @if( $poliza->tipoPoliza == "Daños")
+                                        <div class="areaDetail1">
+                                            <div class="textDetail">
+                                                <h1>Seguro de Daños</h1>
+                                                <p><em>Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</em></p>
+                                            </div>
+                                            <div class="">
+                                                <img class="overlayImage" src="img/seguro-danos.jpg" alt="">
+                                            </div> 
+                                            <div class="">
+                                                <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
+                                            </div> 
+                                        </div>     
+                            @else
+                                @if( $poliza->tipoPoliza  == "Medico")
+                                       <div class="areaDetail2">
+                                            <div class="textDetail">
+                                                <h1>Seguro Médico</h1>
+                                                <p><em>Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</em></p>
+                                            </div>
+                                            <div class="">
+                                                <img class="overlayImage" src="img/seguro-medico.jpg" alt="">
+                                            </div> 
+                                            <div class="">
+                                                <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
+                                            </div> 
+                                        </div>          
+                                @else
+                                    @if( $poliza->tipoPoliza  == "Vida")
+                                        <div class="areaDetail3">
+                                            <div class="textDetail">
+                                                <h1>Seguro de Vida</h1>
+                                                <p><em>Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</em></p>
+                                            </div>
+                                            <div class="">
+                                                <img class="overlayImage" src="img/seguro-de-vida.jpg" alt="">
+                                            </div> 
+                                            <div class="">
+                                                <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
+                                            </div> 
+                                        </div>          
+                                    @endif
+                                @endif
+                        @endif
+
+
+
                     <br>
                     @if(Session::has('mensaje'))
                         <div class="alert alert-danger">{{Session::get('mensaje')}}</div>

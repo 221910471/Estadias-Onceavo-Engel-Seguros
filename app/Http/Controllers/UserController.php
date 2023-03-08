@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Usuarios;
 use Session;
-// use Barryvdh\DomPDF\Facade\Pdf;
 use PDF;
 
 class UserController extends Controller

@@ -6,6 +6,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PolizaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VentaController;
+use App\Http\Controllers\NotificacionController;
 
 //Rutas de principales
 Route::get('/',[HomeController::class,'index'])->name('home.index');
@@ -38,3 +40,26 @@ Route::get('/filterPolizas',[PolizaController::class,'filterPolizas'])->name('fi
 //Rutas para Clientes------------
 
 Route::get('/clientes',[ClienteController::class,'clientes'])->name('clientes');
+
+//Rutas para crud de ventas---------------
+
+Route::get('/ventas',[VentaController::class,'ventas'])->name('ventas');
+Route::post('/createVenta',[VentaController::class,'createVenta'])->name('createVenta');
+Route::put('/editVenta/{id}',[VentaController::class,'editVenta'])->name('editVenta');
+Route::get('/deleteVenta/{id}',[VentaController::class,'deleteVenta'])->name('deleteVenta');
+Route::get('/activateVenta/{id}',[VentaController::class,'activateVenta'])->name('activateVenta');
+Route::get('/filtrarVentas',[VentaController::class,'filtrarVentas'])->name('filtrarVentas');
+Route::get('/pdfVentas',[VentaController::class,'pdfVentas'])->name('pdfVentas');
+
+
+Route::post('/search', function (Request $request) {
+    $query = $request->input('query');
+
+    $results = DB::table('users')
+        ->where('name', 'LIKE', '%' . $query . '%')
+        ->orWhere('date', 'LIKE', '%' . $query . '%')
+        ->orWhere('user_type', 'LIKE', '%' . $query . '%')
+        ->get();
+
+    return response()->json($results);
+});

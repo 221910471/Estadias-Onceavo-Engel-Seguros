@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pólizas</title>
+    <title>Ventas</title>
     <link rel="stylesheet" href="css/crud.css">
 </head>
 
@@ -12,8 +12,8 @@
 
     @include('layouts.navbar')
     <div>
-        <h2 class="crudH2">Pólizas</h2>
-        <br>
+        <h2 class="crudH2">Ventas</h2>
+        <hr>
     </div>
 
     <!-- <center>
@@ -40,8 +40,7 @@
     </center>
     <br> -->
     
-    @include('crud.polizas.createPoliza')
-    
+    @include('crud.ventas.createVenta')
 
     <br>
     <center>
@@ -54,64 +53,37 @@
                     <tr>
                         <th>#</th>
                         <th>Clave</th>
-                        <th>Fecha de Registro</th>
-                        <th>Archivo de la Póliza</th>
-                        <th>Tipo de Poliza</th>
-                        <th>Cliente al que pertenece</th>
-                        <th>Activo</th>
-                        <th>Detalles</th>
+                        <th>Registrado por:</th>
+                        <th>Fecha de Regsitro</th>
                         <th>Editar</td>
                         <th>Eliminar</td>
                     </tr>
                     <?php
                         $contador = 0;
                     ?>
-                    @foreach($polizas as $poliza)
+                    @foreach($ventas as $venta)
                         <?php
                             $contador = $contador+1;
                         ?>
                         <tr>
-                            <!-- <td>{{ $poliza->id }}</td> -->
                             <td>{{ $contador }}</td>
-                            <td>{{ $poliza->clave }}</td>
-                            <td>{{ $poliza->updated_at }}</td>
-                            <td><a href="pdf/polizas/{{ $poliza->rutaArchivo }}" target="_blank" rel="noopener noreferrer">{{ $poliza->rutaArchivo }}</a></td>
-                            <td>{{ $poliza->tipoPoliza }}</td>
-                            
-                                @foreach($usuarios_polizas as $data)
-                                    @if($poliza->id == $data->polizaId)
-                                        <!-- <td>{{ $data->usuarioId }}</td> -->
-                                        @foreach($usuarios as $usuario)
-                                            @if($usuario->id == $data->usuarioId)
-                                                <td>{{$usuario->id}}-{{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</td>
-                                            @endif
-                                        @endforeach
+                            <td>{{ $venta->clave }}</td>
+                            <td>
+                                @foreach($usuarios as $usuario)
+                                    @if($usuario->id == $venta->usuarioId)
+                                    {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}
                                     @endif
                                 @endforeach
-                            <td>
-                                    @if($poliza->deleted_at)
-                                        NO
-                                    @else
-                                        SI
-                                    @endif
                             </td>
+                            <td>{{ $venta->fecha }}</td>
                             <td>
                                 <center>
-                                    @include('crud.polizas.showPoliza')
+                                    @include('crud.ventas.editVenta')
                                 </center>
                             </td>
                             <td>
                                 <center>
-                                    @include('crud.polizas.editPoliza')
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @if($poliza->deleted_at)
-                                        @include('crud.polizas.activatePoliza')
-                                    @else
-                                        @include('crud.polizas.deletePoliza')
-                                    @endif
+                                    @include('crud.ventas.deleteVenta')
                                 </center>  
                             </td>
                         </tr>
@@ -120,13 +92,12 @@
             </table>
         </div>
     </center>
+    <!-- <div class="buttonsFiles">
+    <a href="{{ route('pdfUsuarios') }}"><button class="crudButtonPDF">Generar PDF</button></a>
+    </div> -->
     <br>
     <br>
-
+    <br>
     @include('layouts.footer')
-
-    <script type="text/javascript">
-        
-    </script>
 </body>
 </html>
