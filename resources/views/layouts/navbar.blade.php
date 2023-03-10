@@ -28,6 +28,8 @@
         <a href="{{ route('users') }}" class="linkNav"><p class="navItem">Personas</p></a>
         <a href="{{ route('polizas') }}" class="linkNav"><p class="navItem">Pólizas</p></a>
         <a href="{{ route('ventas') }}" class="linkNav"><p class="navItem">Ventas</p></a>
+        <a href="{{ route('notificaciones') }}" class="linkNav"><p class="navItem">Notificaciones</p></a>
+        <a href="{{ route('correos') }}" class="linkNav"><p class="navItem">Enviar Correo</p></a>
         <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
         @else
           @if($sessionTipo == 'Cliente')

@@ -8,6 +8,7 @@ use App\Http\Controllers\PolizaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\NotificacionController;
+use App\Http\Controllers\MailController;
 
 //Rutas de principales
 Route::get('/',[HomeController::class,'index'])->name('home.index');
@@ -51,15 +52,17 @@ Route::get('/activateVenta/{id}',[VentaController::class,'activateVenta'])->name
 Route::get('/filtrarVentas',[VentaController::class,'filtrarVentas'])->name('filtrarVentas');
 Route::get('/pdfVentas',[VentaController::class,'pdfVentas'])->name('pdfVentas');
 
+//Rutas para las funciones de correo---------------
 
-Route::post('/search', function (Request $request) {
-    $query = $request->input('query');
+Route::get('/correos',[MailController::class,'correos'])->name('correos');
+Route::get('/enviarCorreo',[MailController::class,'enviarCorreo'])->name('enviarCorreo');
 
-    $results = DB::table('users')
-        ->where('name', 'LIKE', '%' . $query . '%')
-        ->orWhere('date', 'LIKE', '%' . $query . '%')
-        ->orWhere('user_type', 'LIKE', '%' . $query . '%')
-        ->get();
+//Rutas para crud de notificaciones---------------
 
-    return response()->json($results);
-});
+Route::get('/notificaciones',[NotificacionController::class,'notificaciones'])->name('notificaciones');
+Route::post('/createNotificacion',[NotificacionController::class,'createNotificacion'])->name('createNotificacion');
+Route::put('/editNotificacion/{id}',[NotificacionController::class,'editNotificacion'])->name('editNotificacion');
+Route::get('/deleteNotificacion/{id}',[NotificacionController::class,'deleteNotificacion'])->name('deleteNotificacion');
+Route::get('/activateNotificacion/{id}',[NotificacionController::class,'activateNotificacion'])->name('activateNotificacion');
+Route::get('/filtrarNotificaciones',[NotificacionController::class,'filtrarNotificaciones'])->name('filtrarNotificaciones');
+Route::get('/pdfNotificaciones',[NotificacionController::class,'pdfNotificaciones'])->name('pdfNotificaciones'); 

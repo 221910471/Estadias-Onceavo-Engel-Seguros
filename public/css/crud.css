@@ -6,12 +6,15 @@
     --secondaryColor: #266593;
     --secondaryColorOrange: #e09636;
     --secondaryColorGreen: #9dc147;
-    --secondaryColorRed: #d41010; 
+    --secondaryColorRed: #d41010;
+    --typography: Arial, Helvetica, sans-serif;
+    --typography: ;
 }
 
 .crudH2{
     margin-top: 3%;
     text-align: center;
+    font-family: var(--typography);
 }
 
 .crudButton{
@@ -24,6 +27,7 @@
     padding: 10px;
     margin-left: 20px;
     box-shadow:    3px 3px #444444;
+    font-family: var(--typography)
 }
 
 .crudButton:hover{
@@ -81,7 +85,7 @@
     border-collapse: collapse;
     margin: 3%;
     border-radius: 24px;
-    
+    font-family: var(--typography)
 }
 
 .crudTable tbody{
@@ -231,4 +235,6 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+
 
