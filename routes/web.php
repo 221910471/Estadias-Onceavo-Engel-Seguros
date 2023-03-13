@@ -55,7 +55,7 @@ Route::get('/pdfVentas',[VentaController::class,'pdfVentas'])->name('pdfVentas')
 //Rutas para las funciones de correo---------------
 
 Route::get('/correos',[MailController::class,'correos'])->name('correos');
-Route::get('/enviarCorreo',[MailController::class,'enviarCorreo'])->name('enviarCorreo');
+Route::post('/enviarCorreo',[MailController::class,'enviarCorreo'])->name('enviarCorreo');
 
 //Rutas para crud de notificaciones---------------
 
