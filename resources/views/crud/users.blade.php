@@ -1,3 +1,6 @@
+<?php
+    require_once('../connection.php');
+?>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -125,6 +128,14 @@
             } else {
                 inputNombre.setCustomValidity("");
             }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function filtrarFecha() {
+            const inputFecha = document.getElementById("nombre");
+
+            
         }
     </script>
 </body>

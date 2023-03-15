@@ -276,13 +276,11 @@ class UserController extends Controller
                     ->get();
                 break;
             case 2:
-                // $usuarios = Usuarios::where("deleted_at", "!=", "")
-                //     ->where("nombre","like",$request->nombre."%")    
-                //     ->orWhere("apellidoPaterno","like",$request->nombre."%")
-                //     ->orWhere("apellidoMaterno","like",$request->nombre."%")
-                //     ->get();
-                $usuarios = Usuarios::onlyTrashed()
-                ->get();
+                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                    ->onlyTrashed()
+                    ->orwhere("apellidoPaterno","like",$request->nombre."%")
+                    ->orwhere("apellidoMaterno","like",$request->nombre."%")
+                    ->get();
                 break;
             default:
                 $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
