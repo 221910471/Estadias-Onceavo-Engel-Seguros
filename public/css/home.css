@@ -253,3 +253,11 @@ p {
 .delay-8 {
   animation-delay: 2.4s;
 }
+
+/* Styles for notifications/client */
+
+.cardsNotification{
+	margin: 15px;
+	padding: 20px;
+	width: 80%;
+}

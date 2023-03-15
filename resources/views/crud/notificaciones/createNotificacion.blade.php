@@ -28,7 +28,7 @@
                                 <input type="text" name="titulo" id="titulo" value="{{ old('titulo') }}" class="form-control" placeholder="Título">
                             </div>
 
-                            <div class="crudFormItems">
+                            <!-- <div class="crudFormItems">
                                 <label for="dni">Asunto:
                                     @if($errors->first('asunto'))
                                         <p class="text-danger">{{ $errors->first('asunto')}}</p>
@@ -36,6 +36,27 @@
                                 </label>
 
                                 <input type="text" name="asunto" id="asunto" value="{{ old('asunto') }}" class="form-control" placeholder="Asunto">
+                            </div> -->
+                            <div class="crudFormItems">
+                                <label for="dni">Asunto:
+                                    @if($errors->first('asunto'))
+                                        <p class="text-danger">{{ $errors->first('asunto')}}</p>
+                                    @endif
+                                </label>
+                                <select class="form-select" name="asunto" id="asunto" value="{{ old('asunto') }}" onchange="cambiarInputAsuntoSelect()">
+                                <option selected>Seleccione un asunto de la lista</option>
+                                    <option value="Pago">Pago</option>
+                                    <option value="Cumpleaños">Cumpleaños</option>
+                                    <option value="Seguro">Seguro</option>
+                                </select>
+
+                                <label for="dni">Otro:
+                                    @if($errors->first('asunto2'))
+                                        <p class="text-danger">{{ $errors->first('asunto2')}}</p>
+                                    @endif
+                                </label>
+
+                                <input type="text" name="asunto2" id="asunto2" value="{{ old('asunto2') }}" class="form-control" placeholder="Asunto" onchange="cambiarInputAsunto()">
                             </div>
 
                             <div class="crudFormItems">
@@ -81,3 +102,5 @@
             </div>
         </div>
     </div>
+
+    

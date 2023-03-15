@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
-    <nav>
+    <nav class="navMain">
       <a href="{{ route('home.index') }}"><img class="imageNavBar" src="img/logo.png" alt="logo empresarial"></a>
       <!-- validación de lo que ve cada uno de los usuarios en la barra de navegacion superior -->
       @if($sessionTipo == '')
@@ -35,7 +35,7 @@
           @if($sessionTipo == 'Cliente')
           <!-- <a href="#"><p>usted es un cliente</p></a> -->
           <a href="{{ route('clientes') }}" class="linkNav"><p class="navItem">Mi Póliza</p></a>
-          <a href="" class="linkNav"><p class="navItem">Notificaciones</p></a>
+          <a href="{{ route('notificacionesCliente') }}" class="linkNav"><p class="navItem">Notificaciones</p></a>
           <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
           @else
             <!-- <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a> -->

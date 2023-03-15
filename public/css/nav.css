@@ -8,7 +8,7 @@
     --secondaryColorGreen: #9dc147; 
 }
 
-nav {
+.navMain {
     background-color: var(--primaryColor);
     height: 90px;
     display: flex;

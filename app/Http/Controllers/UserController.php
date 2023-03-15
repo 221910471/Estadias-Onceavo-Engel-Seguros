@@ -295,6 +295,7 @@ class UserController extends Controller
         
 
 
+
         // if(isset($usuarios)){
         //     Session::flash('mensaje', 'No se encontró ningun resultado');
         // }

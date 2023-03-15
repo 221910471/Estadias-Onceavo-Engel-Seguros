@@ -60,6 +60,7 @@ Route::post('/enviarCorreo',[MailController::class,'enviarCorreo'])->name('envia
 //Rutas para crud de notificaciones---------------
 
 Route::get('/notificaciones',[NotificacionController::class,'notificaciones'])->name('notificaciones');
+Route::get('/notificacionesCliente',[NotificacionController::class,'notificacionesCliente'])->name('notificacionesCliente');
 Route::post('/createNotificacion',[NotificacionController::class,'createNotificacion'])->name('createNotificacion');
 Route::put('/editNotificacion/{id}',[NotificacionController::class,'editNotificacion'])->name('editNotificacion');
 Route::get('/deleteNotificacion/{id}',[NotificacionController::class,'deleteNotificacion'])->name('deleteNotificacion');

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuarios;
 use App\Models\Notificaciones;
+use Illuminate\Pagination\Paginator;
 use Session;
 use PDF;
 
@@ -15,7 +16,6 @@ class NotificacionController extends Controller
     public function notificaciones(){
         $notificaciones = Notificaciones::all();
         $usuarios = Usuarios::all();
-
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
         $sessionTipo = session('sessionTipo');
@@ -37,7 +37,6 @@ class NotificacionController extends Controller
             return redirect()->route('login');
         }
 
-
     }
 
     public function createNotificacion(Request $request){
@@ -51,6 +50,17 @@ class NotificacionController extends Controller
 
         ]);
 
+            $asunto = $request->input('asunto');
+            $asunto2 = $request->input('asunto2');
+
+            if($asunto == "Seleccione un asunto de la lista"){
+                $asuntoGuardar = $asunto2;
+            }
+            else{
+                $asuntoGuardar = $asunto;
+            }
+
+
             $sessionId = session('sessionId');
 
             $date = date('Ymd');
@@ -58,7 +68,7 @@ class NotificacionController extends Controller
             Notificaciones::create(array(
                 'fechaEnvio' => $date,
                 'titulo' => $request->input('titulo'),
-                'asunto' => $request->input('asunto'),
+                'asunto' => $asuntoGuardar,
                 'mensaje' => $request->input('mensaje'),
                 'usuarioId' => $request->input('usuarioId')
             ));
@@ -137,11 +147,42 @@ class NotificacionController extends Controller
         else{
             Session::flash('mensaje', 'Por favor inicie sesión para continuar');
             return redirect()->route('login');
-        }
-
-        
+        }       
 
     }
+
+    public function notificacionesCliente(){
+
+        Paginator::useBootstrapFour();
+
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
+       
+        $notificaciones = Notificaciones::where("usuarioId", "=", $sessionId)
+        ->orderBy('fechaEnvio', 'desc')
+            ->paginate(6);
+        $usuarios = Usuarios::all();
+        
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+
+        if($sessionId<>""){
+            if($sessionTipo == "Cliente"){
+                return view('notificaciones')
+                    ->with('usuarios', $usuarios)
+                    ->with('notificaciones', $notificaciones);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+    }
+
 
     // public function filterVentas(Request $request){
 

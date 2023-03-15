@@ -43,65 +43,96 @@
     @include('crud.notificaciones.createNotificacion')
 
     <br>
-    <center>
-        @if(Session::has('mensaje'))
-            <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
-        @endif
-        <div class="">
-            <table class="crudTable">
-                <tbody>
+    <div class="divNotificacionDsiplay">
+        <div>
+            <center>
+                @if(Session::has('mensaje'))
+                    <div class="alert alert-danger">{{Session::get('mensaje')}}</div>
+                @endif
+                <div class="">
+                    <table class="crudTable">
+                        <tbody>
+                            <tr>
+                                <th>#</th>
+                                <th>Fecha de envio</th>
+                                <th>Titulo</th>
+                                <th>Asunto</th>
+                                <!-- <th>Mensaje</td> -->
+                                <th>Dirigido a</td>
+                                <th>Editar</td>
+                                <th>Detalles</td>
+                                <th>Eliminar</td>
+                            </tr>
+                            <?php
+                                $contador = 0;
+                            ?>
+                            @foreach($notificaciones as $notificacion)
+                                <?php
+                                    $contador = $contador+1;
+                                ?>
+                                <tr>
+                                    <td>{{ $contador }}</td>
+                                    <td>{{ $notificacion->fechaEnvio }}</td>
+                                    <td>{{ $notificacion->titulo }}</td>
+                                    <td>{{ $notificacion->asunto }}</td>
+                                    <!-- <td>{{ $notificacion->mensaje }}</td> -->
+                                    <td>
+                                        @foreach($usuarios as $usuario)
+                                            @if($usuario->id == $notificacion->usuarioId)
+                                                {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <center>
+                                            @include('crud.notificaciones.editNotificacion')
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            @include('crud.notificaciones.showNotificacion')
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            @include('crud.notificaciones.deleteNotificacion')
+                                        </center>  
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </center>
+        </div>
+        <div class="verticalLine">  
+            <center>
+                <table class="crudTable">
+                    <h5 style="text-align:center;">Próximos Cumpleaños</h5>
                     <tr>
-                        <th>#</th>
-                        <th>Fecha de envio</th>
-                        <th>Titulo</th>
-                        <th>Asunto</th>
-                        <!-- <th>Mensaje</td> -->
-                        <th>Dirigido a</td>
-                        <th>Editar</td>
-                        <th>Detalles</td>
-                        <th>Eliminar</td>
+                        <th>Fecha</th>
+                        <th>Cumpleañero</th>
                     </tr>
-                    <?php
-                        $contador = 0;
-                    ?>
-                    @foreach($notificaciones as $notificacion)
-                        <?php
-                            $contador = $contador+1;
-                        ?>
+                    @foreach($usuarios as $usuario)
                         <tr>
-                            <td>{{ $contador }}</td>
-                            <td>{{ $notificacion->fechaEnvio }}</td>
-                            <td>{{ $notificacion->titulo }}</td>
-                            <td>{{ $notificacion->asunto }}</td>
-                            <!-- <td>{{ $notificacion->mensaje }}</td> -->
-                            <td>
-                                @foreach($usuarios as $usuario)
-                                    @if($usuario->id == $notificacion->usuarioId)
-                                    {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>
-                                <center>
-                                    @include('crud.notificaciones.editNotificacion')
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @include('crud.notificaciones.showNotificacion')
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    @include('crud.notificaciones.deleteNotificacion')
-                                </center>  
-                            </td>
+                            <?php
+                                $hoy = date('Y-m-d');
+
+                                $fecha_en_un_mes = date('Y-m-d', strtotime('+1 month'));
+
+                                if (strtotime($usuario->fechaDeNacimiento) >= strtotime($hoy) && strtotime( $usuario->fechaDeNacimiento ) <= strtotime($fecha_en_un_mes)) {
+                                        ?>
+                                            <td>{{ $usuario->fechaDeNacimiento }}</td>
+                                            <td>{{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</td>
+                                        <?php
+                                }
+                                ?>   
                         </tr>
                     @endforeach
-                </tbody>
-            </table>
+                </table>
+            </center>
         </div>
-    </center>
+    </div>
     <!-- <div class="buttonsFiles">
     <a href="{{ route('pdfUsuarios') }}"><button class="crudButtonPDF">Generar PDF</button></a>
     </div> -->
@@ -109,5 +140,19 @@
     <br>
     <br>
     @include('layouts.footer')
+
+    <script type="text/javascript">
+        function cambiarInputAsunto() {
+            var asunto2 = document.getElementById("asunto2");
+            // document.getElementById("asunto").innerHTML = "El texto inicial es: ";
+            document.getElementById("asunto").value = "Seleccione un asunto de la lista";
+        }
+
+        function cambiarInputAsuntoSelect() {
+            var asunto = document.getElementById("asunto");
+            // document.getElementById("asunto").innerHTML = "El texto inicial es: ";
+            document.getElementById("asunto2").value = "";
+        }
+    </script>
 </body>
 </html>

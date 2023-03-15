@@ -236,5 +236,15 @@
     justify-content: space-between;
 }
 
+.verticalLine { 
+    border-left: solid var(--primaryColor);
+    padding-left: 15px;
+}
+
+.divNotificacionDsiplay{
+    display: grid;
+    grid-template-columns: 75fr 25fr;
+    margin: 15px;
+}
 
 
