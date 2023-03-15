@@ -24,12 +24,13 @@
         ?>
     </h2>
     <center>
-        <div class="areaGraphics">
-            <canvas id="myChart"></canvas>
-        </div>
         <br><br>
         <div class="areaGraphics">
             <canvas id="myChart2"></canvas>
+        </div>
+        <br><br>
+        <div class="areaGraphics">
+            <canvas id="myChart3"></canvas>
         </div>
         <br><br>
     </center>
@@ -99,7 +100,7 @@
         });
         </script>
 
-<script>
+    <script>
         const ctx2 = document.getElementById('myChart2').getContext('2d');
         const myChart2 = new Chart(ctx2, {
             type: 'bar',
@@ -216,7 +217,82 @@
                 }
             }
         });
-        </script>
+    </script>
+    
+
+    
+
+    <script>
+        const ctx3 = document.getElementById('myChart3').getContext('2d');
+        const myChart3 = new Chart(ctx3, {
+            // type: 'line',
+            // type: 'line',
+            type: 'polarArea',
+            data: {
+                labels: ["Médico", "Vida", "Daños"],
+                datasets: [{
+                    label: 'Polizas vendidas de cada tipo',
+                    data: [<?php
+
+                            $sql1 = "SELECT * FROM polizas,usuarios_polizas WHERE usuarios_polizas.`polizaId` = polizas.`id` AND polizas.`tipoPoliza`= 'Medico'";
+                            $result1 = mysqli_query($connection,$sql1);
+                            $resultados1 = $result1->num_rows;
+                            
+                            $sql2 = "SELECT * FROM polizas,usuarios_polizas WHERE usuarios_polizas.`polizaId` = polizas.`id` AND polizas.`tipoPoliza`= 'Vida'";
+                            $result2 = mysqli_query($connection,$sql2);
+                            $resultados2 = $result2->num_rows;
+
+                            $sql3 = "SELECT * FROM polizas,usuarios_polizas WHERE usuarios_polizas.`polizaId` = polizas.`id` AND polizas.`tipoPoliza`= 'Daños'";
+                            $result3 = mysqli_query($connection,$sql3);
+                            $resultados3 = $result3->num_rows;
+                            
+                            ?>
+                            '<?php echo $resultados1 ?>',
+                            '<?php echo $resultados2 ?>',
+                            '<?php echo $resultados3 ?>',
+                        ],
+                    backgroundColor: [
+                        // 'rgba(255, 99, 132, 0.2)',
+                        // 'rgba(54, 162, 235, 0.2)',
+                        // 'rgba(255, 206, 86, 0.2)',
+                        // 'rgba(75, 192, 192, 0.2)',
+                        // 'rgba(153, 102, 255, 0.2)',
+                        // 'rgba(255, 159, 64, 0.2)'
+                        'rgba(15, 12, 103, 0.2)',
+                        'rgba(155, 189, 73, 0.2)',
+                        'rgba(245, 194, 43, 0.2)',
+                        'rgba(38, 101, 147, 0.2)',
+                        'rgba(111, 106, 184, 0.2)',
+                        'rgba(151, 58, 142, 0.2)'
+                    ],
+                    borderColor: [
+                        // 'rgba(255, 99, 132, 1)',
+                        // 'rgba(54, 162, 235, 1)',
+                        // 'rgba(255, 206, 86, 1)',
+                        // 'rgba(75, 192, 192, 1)',
+                        // 'rgba(153, 102, 255, 1)',
+                        // 'rgba(255, 159, 64, 1)'
+                        'rgba(15, 12, 103, 1)',
+                        'rgba(155, 189, 73, 1)',
+                        'rgba(245, 194, 43, 01',
+                        'rgba(38, 101, 147, 1)',
+                        'rgba(111, 106, 184, 1)',
+                        'rgba(151, 58, 142, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        // max: 1
+                    }
+                    
+                }
+            }
+        });
+    </script>
 
 
     
