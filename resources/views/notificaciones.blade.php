@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="es-Mx">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notificaciones</title>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/crud.css">
 </head>
 <body>
     @include('layouts.navbar')
+    <br>
 
     <h2>Notificaciones</h2>
-    <p>filtros</p>
-    <div class="cardsNotification">
+    <div class="cardsNotification" id="vista">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach($notificaciones as $notificacion)
                 @foreach($usuarios as $usuario)
@@ -53,5 +54,6 @@
     <br><br>
 
     @include('layouts.footer')
+
 </body>
 </html>

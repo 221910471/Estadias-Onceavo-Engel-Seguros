@@ -9,6 +9,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PagoController;
 
 //Rutas de principales
 Route::get('/',[HomeController::class,'index'])->name('home.index');
@@ -66,4 +67,15 @@ Route::put('/editNotificacion/{id}',[NotificacionController::class,'editNotifica
 Route::get('/deleteNotificacion/{id}',[NotificacionController::class,'deleteNotificacion'])->name('deleteNotificacion');
 Route::get('/activateNotificacion/{id}',[NotificacionController::class,'activateNotificacion'])->name('activateNotificacion');
 Route::get('/filtrarNotificaciones',[NotificacionController::class,'filtrarNotificaciones'])->name('filtrarNotificaciones');
-Route::get('/pdfNotificaciones',[NotificacionController::class,'pdfNotificaciones'])->name('pdfNotificaciones'); 
+Route::get('/pdfNotificaciones',[NotificacionController::class,'pdfNotificaciones'])->name('pdfNotificaciones');
+
+//Rutas para módulo de pagos---------------
+
+Route::get('/pagos',[PagoController::class,'pagos'])->name('pagos');
+Route::get('/pagosCliente',[PagoController::class,'pagosCliente'])->name('pagosCliente');
+Route::post('/createPago',[PagoController::class,'createPago'])->name('createPago');
+Route::put('/editPago/{id}',[PagoController::class,'editPago'])->name('editPago');
+Route::get('/deletePago/{id}',[PagoController::class,'deletePago'])->name('deletePago');
+Route::get('/activatePago/{id}',[PagoController::class,'activatePago'])->name('activatePago');
+Route::get('/filtrarPago',[PagoController::class,'filtrarPago'])->name('filtrarPago');
+Route::get('/pdfPagos',[PagoController::class,'pdfPagos'])->name('pdfPagos');

@@ -29,12 +29,14 @@
         <a href="{{ route('polizas') }}" class="linkNav"><p class="navItem">Pólizas</p></a>
         <a href="{{ route('ventas') }}" class="linkNav"><p class="navItem">Ventas</p></a>
         <a href="{{ route('notificaciones') }}" class="linkNav"><p class="navItem">Notificaciones</p></a>
-        <a href="{{ route('correos') }}" class="linkNav"><p class="navItem">Enviar Correo</p></a>
+        <a href="{{ route('pagos') }}" class="linkNav"><p class="navItem">Pagos</p></a>
+        <a href="{{ route('correos') }}" class="linkNav"><p class="navItem">Correo</p></a>
         <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
         @else
           @if($sessionTipo == 'Cliente')
           <!-- <a href="#"><p>usted es un cliente</p></a> -->
           <a href="{{ route('clientes') }}" class="linkNav"><p class="navItem">Mi Póliza</p></a>
+          <a href="{{ route('pagosCliente') }}" class="linkNav"><p class="navItem">Mis Pagos</p></a>
           <a href="{{ route('notificacionesCliente') }}" class="linkNav"><p class="navItem">Notificaciones</p></a>
           <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
           @else
