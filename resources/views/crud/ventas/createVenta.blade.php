@@ -18,7 +18,7 @@
                     <form action="{{route('createVenta')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div>
-                        <div class="crudFormItems">
+                            <div class="crudFormItems">
                                 <label for="dni">Clave:
                                     @if($errors->first('clave'))
                                         <p class="text-danger">{{ $errors->first('clave')}}</p>
@@ -26,6 +26,15 @@
                                 </label>
 
                                 <input type="text" name="clave" id="clave" value="{{ old('clave') }}" class="form-control" placeholder="Clave">
+                            </div>
+                            <div class="crudFormItems">
+                                <label for="dni">Comisión:
+                                    @if($errors->first('comision'))
+                                        <p class="text-danger">{{ $errors->first('comision')}}</p>
+                                    @endif
+                                </label>
+
+                                <input type="text" name="comision" id="comision" value="{{ old('comision') }}" class="form-control" placeholder="Comisión">
                             </div>
                             <div>
                                 <p>*El usuario que registra esta venta</p>
@@ -38,6 +47,7 @@
                                 <button type="button" class="crudButtonFormCancel" data-bs-dismiss="modal">Cancelar</button>
                                 <input class ="crudButtonFormAccept" type="submit" value="Guardar" >
                             </div>
+                            
 
                         </div>
                     </form>

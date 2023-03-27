@@ -29,6 +29,16 @@
 
                                 <input type="text" name="clave" id="clave" value="{{ $venta->clave }}" class="form-control" placeholder="Clave">
                             </div>
+
+                            <div class="crudFormItems">
+                                <label for="dni">Comisión:
+                                    @if($errors->first('comision'))
+                                        <p class="text-danger">{{ $errors->first('comision')}}</p>
+                                    @endif
+                                </label>
+
+                                <input type="text" name="comision" id="comision" value="{{ $venta->comision }}" class="form-control" placeholder="Comisión">
+                            </div>
                             
                             <div class="modal-footer">
                                 <button type="button" class="crudButtonFormCancel" data-bs-dismiss="modal">Cancelar</button>

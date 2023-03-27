@@ -13,8 +13,14 @@ use PDF;
 class VentaController extends Controller
 {
     public function ventas(){
-        $ventas = Ventas::all();
+        // $ventas = Ventas::all();
         $usuarios = Usuarios::all();
+
+        $ventas = Ventas::orderBy('updated_at', 'desc')
+            ->withTrashed()
+            ->get();
+        
+        
 
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
@@ -44,7 +50,8 @@ class VentaController extends Controller
 
         $this->validate($request,[
             
-            'clave' => 'required|unique:ventas'
+            'clave' => 'required|unique:ventas',
+            'comision' => 'required|regex:/[0-9]$/'
 
         ]);
 
@@ -53,6 +60,7 @@ class VentaController extends Controller
             $date = date('Ymd');
             Ventas::create(array(
                 'clave' => $request->input('clave'),
+                'comision' => $request->input('comision'),
                 'fecha' => $date,
                 'usuarioId' => $sessionId,
             ));
@@ -85,7 +93,7 @@ class VentaController extends Controller
     }
 
     public function activateVenta($id){
-        $usuarios2 = Usuarios::withTrashed()->where('id',$id)->restore();
+        $ventas2 = Ventas::withTrashed()->where('id',$id)->restore();
         Session::flash('mensaje', 'La venta ha sido restaurada con éxito');
         return redirect()->route('ventas');
     }
@@ -95,8 +103,8 @@ class VentaController extends Controller
         
         $this->validate($request,[
             
-            'clave' => 'required|unique:ventas'
-
+            'clave' => 'required',
+            'comision' => 'required|regex:/[0-9]$/'
         ]);
 
         $sessionId = session('sessionId');
@@ -107,6 +115,7 @@ class VentaController extends Controller
 
         $ventasSave = Ventas::find($id);
             $ventasSave->clave = $request->clave;
+            $ventasSave->comision = $request->comision;
             $ventasSave->fecha = $date;
             $ventasSave->usuarioId = $sessionId;
         $ventasSave->save();

@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
             $table->string('clave');
+            $table->float ('comision', 12, 2);
             $table->integer('usuarioId')->comment('Usuario que realizo la venta');
             $table->date('fecha')->comment('Fecha de venta');
             
+            $table->softDeletes();
             $table->timestamps();
         });
     }

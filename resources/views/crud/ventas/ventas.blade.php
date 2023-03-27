@@ -53,7 +53,8 @@
                     <tr>
                         <th>#</th>
                         <th>Clave</th>
-                        <th>Registrado por:</th>
+                        <th>Comisión</th>
+                        <th>Registrado por</th>
                         <th>Fecha de Regsitro</th>
                         <th>Editar</td>
                         <th>Eliminar</td>
@@ -68,6 +69,7 @@
                         <tr>
                             <td>{{ $contador }}</td>
                             <td>{{ $venta->clave }}</td>
+                            <td>$ {{ $venta->comision }} MXN</td>
                             <td>
                                 @foreach($usuarios as $usuario)
                                     @if($usuario->id == $venta->usuarioId)
@@ -82,8 +84,12 @@
                                 </center>
                             </td>
                             <td>
-                                <center>
-                                    @include('crud.ventas.deleteVenta')
+                                <center>                                
+                                    @if($venta->deleted_at)
+                                        @include('crud.ventas.activateVenta')
+                                    @else
+                                        @include('crud.ventas.deleteVenta')
+                                    @endif
                                 </center>  
                             </td>
                         </tr>
