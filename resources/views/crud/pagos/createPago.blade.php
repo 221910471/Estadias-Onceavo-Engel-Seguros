@@ -2,7 +2,8 @@
 <div>
         <!-- Button trigger modal -->
         <button type="button" class="crudButton" data-bs-toggle="modal" data-bs-target="#createPago">
-            Registrar Notificación
+            Registrar      
+            Pago
         </button>
 
         <!-- Modal -->
@@ -10,7 +11,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-7" id="createPagoLabel">Registrar Notificación</h1>
+                        <h1 class="modal-title fs-7" id="createPagoLabel">Registrar Pago</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

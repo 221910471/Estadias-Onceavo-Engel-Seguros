@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Usuarios;
+use App\Models\Ventas;
+use App\Models\Pagos;
+use App\Models\Polizas;
 use Session;
 
 class LoginController extends Controller
@@ -14,7 +17,15 @@ class LoginController extends Controller
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
         if($sessionId<>""){
-            return view('home');
+            $usuarios = Usuarios::all();
+            $ventas = Ventas::all();
+            $pagos = Pagos::all();
+            $polizas = Polizas::all();
+            return view('home')
+                ->with('ventas', $ventas)
+                ->with('pagos', $pagos)
+                ->with('polizas', $polizas)
+                ->with('usuarios', $usuarios);
         }
         else{
             Session::flash('mensaje', 'Por favor inicie sesión para continuar');

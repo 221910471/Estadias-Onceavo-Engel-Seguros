@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Administrador</title>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/crud.css">
     
 </head>
 <body>
@@ -23,6 +24,16 @@
             echo $sessionUsuario;
         ?>
     </h2>
+    <br>
+    <div class="registerArea">
+        @include('crud.createUser')
+        <img src="img/flecha-curva.png" alt="flecha-curva">
+        @include('crud.ventas.createVenta')
+        <img src="img/flecha-curva.png" alt="flecha-curva">
+        @include('crud.polizas.createPoliza')
+        <img src="img/flecha-curva.png" alt="flecha-curva">
+        @include('crud.pagos.createPago')
+    </div>
     <center>
         <br><br>
         <div class="areaGraphics">
