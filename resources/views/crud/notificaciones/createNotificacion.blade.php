@@ -50,7 +50,7 @@
                                     <option value="Seguro">Seguro</option>
                                 </select>
 
-                                <label for="dni">Otro:
+                                <label for="dni">Otro asunto:
                                     @if($errors->first('asunto2'))
                                         <p class="text-danger">{{ $errors->first('asunto2')}}</p>
                                     @endif
@@ -65,8 +65,20 @@
                                         <p class="text-danger">{{ $errors->first('mensaje')}}</p>
                                     @endif
                                 </label>
+                                <select class="form-select" name="mensaje" id="mensaje" value="{{ old('mensaje') }}" onchange="cambiarInputMensajeSelect()">
+                                <option selected>Seleccione un mensaje de la lista</option>
+                                    <option value="Recordatorio de pago, se recomienda revisar sus notifiaciones y registro de pago en el área de notificaciones.">Recordatorio de pago, se recomienda revisar sus notifiaciones y registro de pago en el área de notificaciones.</option>
+                                    <option value="Le deseamos un feliz cumpleaños, que viva esta fecha con mucha alegría.">Le deseamos un feliz cumpleaños, que viva esta fecha con mucha alegría.</option>
+                                    <option value="Le recomendamos revisar nuestras distintas pólizas y seguros que ofrecemos, porque lo más valio que podemos tener es la seguridad de usted y su familia.">Le recomendamos revisar nuestras distintas pólizas y seguros que ofrecemos, porque lo más valio que podemos tener es la seguridad de usted y su familia.</option>
+                                </select>
 
-                                <input type="text" name="mensaje" id="mensaje" value="{{ old('mensaje') }}" class="form-control" placeholder="Mensaje">
+                                <label for="dni">Otro mensaje:
+                                    @if($errors->first('mensaje2'))
+                                        <p class="text-danger">{{ $errors->first('mensaje2')}}</p>
+                                    @endif
+                                </label>
+
+                                <input type="text" name="mensaje2" id="mensaje2" value="{{ old('mensaje2') }}" class="form-control" placeholder="Mensaje" onchange="cambiarInputMensaje()">
                             </div>
 
                             <div class="crudFormItems">

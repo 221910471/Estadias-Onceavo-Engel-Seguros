@@ -20,15 +20,15 @@
                         <div class="col">
                             <div class="card h-100">
                                 @if( $notificacion->asunto == "Pago")
-                                    <img src="img/pago.jpg" class="card-img-top" alt="..." height="200px" style="filter: blur(1px);-webkit-filter: blur(1px);-moz-filter: blur(1px);">
+                                    <img src="img/pago.jpg" class="card-img-top" alt="..." height="200px">
                                     @else
                                         @if( $notificacion->asunto == "Cumpleaños")
-                                            <img src="img/cumpleaños.jpg" class="card-img-top" alt="..." height="200px" style="filter: blur(1px);-webkit-filter: blur(1px);-moz-filter: blur(1px);">
+                                            <img src="img/cumpleaños.jpg" class="card-img-top" alt="..." height="200px">
                                             @else
                                                 @if( $notificacion->asunto == "Seguro")
-                                                    <img src="img/seguro.png" class="card-img-top" alt="..." height="200px" style="filter: blur(1px);-webkit-filter: blur(1px);-moz-filter: blur(1px);">
+                                                    <img src="img/seguro.png" class="card-img-top" alt="..." height="200px">
                                                     @else
-                                                        <img src="img/notificacion.png" class="card-img-top" alt="..." height="200px" style="filter: blur(1px);-webkit-filter: blur(1px);-moz-filter: blur(1px);">
+                                                        <img src="img/notificacion.png" class="card-img-top" alt="..." height="200px">
                                                 @endif
                                         @endif
                                 @endif

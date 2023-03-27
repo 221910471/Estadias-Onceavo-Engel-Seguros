@@ -11,7 +11,9 @@ use PDF;
 class UserController extends Controller
 {
     public function users(){
-        $usuarios = Usuarios::all();
+        // $usuarios = Usuarios::all();
+        $usuarios = Usuarios::orderBy('updated_at', 'desc')
+            ->get();
         
         //Consultar todos los datos junto con el softdelete
         // $usuarios = Usuarios::withTrashed()
@@ -246,7 +248,8 @@ class UserController extends Controller
             $usuariosSave->save();
 
         
-        $usuarios = Usuarios::all();
+        $usuarios = Usuarios::orderBy('updated_at', 'desc')
+            ->get();
 
         $sessionId = session('sessionId');
         if($sessionId<>""){
@@ -273,13 +276,16 @@ class UserController extends Controller
                 $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
                     ->orWhere("apellidoPaterno","like",$request->nombre."%")
                     ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                    ->orderBy('updated_at', 'desc')
                     ->get();
                 break;
             case 2:
                 $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
                     ->onlyTrashed()
-                    ->orwhere("apellidoPaterno","like",$request->nombre."%")
-                    ->orwhere("apellidoMaterno","like",$request->nombre."%")
+                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                    ->orderBy('updated_at', 'desc')
+                    ->orderBy('activo', 'asc')
                     ->get();
                 break;
             default:
@@ -287,6 +293,7 @@ class UserController extends Controller
                     ->orWhere("apellidoPaterno","like",$request->nombre."%")
                     ->orWhere("apellidoMaterno","like",$request->nombre."%")
                     ->withTrashed()
+                    ->orderBy('updated_at', 'desc')
                     ->get();
                 // $usuarios = Usuarios::withTrashed()
                 // ->get();
@@ -311,15 +318,15 @@ class UserController extends Controller
         }
     }
 
-    public function pdfVista(){
-        $usuarios = Usuarios::all();
-        return view('crud.pdfUsuarios')
-            ->with('usuarios', $usuarios);
-    }
 
     public function pdfUsuarios(){
-        $usuarios = Usuarios::all();
-        $pdf = PDF::loadView('crud.pdfUsuarios',['usuarios'=>$usuarios]);
+        $usuariosActivos = Usuarios::all();
+
+        $usuariosInactivos = Usuarios::onlyTrashed()
+                    ->get();
+
+
+        $pdf = PDF::loadView('crud.pdfUsuarios',['usuariosActivos'=>$usuariosActivos, 'usuariosInactivos'=>$usuariosInactivos]);
         //$pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
     }

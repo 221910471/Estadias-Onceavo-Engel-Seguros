@@ -153,6 +153,18 @@
             // document.getElementById("asunto").innerHTML = "El texto inicial es: ";
             document.getElementById("asunto2").value = "";
         }
+
+        function cambiarInputMensaje() {
+            var mensaje2 = document.getElementById("mensaje2");
+            // document.getElementById("asunto").innerHTML = "El texto inicial es: ";
+            document.getElementById("mensaje").value = "Seleccione un mensaje de la lista";
+        }
+
+        function cambiarInputMensajeSelect() {
+            var mensaje = document.getElementById("mensaje");
+            // document.getElementById("asunto").innerHTML = "El texto inicial es: ";
+            document.getElementById("mensaje2").value = "";
+        }
     </script>
 </body>
 </html>

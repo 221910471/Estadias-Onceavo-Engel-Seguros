@@ -45,12 +45,12 @@
         </div>
       </div>
       <div class="grid-item2">
-        <img class="cardImageSize" src="https://imgs.search.brave.com/S00THftaiv0FrtGP_7EWntleLGL8ueXFcSnNTrXNtV8/rs:fit:711:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5X/NjV2UFFwZTNhRFMy/c0dfR2RfTEJBSGFF/OCZwaWQ9QXBp" alt="Imagen seguro contra daños">
+        <img class="cardImageSize" src="http://eduardolaraseguros.com.br/wp-content/uploads/2015/08/Como-escolher-e-manter-um-bom-seguro-de-vida-Veja-6-excelentes-dicas.jpg" alt="Imagen seguro contra daños">
       </div>
     </div>
     <div class="grid-container2">
       <div class="grid-item2">
-        <img class="cardImageSize" src="https://imgs.search.brave.com/0rVhnCAgFN2-5ZEO4Y3F0jJl-H6USkIVx-qLfKSRsGQ/rs:fit:854:225:1/g:ce/aHR0cHM6Ly90c2Ux/LmV4cGxpY2l0LmJp/bmcubmV0L3RoP2lk/PU9JUC5zdUhKMllJ/QzdqT0RTV0s4NkdK/MnZBSGFFSCZwaWQ9/QXBp" alt="Imagen seguro médico">
+        <img class="cardImageSize" src="https://media.istockphoto.com/id/1199060494/es/foto/seguro-que-protege-la-salud-familiar-en-vivo-casa-y-concepto-de-coche.jpg?s=612x612&w=0&k=20&c=Bos91tANTuX9sAjmeB8u0hrU9b-eWxD-0Ed57CLK1Ng=" alt="Imagen seguro médico">
       </div>
       <div class="grid-item1">
         <div class="cardTextSize2">
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="grid-item2">
-        <img class="cardImageSize" src="https://imgs.search.brave.com/jRdCznxY-mL0Ubdsos2xUwFFPtWEr6ppcuWdYqEGtjA/rs:fit:1054:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC55/cExVOGx3SEEzWjlB/RzdjZTJjekZRSGFE/ViZwaWQ9QXBp" alt="Imagen seguro de auto">
+        <img class="cardImageSize" src="https://blog.webdelseguro.com.ar/wp-content/uploads/2021/05/AUTO.jpg.webp" alt="Imagen seguro de auto">
       </div>
     </div>
 

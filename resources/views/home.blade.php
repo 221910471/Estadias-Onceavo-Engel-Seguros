@@ -225,9 +225,7 @@
     <script>
         const ctx3 = document.getElementById('myChart3').getContext('2d');
         const myChart3 = new Chart(ctx3, {
-            // type: 'line',
-            // type: 'line',
-            type: 'polarArea',
+            type: 'bar',
             data: {
                 labels: ["Médico", "Vida", "Daños"],
                 datasets: [{

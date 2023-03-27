@@ -60,6 +60,16 @@ class NotificacionController extends Controller
                 $asuntoGuardar = $asunto;
             }
 
+            $mensaje = $request->input('mensaje');
+            $mensaje2 = $request->input('mensaje2');
+
+            if($mensaje == "Seleccione un mensaje de la lista"){
+                $mensajeGuardar = $mensaje2;
+            }
+            else{
+                $mensajeGuardar = $mensaje;
+            }
+
 
             $sessionId = session('sessionId');
 

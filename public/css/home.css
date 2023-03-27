@@ -89,8 +89,7 @@ p {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	margin-left: 35vmin;
-	text-align: center;
+	margin-left: 40vmin;
 	width: 30vmin;
 	height: 100%;
 	padding: .5rem 0 0 .5rem;
@@ -105,13 +104,37 @@ p {
 	transition: .3s ease-in-out .2s;
 	z-index: 1;
 }
-.image-content {
+.image-content1 {
 	position: absolute;
 	top: 0;
 	right: 0;
 	width: 60%;
 	height: 100%;
-	background-image: url("https://assets.codepen.io/4787486/trees.png");
+	background-image: url("http://eduardolaraseguros.com.br/wp-content/uploads/2015/08/Como-escolher-e-manter-um-bom-seguro-de-vida-Veja-6-excelentes-dicas.jpg");
+	background-size: cover;
+	transition: .3s ease-in-out;
+	/* border: 1px solid green; */
+}
+
+.image-content2 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60%;
+	height: 100%;
+	background-image: url("https://media.istockphoto.com/id/1199060494/es/foto/seguro-que-protege-la-salud-familiar-en-vivo-casa-y-concepto-de-coche.jpg?s=612x612&w=0&k=20&c=Bos91tANTuX9sAjmeB8u0hrU9b-eWxD-0Ed57CLK1Ng=");
+	background-size: cover;
+	transition: .3s ease-in-out;
+	/* border: 1px solid green; */
+}
+
+.image-content3 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60%;
+	height: 100%;
+	background-image: url("https://blog.webdelseguro.com.ar/wp-content/uploads/2021/05/AUTO.jpg.webp");
 	background-size: cover;
 	transition: .3s ease-in-out;
 	/* border: 1px solid green; */
@@ -177,6 +200,8 @@ p {
   animation-duration: 0.7s;
   animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
   animation-fill-mode: backwards;
+  text-align: left;
+
 }
 /* Pop In */
 .pop { animation-name: pop; }

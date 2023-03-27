@@ -21,26 +21,17 @@
                             @if($poliza->id == $usuario_poliza->polizaId)
                                 
                                         @if( $poliza->tipoPoliza == "Daños")
-                                            <!-- <div class="divContainer">
-                                                <div>
-                                                    <h1 class="divContainerText"> Seguro de daños </h1>
-                                                    <h2 class="divContainerText">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</h2>
-                                                </div> 
-                                                <div>
-                                                    <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
-                                                </div> 
-                                            </div> -->
                                             <div class="wrap animate pop"  style="background: #e09636;">
                                                     <div class="overlay">
                                                         <div class="overlay-content animate slide-left delay-2">
-                                                            <h1 class="animate slide-left pop delay-4">Seguro de Daños</h1>
+                                                            <h1 class="animate slide-left pop delay-4">Seguro Contra Daños</h1>
                                                             <p class="animate slide-left pop delay-5" style="color: white; margin-bottom: 2.5rem;">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</p>
                                                         </div>
-                                                        <div class="image-content animate slide delay-5"></div>
+                                                        <div class="image-content1 animate slide delay-5"></div>
                                                         </div>
                                                         <div class="text">
                                                             <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
-                                                        </div>
+                                                    </div>
                                             </div>
                                         @else
                                             @if( $poliza->tipoPoliza  == "Medico")
@@ -50,12 +41,12 @@
                                                             <h1 class="animate slide-left pop delay-4">Seguro Médico</h1>
                                                             <p class="animate slide-left pop delay-5" style="color: white; margin-bottom: 2.5rem;">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</p>
                                                         </div>
-                                                        <div class="image-content animate slide delay-5"></div>
+                                                        <div class="image-content2 animate slide delay-5"></div>
                                                         </div>
                                                         <div class="text">
                                                             <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
                                                             <!-- <p class="pText">Otorga una indemnización (reembolso) al asegurado por los gastos médicos incurridos, cubiertos en la póliza contratada.</p> -->
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             @else
                                                 @if( $poliza->tipoPoliza  == "Vida")
@@ -65,7 +56,7 @@
                                                                 <h1 class="animate slide-left pop delay-4" >Seguro de Vida</h1>
                                                                 <p class="animate slide-left pop delay-5" style="color: white; margin-bottom: 2.5rem;">Registrado con la fecha: {{ $poliza->fechaDeRegistro }}</p>
                                                             </div>
-                                                            <div class="image-content animate slide delay-5"></div>
+                                                            <div class="image-content3 animate slide delay-5"></div>
                                                             </div>
                                                             <div class="text">
                                                                 <iframe width="400" height="400" src="{{asset('pdf/polizas/'.$poliza->rutaArchivo)}}" frameborder="0"></iframe>
