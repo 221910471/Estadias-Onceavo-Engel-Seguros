@@ -40,7 +40,7 @@ class PolizaController extends Controller
                 ->with('usuarios', $usuarios);
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
@@ -106,7 +106,7 @@ class PolizaController extends Controller
                 return redirect()->route('polizas');
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
@@ -173,11 +173,11 @@ class PolizaController extends Controller
 
         if($sessionId<>""){
             if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
-                Session::flash('mensaje', 'La poliza ha sido actualizada correctamente');
+                Session::flash('mensaje', 'Los datos de la pólizan ha sido actualizados correctamente');
                 return redirect()->route('polizas');
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
@@ -192,14 +192,14 @@ class PolizaController extends Controller
     public function deletePoliza($id){
         $polizas = Polizas::find($id);
         $polizas->delete();
-        Session::flash('mensaje', 'La póliza ha sido eliminado');
+        Session::flash('mensaje', 'La póliza ha sido eliminada exitosamente');
         return redirect()->route('polizas');
         
     }
 
     public function activatePoliza($id){
         $polizas = Polizas::withTrashed()->where('id',$id)->restore();
-        Session::flash('mensaje', 'La póliza ha sido restaurado con éxito');
+        Session::flash('mensaje', 'La póliza ha sido restaurada con éxito');
         return redirect()->route('polizas');
     }
 

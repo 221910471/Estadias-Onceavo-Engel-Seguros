@@ -141,7 +141,7 @@ class UserController extends Controller
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
         if($sessionId<>""){
-            Session::flash('mensaje', 'REGISTRO COMPLETO');
+            Session::flash('mensaje', 'El usuario ha sido registrado con éxito');
             // return view('crud.users')
             // ->with('usuarios', $usuarios);
             return redirect('users');
@@ -155,7 +155,7 @@ class UserController extends Controller
     public function delete($id){
         $usuarios = Usuarios::find($id);
         $usuarios->delete();
-        Session::flash('mensaje', 'El usuario ha sido eliminado');
+        Session::flash('mensaje', 'El usuario ha sido eliminado con éxito');
         return redirect()->route('users');
         
     }
@@ -297,12 +297,6 @@ class UserController extends Controller
                 break;
         }
         
-
-
-
-        // if(isset($usuarios)){
-        //     Session::flash('mensaje', 'No se encontró ningun resultado');
-        // }
 
         $sessionId = session('sessionId');
         if($sessionId<>""){

@@ -33,7 +33,7 @@ class VentaController extends Controller
                     ->with('ventas', $ventas);
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
@@ -73,7 +73,7 @@ class VentaController extends Controller
                     return redirect('ventas');
                 }
                 else{
-                    Session::flash('mensaje', 'No puede acceder este apartado');
+                    Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
                     return redirect()->route('login');
                 }
                 
@@ -123,11 +123,11 @@ class VentaController extends Controller
     
         if($sessionId<>""){
             if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
-                Session::flash('mensaje', 'Registro Actualizado Correctamente');
+                Session::flash('mensaje', 'Los datos de la venta han sido actualizados correctamente');
                 return redirect('ventas');
             }
             else{
-                  Session::flash('mensaje', 'No puede acceder este apartado');
+                  Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
                 

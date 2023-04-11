@@ -27,7 +27,7 @@ class NotificacionController extends Controller
                     ->with('notificaciones', $notificaciones);
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
@@ -91,7 +91,7 @@ class NotificacionController extends Controller
                     return redirect('notificaciones');
                 }
                 else{
-                    Session::flash('mensaje', 'No puede acceder este apartado');
+                    Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
                     return redirect()->route('login');
                 }
                 
@@ -105,16 +105,10 @@ class NotificacionController extends Controller
     public function deleteNotificacion($id){
         $notificaciones = Notificaciones::find($id);
         $notificaciones->delete();
-        Session::flash('mensaje', 'La notificación ha sido eliminada');
+        Session::flash('mensaje', 'La notificación ha sido eliminada exitosamente');
         return redirect()->route('notificaciones');
         
     }
-
-    // public function activateNotificacion($id){
-    //     $usuarios2 = Usuarios::withTrashed()->where('id',$id)->restore();
-    //     Session::flash('mensaje', 'La venta ha sido restaurada con éxito');
-    //     return redirect()->route('ventas');
-    // }
 
     public function editNotificacion(Request $request, $id){
         
@@ -149,7 +143,7 @@ class NotificacionController extends Controller
                 return redirect('notificaciones');
             }
             else{
-                  Session::flash('mensaje', 'No puede acceder este apartado');
+                  Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
                 
@@ -217,7 +211,7 @@ class NotificacionController extends Controller
                     ->with('notificaciones', $notificaciones);
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             

@@ -80,7 +80,7 @@ class LoginController extends Controller
         }
         else{
             // echo "acceso NO permitido";
-            Session::flash('mensaje','El correo o contraseña no son válidos');
+            Session::flash('mensaje','El correo o contraseña que ingresó no son válidos');
             return redirect()->route('login');
         }
     }

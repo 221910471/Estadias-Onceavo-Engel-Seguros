@@ -31,7 +31,7 @@ class PagoController extends Controller
                     ->with('pagos', $pagos);
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
@@ -84,7 +84,7 @@ class PagoController extends Controller
                     return redirect('pagos');
                 }
                 else{
-                    Session::flash('mensaje', 'No puede acceder este apartado');
+                    Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
                     return redirect()->route('login');
                 }
                 
@@ -98,7 +98,7 @@ class PagoController extends Controller
     public function deletePago($id){
         $pagos = Pagos::find($id);
         $pagos->delete();
-        Session::flash('mensaje', 'El pago ha sido eliminado');
+        Session::flash('mensaje', 'El pago ha sido eliminado exitosamente');
         return redirect()->route('pagos');
         
     }
@@ -143,11 +143,11 @@ class PagoController extends Controller
     
         if($sessionId<>""){
             if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
-                Session::flash('mensaje', 'Registro Actualizado Correctamente');
+                Session::flash('mensaje', 'Registro actualizado correctamente');
                 return redirect('pagos');
             }
             else{
-                  Session::flash('mensaje', 'No puede acceder este apartado');
+                  Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
                 
@@ -180,7 +180,7 @@ class PagoController extends Controller
                     ->with('pagos', $pagos);
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             

@@ -25,7 +25,7 @@ class MailController extends Controller
                     ->with('prospectos', $prospectos);;
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
@@ -66,11 +66,11 @@ class MailController extends Controller
         if($sessionId<>""){
             if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
                 Mail::to($correoElectronico)->send(new correoElectronicoMail($data));
-                Session::flash('correo', 'Correo enviado');
+                Session::flash('correo', 'Correo enviado exitosamente');
                 return redirect()->route('correos');
             }
             else{
-                Session::flash('mensaje', 'No puede acceder este apartado');
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
             return redirect()->route('login');
             }
             
