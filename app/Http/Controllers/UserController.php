@@ -37,7 +37,6 @@ class UserController extends Controller
             
             'nombre' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
             'apellidoPaterno' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
-            // 'apellidoMaterno' => 'required|regex:/[A-Z][A-Z,a-z, ,á,é,í,ó,ú]+$/',
             'telefono' => 'required|regex:/[0-9]{10}$/',
             'correoElectronico' => 'required|email|unique:usuarios',
             'contrasena' => 'required',
@@ -187,9 +186,6 @@ class UserController extends Controller
 
         ]);
 
-        // $passwordEncriptado = Hash::make($request->contrasena);
-        // echo $passwordEncriptado;
-
         if ($request->file('identificacion') != '') {
             $file = $request->file('identificacion');
             $foto = $file->getClientOriginalName();
@@ -200,10 +196,11 @@ class UserController extends Controller
 
         } else {
             $foto2 = "default.png";
-            $ruta = "img/default.png";
+            $ruta = "default.png";
         }
 
         if ($request->file('tarjetaDeCirculacion') != '') {
+
             $archivoTarjeta = $request->file('tarjetaDeCirculacion');
             $extensionTarjeta = $archivoTarjeta->getClientOriginalName();
             $date = date('Ymd_His_');
@@ -213,7 +210,7 @@ class UserController extends Controller
 
         } else {
             $nombreArchivoTarjeta = "default.png";
-            $rutaTarjeta = "img/default.png";
+            $rutaTarjeta = "default.png";
         }
         
 
@@ -227,7 +224,7 @@ class UserController extends Controller
 
             } else {
                 $nombreArchivoComprobante = "default.png";
-                $rutaComprobante = "img/default.png";
+                $rutaComprobante = "default.png";
             }
 
             $usuariosSave = Usuarios::find($id);

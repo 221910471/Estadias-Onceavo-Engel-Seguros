@@ -21,7 +21,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Clave:
                                     @if($errors->first('clave'))
-                                        <p class="text-danger">{{ $errors->first('clave')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('clave')}}</em></p>
                                     @endif
                                 </label>
 
@@ -30,7 +30,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Comisión:
                                     @if($errors->first('comision'))
-                                        <p class="text-danger">{{ $errors->first('comision')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('comision')}}</em></p>
                                     @endif
                                 </label>
 

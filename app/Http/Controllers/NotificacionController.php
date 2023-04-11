@@ -167,16 +167,51 @@ class NotificacionController extends Controller
 
         $sessionId = session('sessionId');
         $sessionTipo = session('sessionTipo');
-       
-        $notificaciones = Notificaciones::where("usuarioId", "=", $sessionId)
-        ->orderBy('fechaEnvio', 'desc')
-            ->paginate(6);
-        $usuarios = Usuarios::all();
-        
+           
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
 
         if($sessionId<>""){
             if($sessionTipo == "Cliente"){
+
+                //Proceso para alertas de cumpleaños
+                $usuarioCumpleaños=Usuarios::where('id','=',$sessionId)
+                    ->get();
+                $hoy = date('Y-m-d');
+                
+                $numeroNotificacionesDeCumpleañosExistentes=Notificaciones::where('fechaEnvio','=',$hoy)
+                    ->where('asunto','=','Cumpleaños')
+                    ->where('usuarioId','=',$sessionId)
+                    ->get();
+                $resultados = $numeroNotificacionesDeCumpleañosExistentes->count();
+                
+                $fechaCumpleaños = $usuarioCumpleaños[0]->fechaDeNacimiento;
+
+                $diaFechaCumpleaños = date('d', strtotime($fechaCumpleaños));
+                $mesFechaCumpleaños = date('m', strtotime($fechaCumpleaños));
+
+                $diaHoy = date('d', strtotime($hoy));
+                $mesHoy = date('m', strtotime($hoy));
+
+                // echo  " diacumpleaños: ". $diaFechaCumpleaños." mes cumpleaños: ". $mesFechaCumpleaños. "  dia de hoy: ".$diaHoy." mes de hoy: ".$mesHoy;
+
+
+                if($resultados == 0 && $diaFechaCumpleaños == $diaHoy && $mesFechaCumpleaños == $mesHoy){
+                    
+                    Notificaciones::create(array(
+                        'fechaEnvio' => $fechaCumpleaños,
+                        'titulo' => "Feliz Cumpleaños",
+                        'asunto' => "Cumpleaños",
+                        'mensaje' => "Le deseamos un feliz cumpleaños, que viva esta fecha con mucha alegría.",
+                        'usuarioId' => $sessionId
+                    ));
+                }
+
+                $notificaciones = Notificaciones::where("usuarioId", "=", $sessionId)
+                ->orderBy('fechaEnvio', 'desc')
+                    ->paginate(6);
+                $usuarios = Usuarios::all();
+            
+
                 return view('notificaciones')
                     ->with('usuarios', $usuarios)
                     ->with('notificaciones', $notificaciones);

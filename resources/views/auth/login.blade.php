@@ -22,7 +22,7 @@
                         <div class="itemform">
                             <label for="dni">Correo:
                                 @if($errors->first('correoElectronico'))
-                                    <p class="text-danger">{{ $errors->first('correoElectronico')}}</p>
+                                    <p class="text-danger"><em>{{ $errors->first('correoElectronico')}}</em></p>
                                 @endif
                             </label>
 
@@ -31,7 +31,7 @@
                         <div class="itemform">
                             <label for="dni">Contraseña:
                                 @if($errors->first('contrasena'))
-                                    <p class="text-danger">{{ $errors->first('contrasena')}}</p>
+                                    <p class="text-danger"><em>{{ $errors->first('contrasena')}}</em></p>
                                 @endif
                             </label>
 

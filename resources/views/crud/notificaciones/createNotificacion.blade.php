@@ -21,7 +21,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Título:
                                     @if($errors->first('titulo'))
-                                        <p class="text-danger">{{ $errors->first('titulo')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('titulo')}}</em></p>
                                     @endif
                                 </label>
 
@@ -31,7 +31,7 @@
                             <!-- <div class="crudFormItems">
                                 <label for="dni">Asunto:
                                     @if($errors->first('asunto'))
-                                        <p class="text-danger">{{ $errors->first('asunto')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('asunto')}}</em></p>
                                     @endif
                                 </label>
 
@@ -40,7 +40,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Asunto:
                                     @if($errors->first('asunto'))
-                                        <p class="text-danger">{{ $errors->first('asunto')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('asunto')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="asunto" id="asunto" value="{{ old('asunto') }}" onchange="cambiarInputAsuntoSelect()">
@@ -52,7 +52,7 @@
 
                                 <label for="dni">Otro asunto:
                                     @if($errors->first('asunto2'))
-                                        <p class="text-danger">{{ $errors->first('asunto2')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('asunto2')}}</em></p>
                                     @endif
                                 </label>
 
@@ -62,7 +62,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Mensaje:
                                     @if($errors->first('mensaje'))
-                                        <p class="text-danger">{{ $errors->first('mensaje')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('mensaje')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="mensaje" id="mensaje" value="{{ old('mensaje') }}" onchange="cambiarInputMensajeSelect()">
@@ -74,7 +74,7 @@
 
                                 <label for="dni">Otro mensaje:
                                     @if($errors->first('mensaje2'))
-                                        <p class="text-danger">{{ $errors->first('mensaje2')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('mensaje2')}}</em></p>
                                     @endif
                                 </label>
 
@@ -85,7 +85,7 @@
                                 <label for="dni">
                                     Cliente que tiene esta póliza:
                                     @if($errors->first('usuarioId'))
-                                        <p class="text-danger">{{ $errors->first('usuarioId')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('usuarioId')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="usuarioId" id="usuarioId" value="{{ old('usuarioId') }}">

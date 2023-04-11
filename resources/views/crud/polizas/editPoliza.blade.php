@@ -23,7 +23,7 @@
                         <div class="crudFormItems">
                                 <label for="dni">Clave:
                                     @if($errors->first('clave'))
-                                        <p class="text-danger">{{ $errors->first('clave')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('clave')}}</em></p>
                                     @endif
                                 </label>
 
@@ -32,7 +32,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Tipo de Poliza:
                                     @if($errors->first('tipoPoliza'))
-                                        <p class="text-danger">{{ $errors->first('tipoPoliza')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('tipoPoliza')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="tipoPoliza" id="tipoPoliza" value="{{ $poliza->tipoPoliza }}">
@@ -45,7 +45,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Archivo de la Póliza:
                                     @if($errors->first('rutaArchivo'))
-                                        <p class="text-danger">{{ $errors->first('rutaArchivo')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('rutaArchivo')}}</em></p>
                                     @endif
                                 </label>
 
@@ -56,7 +56,7 @@
                                 <label for="dni">
                                     Cliente que tiene esta póliza:
                                     @if($errors->first('polizaId'))
-                                        <p class="text-danger">{{ $errors->first('polizaId')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('polizaId')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="usuarioId" id="usuarioId" value="">
@@ -73,7 +73,7 @@
                                 <label for="dni">
                                     Venta en la que se incluye esta Póliza
                                     @if($errors->first('ventaId'))
-                                        <p class="text-danger">{{ $errors->first('ventaId')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('ventaId')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="ventaId" id="ventaId" value="{{ $poliza->ventaId }}">

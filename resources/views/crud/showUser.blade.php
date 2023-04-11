@@ -36,33 +36,44 @@
                         <br>
                         <br>
                         <!-- Apartado de imagenes -->
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h5 class="crudDetailTextImage">Identificación</h5>
+                        @if($usuario->identificacion == 'default.png' && $usuario->tarjetaDeCirculacion == 'default.png' && $usuario->comprobanteDomiciliario == 'default.png')
+                            <h5 style="text-aling: center;">No se encuentran imagenes para este usuario en el sistema</h5>
+                            @else
+                            <div class="row row-cols-1 row-cols-md-3 g-5">
+                                @if($usuario->identificacion != 'default.png')
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="crudDetailTextImage">Identificación</h5>
+                                            </div>
+                                            <img id="identificacion" src="images/identificaciones/{{ $usuario->identificacion }}" class="card-img-bottom crudDetailImage" alt="Identificación">
+                                        </div>
                                     </div>
-                                    <img src="images/identificaciones/{{ $usuario->identificacion }}" class="card-img-bottom crudDetailImage" alt="Identificación">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h5 class="crudDetailTextImage">Tarjeta de Circulación</h5>
+                                @endif
+                                @if($usuario->tarjetaDeCirculacion != 'default.png')
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h5 class="crudDetailTextImage">Tarjeta de Circulación</h5>
+                                            </div>
+                                            <img src="images/tarjetaCirculacion/{{ $usuario->tarjetaDeCirculacion }}" class="card-img-bottom crudDetailImage" alt="Tarjeta de Circulación">
+                                            
+                                        </div>
                                     </div>
-                                    <img src="images/tarjetaCirculacion/{{ $usuario->tarjetaDeCirculacion }}" class="card-img-bottom crudDetailImage" alt="Tarjeta de Circulación">
-                                    
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                        <h5 class="crudDetailTextImage">Comprobante Domiciliario</h5>
+                                @endif
+                                @if($usuario->comprobanteDomiciliario != 'default.png')
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="crudDetailTextImage">Comprobante Domiciliario</h5>
+                                        </div>
+                                        <img src="images/comprobanteDomiciliario/{{ $usuario->comprobanteDomiciliario }}" class="card-img-bottom crudDetailImage" alt="Comprobante Domiciliario">
                                     </div>
-                                    <img src="images/comprobanteDomiciliario/{{ $usuario->comprobanteDomiciliario }}" class="card-img-bottom crudDetailImage" alt="Comprobante Domiciliario">
                                 </div>
+                                @endif
                             </div>
-                        </div>
+                        @endif
+                        
                     <br>
                     @if(Session::has('mensaje'))
                         <div class="alert alert-danger">{{Session::get('mensaje')}}</div>

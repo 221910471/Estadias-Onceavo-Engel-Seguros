@@ -20,73 +20,81 @@
                         @csrf @method('PUT')
 
                         <div>
+                        <p style="text-align: right;"><em>* Obligatorio</em></p>
+
                         <div class="crudFormItems">
-                                <label for="dni">Nombre:
+                                <label for="dni">* Nombre:
                                     @if($errors->first('nombre'))
-                                        <p class="text-danger">{{ $errors->first('nombre')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('nombre')}}</em></p>
                                     @endif
                                 </label>
 
-                                <input type="text" name="nombre" id="nombre" value="{{ $usuario->nombre }}" class="form-control" placeholder="Nombre">
+                                <input type="text" name="nombre" id="nombreEditar" value="{{ $usuario->nombre }}" class="form-control" placeholder="Nombre">
+                                <p id="avisoNombreEditar" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
-                                <label for="dni">Primer Apellido:
+                                <label for="dni">* Primer Apellido:
                                     @if($errors->first('apellidoPaterno'))
-                                        <p class="text-danger">{{ $errors->first('apellidoPaterno')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('apellidoPaterno')}}</em></p>
                                     @endif
                                 </label>
 
-                                <input type="text" name="apellidoPaterno" id="apellidoPaterno" value="{{ $usuario->apellidoPaterno }}" class="form-control" placeholder="Primer Apellido">
+                                <input type="text" name="apellidoPaterno" id="apellidoPaternoEditar" value="{{ $usuario->apellidoPaterno }}" class="form-control" placeholder="Primer Apellido">
+                                <p id="avisoApellidoPaternoEditar" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Segundo Apellido:
                                     @if($errors->first('apellidoMaterno'))
-                                        <p class="text-danger">{{ $errors->first('apellidoMaterno')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('apellidoMaterno')}}</em></p>
                                     @endif
                                 </label>
 
-                                <input type="text" name="apellidoMaterno" id="apellidoMaterno" value="{{ $usuario->apellidoMaterno }}" class="form-control" placeholder="Segundo Apellido">
+                                <input type="text" name="apellidoMaterno" id="apellidoMaternoEditar" value="{{ $usuario->apellidoMaterno }}" class="form-control" placeholder="Segundo Apellido">
+                                <p id="avisoApellidoMaternoEditar" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
-                                <label for="dni">Teléfono:
+                                <label for="dni">* Teléfono:
                                     @if($errors->first('telefono'))
-                                        <p class="text-danger">{{ $errors->first('telefono')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('telefono')}}</em></p>
                                     @endif
                                 </label>
 
-                                <input type="text" name="telefono" id="telefono" value="{{ $usuario->telefono }}" class="form-control" placeholder="Teléfono">
+                                <input type="text" name="telefono" id="telefonoEditar" value="{{ $usuario->telefono }}" class="form-control" placeholder="Teléfono">
+                                <p id="avisoTelefonoEditar" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
-                                <label for="dni">Correo:
+                                <label for="dni">* Correo:
                                     @if($errors->first('correoElectronico'))
-                                        <p class="text-danger">{{ $errors->first('correoElectronico')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('correoElectronico')}}</em></p>
                                     @endif
                                 </label>
 
-                                <input type="text" name="correoElectronico" id="correoElectronico" value="{{ $usuario->correoElectronico}}" class="form-control" placeholder="Correo Electrónico">
+                                <input type="text" name="correoElectronico" id="correoElectronicoEditar" value="{{ $usuario->correoElectronico}}" class="form-control" placeholder="Correo Electrónico">
+                                <p id="avisoCorreoElectronicoEditar" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
-                                <label for="dni">Contraseña:
+                                <label for="dni">* Contraseña:
                                     @if($errors->first('contrasena'))
-                                        <p class="text-danger">{{ $errors->first('contrasena')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('contrasena')}}</em></p>
                                     @endif
                                 </label>
                                 
-                                <input type="password" name="contrasena" id="contrasena" value="{{ $usuario->contrasena }}" class="form-control" placeholder="Contraseña">
+                                <input type="password" name="contrasena" id="contrasenaEditar" value="{{ $usuario->contrasena }}" class="form-control" placeholder="Contraseña">
+                                <p id="avisoContrasenaEditar" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
-                                <label for="dni">Fecha de nacimiento:
+                                <label for="dni">* Fecha de nacimiento:
                                     @if($errors->first('fechaDeNacimiento'))
-                                        <p class="text-danger">{{ $errors->first('fechaDeNacimiento')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('fechaDeNacimiento')}}</em></p>
                                     @endif
                                 </label>
 
                                 <input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento" value="{{ $usuario->fechaDeNacimiento }}" class="form-control" placeholder="Fecha de nacimiento">
                             </div>
                             <div class="crudFormItems">
-                                <label for="dni">Rol:
+                                <label for="dni">* Rol:
                                     @if($errors->first('rol'))
-                                        <p class="text-danger">{{ $errors->first('rol')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('rol')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="rol" id="rol" value="{{ $usuario->rol}}">
@@ -100,7 +108,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Identificación:
                                     @if($errors->first('identificacion'))
-                                        <p class="text-danger">{{ $errors->first('identificacion')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('identificacion')}}</em></p>
                                     @endif
                                 </label>
 
@@ -109,7 +117,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Tarjeta de Circulación:
                                     @if($errors->first('tarjetaDeCirculacion'))
-                                        <p class="text-danger">{{ $errors->first('tarjetaDeCirculacion')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('tarjetaDeCirculacion')}}</em></p>
                                     @endif
                                 </label>
 
@@ -118,17 +126,17 @@
                             <div class="crudFormItems">
                                 <label for="dni">Comprobante de Domicilio:
                                     @if($errors->first('comprobanteDomiciliario'))
-                                        <p class="text-danger">{{ $errors->first('comprobanteDomiciliario')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('comprobanteDomiciliario')}}</em></p>
                                     @endif
                                 </label>
 
                                 <input type="file" name="comprobanteDomiciliario" id="comprobanteDomiciliario" value="{{ $usuario->comprobanteDomiciliario }}" class="form-control" placeholder="Comprobante de Domicilio">
                             </div>
-                            <div class="">
+                            <div class=""  style="display:none;">
                                 <label for="dni">
                                     <!-- Estado Acceso: -->
                                     @if($errors->first('estadoDeSesion'))
-                                        <p class="text-danger">{{ $errors->first('estadoDeSesion')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('estadoDeSesion')}}</em></p>
                                     @endif
                                 </label>
 
@@ -138,24 +146,23 @@
                                 <label for="dni">
                                     <!-- Activo: -->
                                     @if($errors->first('activo'))
-                                        <p class="text-danger">{{ $errors->first('activo')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('activo')}}</em></p>
                                     @endif
                                 </label>
 
                                 <input type="text" name="activo" id="activo" value="SI" class="form-control" placeholder="Activo">
                             </div>
                             <div class="crudFormItems" style="display:none;">
-                                <label for="dni">0000
+                                <label for="dni">
                                     <!-- Familia: -->
                                     @if($errors->first('familiaId'))
-                                        <p class="text-danger">{{ $errors->first('familiaId')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('familiaId')}}</em></p>
                                     @endif
                                 </label>
 
                                 <input type="text" name="familiaId" id="familiaId" value="1" class="form-control" placeholder="Familia">
                             </div>
 
-            
                             <div class="modal-footer">
                                 <button type="button" class="crudButtonFormCancel" data-bs-dismiss="modal">Cancelar</button>
                                 <input class ="crudButtonFormAccept" type="submit" value="Guardar Cambios" >
@@ -172,3 +179,5 @@
             </div>
         </div>
     </div>
+
+    

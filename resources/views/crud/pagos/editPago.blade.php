@@ -24,7 +24,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Frecuencia de pago:
                                     @if($errors->first('frecuenciaDePago'))
-                                        <p class="text-danger">{{ $errors->first('frecuenciaDePago')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('frecuenciaDePago')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="frecuenciaDePago" id="frecuenciaDePago" value="{{ $pago->frecuenciaDePago }}">
@@ -39,7 +39,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Fecha límite de pago:
                                     @if($errors->first('fechaLimiteDePago'))
-                                        <p class="text-danger">{{ $errors->first('fechaLimiteDePago')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('fechaLimiteDePago')}}</em></p>
                                     @endif
                                 </label>
 
@@ -49,7 +49,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Estado:
                                     @if($errors->first('estado'))
-                                        <p class="text-danger">{{ $errors->first('estado')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('estado')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="estado" id="estado" value="{{ $pago->estado }}">
@@ -62,7 +62,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Forma de Pago:
                                     @if($errors->first('formaDePago'))
-                                        <p class="text-danger">{{ $errors->first('formaDePago')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('formaDePago')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="formaDePago" id="formaDePago" value="{{ $pago->formaDePago }}">
@@ -76,7 +76,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">Monto de pago:
                                     @if($errors->first('montoDePago'))
-                                        <p class="text-danger">{{ $errors->first('montoDePago')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('montoDePago')}}</em></p>
                                     @endif
                                 </label>
 
@@ -87,7 +87,7 @@
                                 <label for="dni">
                                     Póliza a la que pertenece el pago:
                                     @if($errors->first('polizaId'))
-                                        <p class="text-danger">{{ $errors->first('polizaId')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('polizaId')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="polizaId" id="polizaId" value="">
@@ -102,7 +102,7 @@
                                 <label for="dni">
                                     Cliente que realizo el pago:
                                     @if($errors->first('usuarioId'))
-                                        <p class="text-danger">{{ $errors->first('usuarioId')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('usuarioId')}}</em></p>
                                     @endif
                                 </label>
                                 <select class="form-select" name="usuarioId" id="usuarioId" value="">
@@ -117,7 +117,7 @@
                             <div class="crudFormItems">
                                 <label for="dni">
                                     @if($errors->first('clave'))
-                                        <p class="text-danger">{{ $errors->first('clave')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('clave')}}</em></p>
                                     @endif
                                 </label>
 
@@ -127,7 +127,7 @@
                             <div class="crudFormItems">
                                 <label for="dni"
                                     @if($errors->first('fechaDePago'))
-                                        <p class="text-danger">{{ $errors->first('fechaDePago')}}</p>
+                                        <p class="text-danger"><em>{{ $errors->first('fechaDePago')}}</em></p>
                                     @endif
                                 </label>
 
