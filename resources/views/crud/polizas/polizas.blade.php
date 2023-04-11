@@ -125,8 +125,5 @@
 
     @include('layouts.footer')
 
-    <script type="text/javascript">
-        
-    </script>
 </body>
 </html>

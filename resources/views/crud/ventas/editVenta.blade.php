@@ -27,7 +27,8 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="clave" id="clave" value="{{ $venta->clave }}" class="form-control" placeholder="Clave">
+                                <input type="text" name="clave" id="claveEditar" value="{{ $venta->clave }}" class="form-control" placeholder="Clave">
+                                <p id="avisoClaveEditar" class="text-danger"><em></em></p>
                             </div>
 
                             <div class="crudFormItems">
@@ -37,7 +38,8 @@
                                     @endif
                                 </label>
 
-                                <input type="text" name="comision" id="comision" value="{{ $venta->comision }}" class="form-control" placeholder="Comisión">
+                                <input type="text" name="comision" id="comisionEditar" value="{{ $venta->comision }}" class="form-control" placeholder="Comisión">
+                                <p id="avisoComisionEditar" class="text-danger"><em></em></p>
                             </div>
                             
                             <div class="modal-footer">

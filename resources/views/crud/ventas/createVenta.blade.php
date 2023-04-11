@@ -26,6 +26,7 @@
                                 </label>
 
                                 <input type="text" name="clave" id="clave" value="{{ old('clave') }}" class="form-control" placeholder="Clave">
+                                <p id="avisoClave" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Comisión:
@@ -35,6 +36,7 @@
                                 </label>
 
                                 <input type="text" name="comision" id="comision" value="{{ old('comision') }}" class="form-control" placeholder="Comisión">
+                                <p id="avisoComision" class="text-danger"><em></em></p>
                             </div>
                             <div>
                                 <p>*El usuario que registra esta venta</p>

@@ -28,6 +28,7 @@
                                 </label>
 
                                 <input type="text" name="clave" id="clave" value="{{ $poliza->clave }}" class="form-control" placeholder="Clave">
+                                <p id="avisoClaveEditar" class="text-danger"><em></em></p>
                             </div>
                             <div class="crudFormItems">
                                 <label for="dni">Tipo de Poliza:

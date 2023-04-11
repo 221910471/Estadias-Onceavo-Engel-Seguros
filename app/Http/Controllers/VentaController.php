@@ -51,7 +51,7 @@ class VentaController extends Controller
         $this->validate($request,[
             
             'clave' => 'required|unique:ventas',
-            'comision' => 'required|regex:/[0-9]$/'
+            'comision' => 'required|regex:/([0-9]*[.])?[0-9]+$/'
 
         ]);
 
