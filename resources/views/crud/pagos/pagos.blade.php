@@ -14,29 +14,52 @@
         <hr>
     </div>
 
-    <!-- <center>
-        <form action="{{route('filterUsers')}}" method="GET" enctype="multipart/form-data">
+    <center class="divSeparateFilters">
+
+        <form action="{{route('filterFechaPago')}}" method="GET" enctype="multipart/form-data">
             {{csrf_field()}}
-            <div class="divFilters">
-                <div class="divSelect">
+            <div class="divFilterUnique">
+                <div class="divSelect2">
                         <p class="selectText">Buscar:</p>
-                        <input type="text" oninput="validarNombre()" name="nombre" id="nombre" value="" class="form-control" placeholder="Nombre">                
+                        <input type="date" name="fecha" id="fecha" class="form-control" placeholder="Clave">                
                 </div>
-                
-                <div class="divSelect">
+                    <input type="submit" value=">" class="crudButton">
+            </div>
+        </form>
+
+        <form action="{{route('filterEstadoPago')}}" method="GET" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="divFilterUnique">
+                <div class="divSelect2">
                         <p class="selectText">Buscar:</p>
-                        <select class="form-select" name="activo" id="activo" value="1">
-                            <option selected>Selecciona una opción</option>
+                        <select class="form-select" name="estado" id="estado" value="1" placeholder="Estado del pago">
+                            <option selected>Estado del pago</option>
+                            <option value="1">Pagado</option>
+                            <option value="2">Por pagar</option>
+                            <option value="3">Todos</option>
+                        </select>
+                </div>
+                    <input type="submit" value=">" class="crudButton">
+            </div>
+        </form>
+
+        <form action="{{route('filterActivoPago')}}" method="GET" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="divFilterUnique">
+                <div class="divSelect2">
+                        <p class="selectText">Buscar:</p>
+                        <select class="form-select" name="activo" id="activo" value="1" placeholder="Estado del registro">
+                            <option selected>Estado del registro</option>
                             <option value="1">Activos</option>
                             <option value="2">Inactivos</option>
                             <option value="3">Todos</option>
                         </select>
                 </div>
-                    <input type="submit" value="Filtrar" class="crudButton">
+                    <input type="submit" value=">" class="crudButton">
             </div>
         </form>
     </center>
-    <br> -->
+    <br>
     
     @include('crud.pagos.createPago')
 

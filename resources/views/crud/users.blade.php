@@ -25,13 +25,23 @@
             <div class="divFilters">
                 <div class="divSelect">
                         <p class="selectText">Buscar:</p>
-                        <input type="text" oninput="validarNombre()" name="nombre" id="nombre2" value="" class="form-control" placeholder="Nombre">                
+                        <input type="text" name="nombre" id="nombre2" value="" class="form-control" placeholder="Nombre">                
                 </div>
+
+                <!-- <div class="divSelect">
+                        <p class="selectText">Buscar:</p>
+                        <select class="form-select" name="rol" id="rol" value="Todos">
+                            <option selected>Todos</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Interno">Interno</option>
+                            <option value="Cliente">Cliente</option>
+                        </select>
+                </div> -->
                 
                 <div class="divSelect">
                         <p class="selectText">Buscar:</p>
                         <select class="form-select" name="activo" id="activo" value="1">
-                            <option selected>Selecciona una opción</option>
+                            <option selected>Estados</option>
                             <option value="1">Activos</option>
                             <option value="2">Inactivos</option>
                             <option value="3">Todos</option>

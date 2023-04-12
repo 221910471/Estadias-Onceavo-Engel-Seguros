@@ -13,32 +13,55 @@
     @include('layouts.navbar')
     <div>
         <h2 class="crudH2">Pólizas</h2>
+        <hr>
         <br>
     </div>
 
-    <!-- <center>
-        <form action="{{route('filterUsers')}}" method="GET" enctype="multipart/form-data">
+    <center class="divSeparateFilters">
+        <form action="{{route('filterClave')}}" method="GET" enctype="multipart/form-data">
             {{csrf_field()}}
-            <div class="divFilters">
-                <div class="divSelect">
+            <div class="divFilterUnique">
+                <div class="divSelect2">
                         <p class="selectText">Buscar:</p>
-                        <input type="text" oninput="validarNombre()" name="nombre" id="nombre" value="" class="form-control" placeholder="Nombre">                
+                        <input type="search" name="clave" id="clave" value="" class="form-control" placeholder="Clave">                
                 </div>
-                
-                <div class="divSelect">
+                    <input type="submit" value=">" class="crudButton">
+            </div>
+        </form>
+
+        <form action="{{route('filterTipoPoliza')}}" method="GET" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="divFilterUnique">
+                <div class="divSelect2">
                         <p class="selectText">Buscar:</p>
-                        <select class="form-select" name="activo" id="activo" value="1">
-                            <option selected>Selecciona una opción</option>
+                        <select class="form-select" name="tipoPoliza" id="tipoPoliza" value="1" placeholder="Estado">
+                            <option selected>Tipo de póliza</option>
+                            <option value="Médico">Médico</option>
+                            <option value="Daños">Daños</option>
+                            <option value="Vida">Vida</option>
+                        </select>
+                </div>
+                    <input type="submit" value=">" class="crudButton">
+            </div>
+        </form>
+
+        <form action="{{route('filterActivo')}}" method="GET" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="divFilterUnique">
+                <div class="divSelect2">
+                        <p class="selectText">Buscar:</p>
+                        <select class="form-select" name="activo" id="activo" value="1" placeholder="Estado">
+                            <option selected>Estado</option>
                             <option value="1">Activos</option>
                             <option value="2">Inactivos</option>
                             <option value="3">Todos</option>
                         </select>
                 </div>
-                    <input type="submit" value="Filtrar" class="crudButton">
+                    <input type="submit" value=">" class="crudButton">
             </div>
         </form>
     </center>
-    <br> -->
+    <br>
     
     @include('crud.polizas.createPoliza')
     

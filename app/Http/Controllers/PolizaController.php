@@ -17,6 +17,7 @@ class PolizaController extends Controller
         // $usuarios = Usuarios::all();
 
         $polizas = Polizas::withTrashed()
+            ->orderBy('updated_at', 'desc')
             ->get();
 
         $usuarios = Usuarios::withTrashed()
@@ -201,6 +202,179 @@ class PolizaController extends Controller
         $polizas = Polizas::withTrashed()->where('id',$id)->restore();
         Session::flash('mensaje', 'La póliza ha sido restaurada con éxito');
         return redirect()->route('polizas');
+    }
+
+    public function filterActivo(Request $request){
+
+        switch ($request->activo) {
+            case 1:
+                $polizas = Polizas::all();
+                    // ->orderBy('updated_at', 'desc')
+                    // ->get();
+                break;
+            case 2:
+                $polizas = Polizas::onlyTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            default:
+                $polizas = Polizas::withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+
+                // $usuarios = Usuarios::withTrashed()
+                // ->get();
+                break;
+                
+        }
+
+        $usuarios = Usuarios::withTrashed()
+            ->get();
+
+        $usuarios_polizas = UsuariosPolizas::all();
+
+        $ventas = Ventas::all();
+
+        $sessionId = session('sessionId');
+        // echo $sessionId;
+        $sessionTipo = session('sessionTipo');
+        // echo $sessionTipo;
+
+
+        $sessionId = session('sessionId');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.polizas.polizas')
+                ->with('polizas', $polizas)
+                ->with('usuarios_polizas', $usuarios_polizas)
+                ->with('ventas', $ventas)
+                ->with('usuarios', $usuarios);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }  
+                
+    }
+
+    public function filterClave(Request $request){
+
+        $clave = $request->clave;
+        
+        $polizas = Polizas::where("clave","like",$request->clave."%")
+            ->withTrashed()
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        $usuarios = Usuarios::withTrashed()
+            ->get();
+
+        $usuarios_polizas = UsuariosPolizas::all();
+
+        $ventas = Ventas::all();
+
+        $sessionId = session('sessionId');
+        // echo $sessionId;
+        $sessionTipo = session('sessionTipo');
+        // echo $sessionTipo;
+
+
+        $sessionId = session('sessionId');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.polizas.polizas')
+                ->with('polizas', $polizas)
+                ->with('usuarios_polizas', $usuarios_polizas)
+                ->with('ventas', $ventas)
+                ->with('usuarios', $usuarios);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }  
+                
+    }
+
+    public function filterTipoPoliza(Request $request){
+
+        switch ($request->tipoPoliza) {
+            case "Médico":
+                $polizas = Polizas::where("tipoPoliza","=","Médico")
+                    ->withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            case "Daños":
+                $polizas = Polizas::where("tipoPoliza","=","Daños")
+                    ->withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            case "Vida":
+                $polizas = Polizas::where("tipoPoliza","=","Vida")
+                    ->withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            default:
+                $polizas = Polizas::withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+
+                // $usuarios = Usuarios::withTrashed()
+                // ->get();
+                break;
+                
+        }
+
+        $usuarios = Usuarios::withTrashed()
+            ->get();
+
+        $usuarios_polizas = UsuariosPolizas::all();
+
+        $ventas = Ventas::all();
+
+        $sessionId = session('sessionId');
+        // echo $sessionId;
+        $sessionTipo = session('sessionTipo');
+        // echo $sessionTipo;
+
+
+        $sessionId = session('sessionId');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.polizas.polizas')
+                ->with('polizas', $polizas)
+                ->with('usuarios_polizas', $usuarios_polizas)
+                ->with('ventas', $ventas)
+                ->with('usuarios', $usuarios);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }  
+                
     }
 
 }

@@ -261,41 +261,81 @@ class UserController extends Controller
     }
 
     public function filterUsers(Request $request){
+        // echo "rol es: ".$request->rol;
+        // if($request->rol="Todos"){
+            switch ($request->activo) {
+                case 1:
+                    $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                        ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                        ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                        ->orderBy('updated_at', 'desc')
+                        ->get();
+                    break;
+                case 2:
+                    $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                        ->onlyTrashed()
+                        ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                        ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                        ->orderBy('updated_at', 'desc')
+                        ->orderBy('activo', 'asc')
+                        ->get();
+                    break;
+                default:
+                    $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+                        ->orWhere("apellidoPaterno","like",$request->nombre."%")
+                        ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                        ->withTrashed()
+                        ->orderBy('updated_at', 'desc')
+                        ->get();
+    
+                    // $usuarios = Usuarios::withTrashed()
+                    // ->get();
+    
+                
+                    break;
+            }
+        // }
+        // else{
+        //     switch ($request->activo) {
+        //         case 1:
+        //             $usuarios = Usuarios::where("rol","=",$request->rol)
+        //             ->where("nombre","like",$request->nombre."%")
+        //                 // ->orWhere("apellidoPaterno","like",$request->nombre."%")
+        //                 // ->orWhere("apellidoMaterno","like",$request->nombre."%")
+                        
+        //                 ->orderBy('updated_at', 'desc')
+                        
+        //                 ->get();
+        //             break;
+        //         case 2:
+        //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+        //                 ->onlyTrashed()
+                        
+        //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
+        //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
+        //                 ->orderBy('updated_at', 'desc')
+        //                 ->orderBy('activo', 'asc')
+        //                 ->get();
+        //             break;
+        //         default:
+        //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
+        //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
+        //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
+        //                 ->withTrashed()
+        //                 ->orderBy('updated_at', 'desc')
+        //                 ->get();
+    
+        //             // $usuarios = Usuarios::withTrashed()
+        //             // ->get();
+    
+                
+        //             break;
+        //     }
+        // }
+        
 
-        $nombres = Usuarios::where("nombre","like",$request->texto."%")
-            ->get();
 
-        // echo ($nombres);
-
-        switch ($request->activo) {
-            case 1:
-                // $usuarios = Usuarios::all();
-                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
-                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
-                    ->orderBy('updated_at', 'desc')
-                    ->get();
-                break;
-            case 2:
-                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-                    ->onlyTrashed()
-                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
-                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
-                    ->orderBy('updated_at', 'desc')
-                    ->orderBy('activo', 'asc')
-                    ->get();
-                break;
-            default:
-                $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-                    ->orWhere("apellidoPaterno","like",$request->nombre."%")
-                    ->orWhere("apellidoMaterno","like",$request->nombre."%")
-                    ->withTrashed()
-                    ->orderBy('updated_at', 'desc')
-                    ->get();
-                // $usuarios = Usuarios::withTrashed()
-                // ->get();
-                break;
-        }
+        
         
 
         $sessionId = session('sessionId');

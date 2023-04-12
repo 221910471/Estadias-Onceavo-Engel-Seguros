@@ -190,6 +190,19 @@
     height: 50px;
 }
 
+.divSelect2{
+    width: 300px;
+    background-color: var(--secondaryColor);
+    color: var(--basicColor);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    border-radius: 12px;
+    padding: 6px;
+    height: 50px;
+    margin-right: -12px;
+}
+
 .selectText{
     margin-right: 8px;
 }
@@ -247,4 +260,14 @@
     margin: 15px;
 }
 
+.divSeparateFilters{
+    display: flex;
+    justify-content: space-around;
+    
+}
 
+.divFilterUnique{
+    display: flex;
+    align-items: baseline;
+    gap: 0px;
+}

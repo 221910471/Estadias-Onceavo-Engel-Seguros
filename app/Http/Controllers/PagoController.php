@@ -192,52 +192,155 @@ class PagoController extends Controller
     }
 
 
-    // public function filterVentas(Request $request){
-
-    //     $nombres = Usuarios::where("nombre","like",$request->texto."%")
-    //         ->get();
-
-    //     // echo ($nombres);
-
-    //     switch ($request->activo) {
-    //         case 1:
-    //             // $usuarios = Usuarios::all();
-    //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-    //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //                 ->get();
-    //             break;
-    //         case 2:
-    //             // $usuarios = Usuarios::where("deleted_at", "!=", "")
-    //             //     ->where("nombre","like",$request->nombre."%")    
-    //             //     ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //             //     ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //             //     ->get();
-    //             $usuarios = Usuarios::onlyTrashed()
-    //             ->get();
-    //             break;
-    //         default:
-    //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-    //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //                 ->withTrashed()
-    //                 ->get();
-    //             // $usuarios = Usuarios::withTrashed()
-    //             // ->get();
-    //             break;
-    //     }
 
 
-    //     $sessionId = session('sessionId');
-    //     if($sessionId<>""){
-    //         return view('crud.users')
-    //         ->with('usuarios', $usuarios);
-    //     }
-    //     else{
-    //         Session::flash('mensaje', 'Por favor inicie sesión para continuar');
-    //         return redirect()->route('login');
-    //     }
-    // }
+    public function filterActivoPago(Request $request){
+
+        switch ($request->activo) {
+            case 1:
+                $pagos = Pagos::all();
+                    // ->orderBy('updated_at', 'desc')
+                    // ->get();
+                break;
+            case 2:
+                $pagos = Pagos::onlyTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            default:
+                $pagos = Pagos::withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+
+                // $usuarios = Usuarios::withTrashed()
+                // ->get();
+                break;
+                
+        }
+
+        $polizas = Polizas::withTrashed()
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        $usuarios = Usuarios::withTrashed()
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.pagos.pagos')
+                    ->with('usuarios', $usuarios)
+                    ->with('polizas', $polizas)
+                    ->with('pagos', $pagos);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+                
+    }
+
+    public function filterEstadoPago(Request $request){
+
+        switch ($request->estado) {
+            case 1:
+                $pagos = Pagos::where("estado","=","Pagado")
+                    ->withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            case 2:
+                $pagos = Pagos::where("estado","=","Por pagar")
+                    ->withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            default:
+                $pagos = Pagos::withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+
+                break;
+                
+        }
+
+        $polizas = Polizas::withTrashed()
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        $usuarios = Usuarios::withTrashed()
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.pagos.pagos')
+                    ->with('usuarios', $usuarios)
+                    ->with('polizas', $polizas)
+                    ->with('pagos', $pagos);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+                
+    }
+
+    public function filterFechaPago(Request $request){
+
+        $pagos = Pagos::where("fechaDePago","=",$request->fecha)
+        ->withTrashed()
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+        $polizas = Polizas::withTrashed()
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+        $usuarios = Usuarios::withTrashed()
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.pagos.pagos')
+                    ->with('usuarios', $usuarios)
+                    ->with('polizas', $polizas)
+                    ->with('pagos', $pagos);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        } 
+                
+    }
 
     // public function pdfVistaVenta(){
     //     $usuarios = Usuarios::all();

@@ -37,7 +37,9 @@ Route::post('/createPoliza',[PolizaController::class,'createPoliza'])->name('cre
 Route::put('/editPoliza/{id}',[PolizaController::class,'editPoliza'])->name('editPoliza');
 Route::get('/deletePoliza/{id}',[PolizaController::class,'deletePoliza'])->name('deletePoliza');
 Route::get('/activatePoliza/{id}',[PolizaController::class,'activatePoliza'])->name('activatePoliza');
-Route::get('/filterPolizas',[PolizaController::class,'filterPolizas'])->name('filterPolizas');
+Route::get('/filterActivo',[PolizaController::class,'filterActivo'])->name('filterActivo');
+Route::get('/filterTipoPoliza',[PolizaController::class,'filterTipoPoliza'])->name('filterTipoPoliza');
+Route::get('/filterClave',[PolizaController::class,'filterClave'])->name('filterClave');
 
 //Rutas para Clientes------------
 
@@ -50,8 +52,12 @@ Route::post('/createVenta',[VentaController::class,'createVenta'])->name('create
 Route::put('/editVenta/{id}',[VentaController::class,'editVenta'])->name('editVenta');
 Route::get('/deleteVenta/{id}',[VentaController::class,'deleteVenta'])->name('deleteVenta');
 Route::get('/activateVenta/{id}',[VentaController::class,'activateVenta'])->name('activateVenta');
-Route::get('/filtrarVentas',[VentaController::class,'filtrarVentas'])->name('filtrarVentas');
 Route::get('/pdfVentas',[VentaController::class,'pdfVentas'])->name('pdfVentas');
+Route::get('/filterClaveVenta',[VentaController::class,'filterClaveVenta'])->name('filterClaveVenta');
+Route::get('/filterActivoVenta',[VentaController::class,'filterActivoVenta'])->name('filterActivoVenta');
+Route::get('/filterFechaVenta',[VentaController::class,'filterFechaVenta'])->name('filterFechaVenta');
+
+
 
 //Rutas para las funciones de correo---------------
 
@@ -66,7 +72,9 @@ Route::post('/createNotificacion',[NotificacionController::class,'createNotifica
 Route::put('/editNotificacion/{id}',[NotificacionController::class,'editNotificacion'])->name('editNotificacion');
 Route::get('/deleteNotificacion/{id}',[NotificacionController::class,'deleteNotificacion'])->name('deleteNotificacion');
 Route::get('/activateNotificacion/{id}',[NotificacionController::class,'activateNotificacion'])->name('activateNotificacion');
-Route::get('/filtrarNotificaciones',[NotificacionController::class,'filtrarNotificaciones'])->name('filtrarNotificaciones');
+Route::get('/filterAsuntoNotificacion',[NotificacionController::class,'filterAsuntoNotificacion'])->name('filterAsuntoNotificacion');
+Route::get('/filterFechaNotificacion',[NotificacionController::class,'filterFechaNotificacion'])->name('filterFechaNotificacion');
+Route::get('/filterRemitenteNotificacion',[NotificacionController::class,'filterRemitenteNotificacion'])->name('filterRemitenteNotificacion');
 Route::get('/pdfNotificaciones',[NotificacionController::class,'pdfNotificaciones'])->name('pdfNotificaciones');
 
 //Rutas para módulo de pagos---------------
@@ -77,5 +85,7 @@ Route::post('/createPago',[PagoController::class,'createPago'])->name('createPag
 Route::put('/editPago/{id}',[PagoController::class,'editPago'])->name('editPago');
 Route::get('/deletePago/{id}',[PagoController::class,'deletePago'])->name('deletePago');
 Route::get('/activatePago/{id}',[PagoController::class,'activatePago'])->name('activatePago');
-Route::get('/filtrarPago',[PagoController::class,'filtrarPago'])->name('filtrarPago');
+Route::get('/filterFechaPago',[PagoController::class,'filterFechaPago'])->name('filterFechaPago');
+Route::get('/filterEstadoPago',[PagoController::class,'filterEstadoPago'])->name('filterEstadoPago');
+Route::get('/filterActivoPago',[PagoController::class,'filterActivoPago'])->name('filterActivoPago');
 Route::get('/pdfPagos',[PagoController::class,'pdfPagos'])->name('pdfPagos');

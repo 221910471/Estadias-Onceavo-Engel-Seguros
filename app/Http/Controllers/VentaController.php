@@ -14,7 +14,8 @@ class VentaController extends Controller
 {
     public function ventas(){
         // $ventas = Ventas::all();
-        $usuarios = Usuarios::all();
+        $usuarios = Usuarios::withTrashed()
+            ->get();
 
         $ventas = Ventas::orderBy('updated_at', 'desc')
             ->withTrashed()
@@ -141,63 +142,121 @@ class VentaController extends Controller
 
     }
 
-    // public function filterVentas(Request $request){
+    public function filterActivoVenta(Request $request){
 
-    //     $nombres = Usuarios::where("nombre","like",$request->texto."%")
-    //         ->get();
+        switch ($request->activo) {
+            case 1:
+                $ventas = Ventas::all();
+                    // ->orderBy('updated_at', 'desc')
+                    // ->get();
+                break;
+            case 2:
+                $ventas = Ventas::onlyTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+                break;
+            default:
+                $ventas = Ventas::withTrashed()
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
 
-    //     // echo ($nombres);
+                // $usuarios = Usuarios::withTrashed()
+                // ->get();
+                break;
+                
+        }
 
-    //     switch ($request->activo) {
-    //         case 1:
-    //             // $usuarios = Usuarios::all();
-    //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-    //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //                 ->get();
-    //             break;
-    //         case 2:
-    //             // $usuarios = Usuarios::where("deleted_at", "!=", "")
-    //             //     ->where("nombre","like",$request->nombre."%")    
-    //             //     ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //             //     ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //             //     ->get();
-    //             $usuarios = Usuarios::onlyTrashed()
-    //             ->get();
-    //             break;
-    //         default:
-    //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-    //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //                 ->withTrashed()
-    //                 ->get();
-    //             // $usuarios = Usuarios::withTrashed()
-    //             // ->get();
-    //             break;
-    //     }
+        $usuarios = Usuarios::withTrashed()
+            ->get();  
 
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
 
-    //     $sessionId = session('sessionId');
-    //     if($sessionId<>""){
-    //         return view('crud.users')
-    //         ->with('usuarios', $usuarios);
-    //     }
-    //     else{
-    //         Session::flash('mensaje', 'Por favor inicie sesión para continuar');
-    //         return redirect()->route('login');
-    //     }
-    // }
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.ventas.ventas')
+                    ->with('usuarios', $usuarios)
+                    ->with('ventas', $ventas);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+                
+    }
 
-    // public function pdfVistaVenta(){
-    //     $usuarios = Usuarios::all();
-    //     return view('crud.pdfUsuarios')
-    //         ->with('usuarios', $usuarios);
-    // }
+    public function filterClaveVenta(Request $request){
 
-    // public function pdfVentas(){
-    //     $usuarios = Usuarios::all();
-    //     $pdf = PDF::loadView('crud.pdfUsuarios',['usuarios'=>$usuarios]);
-    //     //$pdf->loadHTML('<h1>Test</h1>');
-    //     return $pdf->stream();
-    // }
+        $clave = $request->clave;
+        
+        $ventas = Ventas::where("clave","like",$request->clave."%")
+            ->withTrashed()
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        $usuarios = Usuarios::withTrashed()
+            ->get();  
+
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.ventas.ventas')
+                    ->with('usuarios', $usuarios)
+                    ->with('ventas', $ventas);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+                
+    }
+
+    public function filterFechaVenta(Request $request){
+
+        $ventas = Ventas::where("fecha","=",$request->fecha)
+            ->withTrashed()
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        $usuarios = Usuarios::withTrashed()
+            ->get();  
+
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
+
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.ventas.ventas')
+                    ->with('usuarios', $usuarios)
+                    ->with('ventas', $ventas);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }  
+                
+    }
 }

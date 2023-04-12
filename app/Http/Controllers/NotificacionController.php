@@ -14,7 +14,10 @@ use PDF;
 class NotificacionController extends Controller
 {
     public function notificaciones(){
-        $notificaciones = Notificaciones::all();
+
+        $notificaciones = Notificaciones::orderBy('updated_at', 'desc')
+            ->get();
+
         $usuarios = Usuarios::all();
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
@@ -223,52 +226,91 @@ class NotificacionController extends Controller
     }
 
 
-    // public function filterVentas(Request $request){
+    public function filterRemitenteNotificacion(Request $request){
 
-    //     $nombres = Usuarios::where("nombre","like",$request->texto."%")
-    //         ->get();
+        $notificaciones = Notificaciones::where("usuarioId","=",$request->remitente)
+            ->get();
+        $usuarios = Usuarios::all();
+        // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+        $sessionId = session('sessionId');
+        $sessionTipo = session('sessionTipo');
 
-    //     // echo ($nombres);
+        if($sessionId<>""){
+            if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                return view('crud.notificaciones.notificaciones')
+                    ->with('usuarios', $usuarios)
+                    ->with('notificaciones', $notificaciones);
+            }
+            else{
+                Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+            return redirect()->route('login');
+            }
+            
+        }
+        else{
+            Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            return redirect()->route('login');
+        }
+                
+    }
 
-    //     switch ($request->activo) {
-    //         case 1:
-    //             // $usuarios = Usuarios::all();
-    //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-    //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //                 ->get();
-    //             break;
-    //         case 2:
-    //             // $usuarios = Usuarios::where("deleted_at", "!=", "")
-    //             //     ->where("nombre","like",$request->nombre."%")    
-    //             //     ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //             //     ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //             //     ->get();
-    //             $usuarios = Usuarios::onlyTrashed()
-    //             ->get();
-    //             break;
-    //         default:
-    //             $usuarios = Usuarios::where("nombre","like",$request->nombre."%")
-    //                 ->orWhere("apellidoPaterno","like",$request->nombre."%")
-    //                 ->orWhere("apellidoMaterno","like",$request->nombre."%")
-    //                 ->withTrashed()
-    //                 ->get();
-    //             // $usuarios = Usuarios::withTrashed()
-    //             // ->get();
-    //             break;
-    //     }
+    public function filterAsuntoNotificacion(Request $request){
 
+        $notificaciones = Notificaciones::where("asunto","like",$request->asunto."%")
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
-    //     $sessionId = session('sessionId');
-    //     if($sessionId<>""){
-    //         return view('crud.users')
-    //         ->with('usuarios', $usuarios);
-    //     }
-    //     else{
-    //         Session::flash('mensaje', 'Por favor inicie sesión para continuar');
-    //         return redirect()->route('login');
-    //     }
-    // }
+            $usuarios = Usuarios::all();
+            // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+            $sessionId = session('sessionId');
+            $sessionTipo = session('sessionTipo');
+    
+            if($sessionId<>""){
+                if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                    return view('crud.notificaciones.notificaciones')
+                        ->with('usuarios', $usuarios)
+                        ->with('notificaciones', $notificaciones);
+                }
+                else{
+                    Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+                return redirect()->route('login');
+                }
+                
+            }
+            else{
+                Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            }
+                
+    }
+
+    public function filterFechaNotificacion(Request $request){
+
+        $notificaciones = Notificaciones::where("fechaEnvio","=",$request->fecha)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+            $usuarios = Usuarios::all();
+            // validar que tenga una sesión activa en esa pantalla, dentro del controlador
+            $sessionId = session('sessionId');
+            $sessionTipo = session('sessionTipo');
+    
+            if($sessionId<>""){
+                if($sessionTipo == "Administrador" || $sessionTipo == "Interno"){
+                    return view('crud.notificaciones.notificaciones')
+                        ->with('usuarios', $usuarios)
+                        ->with('notificaciones', $notificaciones);
+                }
+                else{
+                    Session::flash('mensaje', 'No puede acceder este apartado con los permisos actuales');
+                return redirect()->route('login');
+                }
+                
+            }
+            else{
+                Session::flash('mensaje', 'Por favor inicie sesión para continuar');
+            }  
+                
+    }
 
     // public function pdfVistaVenta(){
     //     $usuarios = Usuarios::all();
