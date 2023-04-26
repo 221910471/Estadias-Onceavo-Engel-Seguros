@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Softdeletes;
 
-class Pagos extends Model
+class Codigos extends Model
 {
     use HasFactory;
     use Softdeletes;
@@ -14,16 +14,9 @@ class Pagos extends Model
     protected $primaryKey ='id';
     protected $fillable = [
         'id',
-        'clave',
-        'frecuenciaDePago',
-        'fechaDePago',
-        'fechaLimiteDePago',
-        'estado',
-        'formaDePago',
-        'montoDePago',
-        'subtotal',
-        'descuentoRealizado',
-        'polizaId',
+        'codigo',
+        'porcentaje',
+        'fechaDeVencimiento',
         'usuarioId',
     ];
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Pagos;
 use App\Models\Usuarios;
 use App\Models\Polizas;
+use App\Models\Codigos;
 use Illuminate\Pagination\Paginator;
 use Session;
 use PDF;
@@ -19,6 +20,7 @@ class PagoController extends Controller
             ->get();
         $polizas = Polizas::all();
         $usuarios = Usuarios::all();
+        $codigos = Codigos::all();
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
         $sessionId = session('sessionId');
         $sessionTipo = session('sessionTipo');
@@ -28,6 +30,7 @@ class PagoController extends Controller
                 return view('crud.pagos.pagos')
                     ->with('usuarios', $usuarios)
                     ->with('polizas', $polizas)
+                    ->with('codigos', $codigos)
                     ->with('pagos', $pagos);
             }
             else{
@@ -63,6 +66,24 @@ class PagoController extends Controller
             $texto = "C-";
             $clave = $texto.$date;
 
+            $valorMonto = $request->input('montoDePago');
+            $valorDescuento = $request->input('descuentoRealizado'); 
+
+            if($valorDescuento != ''){
+                $porcentajeDescuento = $valorDescuento/100;
+                $valorDelDescuento = $valorMonto*$porcentajeDescuento;
+                $valorSubtotal = $valorMonto-$valorDelDescuento;
+            }
+            else{
+                $valorDescuento = 0;
+                $valorSubtotal = $valorMonto;
+            }
+
+            
+
+
+            echo $valorDescuento;
+
             Pagos::create(array(
                 'clave' => $clave,
                 'frecuenciaDePago' => $request->input('frecuenciaDePago'),
@@ -72,8 +93,23 @@ class PagoController extends Controller
                 'formaDePago' => $request->input('formaDePago'),
                 'montoDePago' => $request->input('montoDePago'),
                 'polizaId' => $request->input('polizaId'),
-                'usuarioId' => $request->input('usuarioId')
+                'usuarioId' => $request->input('usuarioId'),
+                'descuentoRealizado' => $valorDescuento,
+                'subtotal' => $valorSubtotal,
+
             ));
+
+            $usuarioId = $request->input('usuarioId');
+            $codigoParaEliminar = Codigos::where("usuarioId","=",$usuarioId)
+            ->where("porcentaje","=",$valorDescuento)
+            ->first();
+            echo $codigoParaEliminar;
+            $idDelCodigoEliminar = $codigoParaEliminar->id;
+            
+            $codigo = Codigos::find($idDelCodigoEliminar);
+            $codigo->delete();
+
+            
             
             $sessionId = session('sessionId');
         
@@ -119,6 +155,8 @@ class PagoController extends Controller
             'estado' => 'required',
             'formaDePago' => 'required',
             'montoDePago' => 'required',
+            // 'descuentoRealizado' => 'required',
+            // 'subtotal' => 'required',
             'polizaId' => 'required',
             'usuarioId' => 'required'
 
@@ -136,6 +174,8 @@ class PagoController extends Controller
             $pagosSave->estado = $request->estado;
             $pagosSave->formaDePago = $request->formaDePago;
             $pagosSave->montoDePago = $request->montoDePago;
+            $pagosSave->descuentoRealizado = 0;
+            $pagosSave->subtotal = $request->montoDePago;
             $pagosSave->polizaId = $request->polizaId;
             $pagosSave->usuarioId = $request->usuarioId;
         $pagosSave->save();
@@ -170,6 +210,7 @@ class PagoController extends Controller
         ->orderBy('fechaLimiteDePago', 'desc')
             ->paginate(6);
         $usuarios = Usuarios::all();
+        $codigos = Codigos::all();
         
         // validar que tenga una sesión activa en esa pantalla, dentro del controlador
 
@@ -177,6 +218,7 @@ class PagoController extends Controller
             if($sessionTipo == "Cliente"){
                 return view('pagos')
                     ->with('usuarios', $usuarios)
+                    ->with('codigos', $codigos)
                     ->with('pagos', $pagos);
             }
             else{
@@ -354,4 +396,5 @@ class PagoController extends Controller
     //     //$pdf->loadHTML('<h1>Test</h1>');
     //     return $pdf->stream();
     // }
+
 }

@@ -134,5 +134,31 @@
     <br>
     <br>
     @include('layouts.footer')
+
+    <script type="text/javascript">
+
+        function calcularSubtotal() {
+            const monto = document.getElementById('montoDePago');
+            const descuento = document.getElementById('descuentoRealizado');
+            const subtotal = document.getElementById('subtotal');
+            const subtotalInput = document.getElementById('subtotalInput');
+
+            var valorMonto = monto.value;
+            var valorDescuento = descuento.value;
+            var porcentajeDescuento = valorDescuento/100;
+            var valorDelDescuento = valorMonto*porcentajeDescuento;
+            var valorSubtotal = valorMonto-valorDelDescuento;
+            if(valorMonto != '' && valorDescuento != 'Ninguno'){
+                document.getElementById("subtotal").style.display = "block";
+                document.getElementById("subtotalInput").value = valorSubtotal;
+            }
+            else{
+                // document.getElementById("subtotal").style.display = "none";
+                document.getElementById("subtotalInput").value = valorMonto;
+            }
+
+            
+        }
+    </script>
 </body>
 </html>

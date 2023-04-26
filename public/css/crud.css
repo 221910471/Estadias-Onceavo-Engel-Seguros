@@ -271,3 +271,28 @@
     align-items: baseline;
     gap: 0px;
 }
+
+.divSeparateGenerate{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.divFormGenerate{
+    display: flex;
+    align-items: baseline;
+    gap: 0px;
+}
+
+.divSelectGenerateForm{
+    width: 300px;
+    background-color: var(--secondaryColor);
+    color: var(--basicColor);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    border-radius: 12px;
+    padding: 6px;
+    height: 75px;
+    margin-right: 15px;
+}

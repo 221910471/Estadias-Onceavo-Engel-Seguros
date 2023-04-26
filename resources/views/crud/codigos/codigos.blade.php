@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventas</title>
+    <title>codigos</title>
     <link rel="stylesheet" href="css/crud.css">
 </head>
 
@@ -12,54 +12,27 @@
 
     @include('layouts.navbar')
     <div>
-        <h2 class="crudH2">Ventas</h2>
+        <h2 class="crudH2">Códigos de descuento</h2>
         <hr>
     </div>
 
-    <center class="divSeparateFilters">
-        <form action="{{route('filterClaveVenta')}}" method="GET" enctype="multipart/form-data">
+    <center class="divSeparateGenerate">
+        <form action="{{route('generarCodigos')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
-            <div class="divFilterUnique">
-                <div class="divSelect2">
-                        <p class="selectText">Buscar:</p>
-                        <input type="search" name="clave" id="clave" value="" class="form-control" placeholder="Clave">                
+            <div class="divFormGenerate">
+                <div class="divSelectGenerateForm">
+                        <p class="selectText">Cantidad de códigos:</p>
+                        <input type="number" name="numero" id="numero" value="" class="form-control" placeholder="# de códigos">                
                 </div>
-                    <input type="submit" value=">" class="crudButton">
+                <div class="divSelectGenerateForm">
+                        <p class="selectText">Porcentaje de descuento %:</p>
+                        <input type="number" name="porcentaje" id="porcentaje" value="" class="form-control" placeholder="%">                
+                </div>
+                    <input type="submit" value="Generar códigos nuevos" class="crudButton">
             </div>
         </form>
 
-        <form action="{{route('filterFechaVenta')}}" method="GET" enctype="multipart/form-data">
-            {{csrf_field()}}
-            <div class="divFilterUnique">
-                <div class="divSelect2">
-                        <p class="selectText">Buscar:</p>
-                        <input type="date" name="fecha" id="fecha" class="form-control" placeholder="Clave">                
-                </div>
-                    <input type="submit" value=">" class="crudButton">
-            </div>
-        </form>
-
-        <form action="{{route('filterActivoVenta')}}" method="GET" enctype="multipart/form-data">
-            {{csrf_field()}}
-            <div class="divFilterUnique">
-                <div class="divSelect2">
-                        <p class="selectText">Buscar:</p>
-                        <select class="form-select" name="activo" id="activo" value="1" placeholder="Estado">
-                            <option selected>Estado</option>
-                            <option value="1">Activos</option>
-                            <option value="2">Inactivos</option>
-                            <option value="3">Todos</option>
-                        </select>
-                </div>
-                    <input type="submit" value=">" class="crudButton">
-            </div>
-        </form>
     </center>
-    <br>
-
-    @include('crud.ventas.createVenta')
-
-    <button class="crudButton"><a class="linkNav" href="{{ route('codigos') }}">Codigos</a></button>
 
     <br>
     <center>
@@ -71,43 +44,45 @@
                 <tbody>
                     <tr>
                         <th>#</th>
-                        <th>Clave</th>
-                        <th>Comisión</th>
-                        <th>Registrado por</th>
-                        <th>Fecha de Registro</th>
-                        <th>Editar</td>
+                        <th>Código</th>
+                        <th>Usuario que uso el código</th>
+                        <th>Porcentaje de descuento</th>
+                        <th>Fecha de vencimiento</th>
+                        <th>Estado</td>
                         <th>Eliminar</td>
                     </tr>
                     <?php
                         $contador = 0;
                     ?>
-                    @foreach($ventas as $venta)
+                    @foreach($codigos as $codigo)
                         <?php
                             $contador = $contador+1;
                         ?>
                         <tr>
                             <td>{{ $contador }}</td>
-                            <td>{{ $venta->clave }}</td>
-                            <td>$ {{ $venta->comision }} MXN</td>
+                            <td>{{ $codigo->codigo }}</td>
                             <td>
                                 @foreach($usuarios as $usuario)
-                                    @if($usuario->id == $venta->usuarioId)
+                                    @if($usuario->id == $codigo->usuarioId)
                                     {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}
                                     @endif
                                 @endforeach
                             </td>
-                            <td>{{ $venta->fecha }}</td>
+                            <td>{{ $codigo->porcentaje }}%</td>
+                            <td>{{ $codigo->fechaDeVencimiento }}</td>
                             <td>
-                                <center>
-                                    @include('crud.ventas.editVenta')
-                                </center>
+                                @if($codigo->deleted_at)
+                                    Usado
+                                @else
+                                    No usado
+                                @endif
                             </td>
                             <td>
                                 <center>                                
-                                    @if($venta->deleted_at)
-                                        @include('crud.ventas.activateVenta')
+                                    @if($codigo->deleted_at)
+                                        @include('crud.codigos.activarCodigo')
                                     @else
-                                        @include('crud.ventas.deleteVenta')
+                                        @include('crud.codigos.eliminarCodigo')
                                     @endif
                                 </center>  
                             </td>
@@ -117,9 +92,6 @@
             </table>
         </div>
     </center>
-    <!-- <div class="buttonsFiles">
-    <a href="{{ route('pdfUsuarios') }}"><button class="crudButtonPDF">Generar PDF</button></a>
-    </div> -->
     <br>
     <br>
     <br>

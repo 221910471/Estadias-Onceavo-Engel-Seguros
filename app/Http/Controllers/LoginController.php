@@ -8,6 +8,7 @@ use App\Models\Usuarios;
 use App\Models\Ventas;
 use App\Models\Pagos;
 use App\Models\Polizas;
+use App\Models\Codigos;
 use Session;
 
 class LoginController extends Controller
@@ -21,10 +22,12 @@ class LoginController extends Controller
             $ventas = Ventas::all();
             $pagos = Pagos::all();
             $polizas = Polizas::all();
+            $codigos = Codigos::all();
             return view('home')
                 ->with('ventas', $ventas)
                 ->with('pagos', $pagos)
                 ->with('polizas', $polizas)
+                ->with('codigos', $codigos)
                 ->with('usuarios', $usuarios);
         }
         else{

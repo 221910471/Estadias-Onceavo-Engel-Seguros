@@ -2,8 +2,7 @@
 <div>
         <!-- Button trigger modal -->
         <button type="button" class="crudButton" data-bs-toggle="modal" data-bs-target="#createPago">
-            Registrar      
-            Pago
+            Registrar Pago
         </button>
 
         <!-- Modal -->
@@ -65,33 +64,9 @@
                                 </label>
                                 <select class="form-select" name="formaDePago" id="formaDePago" value="{{ old('formaDePago') }}">
                                 <option selected>Seleccione una opción</option>
-                                    <option value="Trajeta de crédito">Trajeta de crédito</option>
-                                    <option value="Trasnferencia">Trasnferencia</option>
+                                    <option value="Trajeta de crédito">Tarjeta de crédito</option>
+                                    <option value="Trasnferencia">Transferencia</option>
                                     <option value="Efectivo">Efectivo</option>
-                                </select>
-                            </div>
-
-                            <div class="crudFormItems">
-                                <label for="dni">Monto de pago:
-                                    @if($errors->first('montoDePago'))
-                                        <p class="text-danger"><em>{{ $errors->first('montoDePago')}}</em></p>
-                                    @endif
-                                </label>
-
-                                <input type="number" name="montoDePago" id="montoDePago" value="{{ old('montoDePago') }}" class="form-control" placeholder="Monto de Pago">
-                            <montoDePago
-                            <div class="crudFormItems">
-                                <label for="dni">
-                                    Póliza a la que pertenece el pago:
-                                    @if($errors->first('polizaId'))
-                                        <p class="text-danger"><em>{{ $errors->first('polizaId')}}</em></p>
-                                    @endif
-                                </label>
-                                <select class="form-select" name="polizaId" id="polizaId" value="{{ old('polizaId') }}">
-                                    <option selected>Seleccione una opción</option>
-                                    @foreach($polizas as $poliza)
-                                        <option value="{{ $poliza->id }}">{{ $poliza->id }} - {{ $poliza->clave }}</option>
-                                    @endforeach
                                 </select>
                             </div>
 
@@ -106,8 +81,59 @@
                                     <option selected>Seleccione al destinatario</option>
                                     @foreach($usuarios as $usuario)
                                         @if($usuario->rol == "Cliente")
-                                            <option value="{{ $usuario->id }}">{{ $usuario->id }} - {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</option>
+                                            <option id="option1" value="{{ $usuario->id }}">{{ $usuario->id }} - {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</option>
                                         @endif
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="crudFormItems">
+                                <label for="dni">Monto de pago:
+                                    @if($errors->first('montoDePago'))
+                                        <p class="text-danger"><em>{{ $errors->first('montoDePago')}}</em></p>
+                                    @endif
+                                </label>
+
+                                <input type="number" name="montoDePago" id="montoDePago" onchange="calcularSubtotal()" value="{{ old('montoDePago') }}" class="form-control" placeholder="Monto de Pago">
+                            </div>
+
+                            <div class="crudFormItems">
+                                <label for="dni">
+                                    Descuento:
+                                    @if($errors->first('descuentoRealizado'))
+                                        <p class="text-danger"><em>{{ $errors->first('descuentoRealizado')}}</em></p>
+                                    @endif
+                                </label>
+                                <select class="form-select" name="descuentoRealizado" id="descuentoRealizado" onchange="calcularSubtotal()" value="{{ old('descuentoRealizado') }}">
+                                    <option value="" selected>Ninguno</option>
+                                    @foreach($codigos as $codigo)
+                                        @foreach($usuarios as $usuario)
+                                            @if($codigo->usuarioId !=0)
+                                                @if($codigo->usuarioId == $usuario->id)
+                                                    <option value="{{ $codigo->porcentaje }}">{{ $codigo->porcentaje }}% - Ingresado por {{ $usuario->id }} - {{ $usuario->nombre }} {{ $usuario->apellidoPaterno }} {{ $usuario->apellidoMaterno }}</option>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="crudFormItems" id="subtotal" style="display:none;">
+                                Subtotal de pago
+                                <input type="number" name="subtotalInput" id="subtotalInput" value="{{ old('subtotal') }}" class="form-control" placeholder="Subtotal de Pago" disabled>
+                            </div>
+                            
+                            <div class="crudFormItems">
+                                <label for="dni">
+                                    Póliza a la que pertenece el pago:
+                                    @if($errors->first('polizaId'))
+                                        <p class="text-danger"><em>{{ $errors->first('polizaId')}}</em></p>
+                                    @endif
+                                </label>
+                                <select class="form-select" name="polizaId" id="polizaId" value="{{ old('polizaId') }}">
+                                    <option selected>Seleccione una opción</option>
+                                    @foreach($polizas as $poliza)
+                                        <option value="{{ $poliza->id }}">{{ $poliza->id }} - {{ $poliza->clave }}</option>
                                     @endforeach
                                 </select>
                             </div>

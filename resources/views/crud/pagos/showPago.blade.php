@@ -24,6 +24,7 @@
                                 <h5 style="text-align: left;">Estado: {{ $pago->estado }}</h5>
                                 <h5 style="text-align: center;">Frecuencia del pago: {{ $pago->frecuenciaDePago }}</h5>
                                 <h5 style="text-align: right;">Monto total de pago: {{ $pago->montoDePago }}</h5>
+                                <h5 style="text-align: right;">Subtotal de pago: {{ $pago->subtotal }}</h5>
                             </div>
                             <hr>
                             <h4 style="text-align: left;">Cliente que realizo el pago:</h4>

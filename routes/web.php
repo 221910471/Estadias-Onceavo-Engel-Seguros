@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PolizaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\CodigoController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PagoController;
@@ -89,3 +90,16 @@ Route::get('/filterFechaPago',[PagoController::class,'filterFechaPago'])->name('
 Route::get('/filterEstadoPago',[PagoController::class,'filterEstadoPago'])->name('filterEstadoPago');
 Route::get('/filterActivoPago',[PagoController::class,'filterActivoPago'])->name('filterActivoPago');
 Route::get('/pdfPagos',[PagoController::class,'pdfPagos'])->name('pdfPagos');
+
+//Rutas para crud de códigos de descuento---------------
+
+Route::get('/codigos',[CodigoController::class,'codigos'])->name('codigos');
+Route::post('/generarCodigos',[CodigoController::class,'generarCodigos'])->name('generarCodigos');
+Route::get('/eliminarCodigo/{id}',[CodigoController::class,'eliminarCodigo'])->name('eliminarCodigo');
+Route::get('/activarCodigo/{id}',[CodigoController::class,'activarCodigo'])->name('activarCodigo');
+Route::get('/descuentos',[CodigoController::class,'descuentos'])->name('descuentos');
+Route::post('/ingresarCodigo',[CodigoController::class,'ingresarCodigo'])->name('ingresarCodigo');
+
+
+
+//agregar los filtros de busqueda de descuentos
