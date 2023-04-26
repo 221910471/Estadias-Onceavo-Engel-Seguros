@@ -38,17 +38,19 @@
           <a href="{{ route('clientes') }}" class="linkNav"><p class="navItem">Mi Póliza</p></a>
           <a href="{{ route('pagosCliente') }}" class="linkNav"><p class="navItem">Mis Pagos</p></a>
           <a href="{{ route('notificacionesCliente') }}" class="linkNav"><p class="navItem">Notificaciones</p></a>
+          <a href="{{ route('descuentos') }}" class="linkNav"><p class="navItem">Código de descuento</p></a>
           <a href="{{ route('cerrarSesion') }}"><button class="navButton">Cerrar sesión</button></a>
           @else
             <!-- <a href="#"><p>usted NO TIENE SESION ACTIVA</p></a> -->
-            <a href="" class="linkNav"><p class="navItem">Conocer más</p></a>
-            <a href="" class="linkNav"><p class="navItem">Póliticas y Términos</p></a>
+            <!-- <a href="" class="linkNav"><p class="navItem">Conocer más</p></a> -->
+            <!-- <a href="" class="linkNav"><p class="navItem">Póliticas y Términos</p></a> -->
             <a href="{{ route('login') }}"><button class="navButton">Iniciar sesión</button></a>
           @endif
         @endif
       @endif
 
     </nav>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>

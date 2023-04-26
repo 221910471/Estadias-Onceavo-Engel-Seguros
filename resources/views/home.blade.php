@@ -25,7 +25,7 @@
         ?>
     </h2>
     <br>
-    <div class="registerArea">
+    <center class="registerArea">
         @include('crud.createUser')
         <img src="img/flecha-curva.png" alt="flecha-curva">
         @include('crud.ventas.createVenta')
@@ -33,7 +33,7 @@
         @include('crud.polizas.createPoliza')
         <img src="img/flecha-curva.png" alt="flecha-curva">
         @include('crud.pagos.createPago')
-    </div>
+    </center>
     <center>
         <br><br>
         <div class="areaGraphics">
